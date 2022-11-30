@@ -13,16 +13,152 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{b7e1cbb9-67f7-40eb-aebd-c0b8777d2822}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameScene">
+      <UniqueIdentifier>{7db6ca70-0da5-413b-9d97-1329cf97f678}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{c05b3827-4a1d-40bd-882c-a98f610a3dfb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base">
+      <UniqueIdentifier>{cd4ae18d-a386-4aad-850a-11afdf3d9e42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{8bf65200-ba05-412c-a28f-8637cdb81ff5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base\Buffer">
+      <UniqueIdentifier>{842bbf82-3553-4651-8d55-ae8e7084f578}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject">
+      <UniqueIdentifier>{29059eed-8390-4a81-8fdd-7c3a0a66ecbd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="include\2D\Camera2D.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="include\2D\Sprite.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="include\math\Vector.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="include\math\Matrix.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="include\directX\DirectXCommon.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="include\base\TextureManager.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="include\base\WinApp.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="include\PipelineFunc.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="include\input\Input.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>GameScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="dai.h">
+    <None Include="Shape.hlsli">
+      <Filter>リソース ファイル</Filter>
+    </None>
+    <None Include="Sprite.hlsli">
+      <Filter>リソース ファイル</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="ShapePS.hlsl">
+      <Filter>リソース ファイル</Filter>
+    </FxCompile>
+    <FxCompile Include="ShapeVS.hlsl">
+      <Filter>リソース ファイル</Filter>
+    </FxCompile>
+    <FxCompile Include="SpritePS.hlsl">
+      <Filter>リソース ファイル</Filter>
+    </FxCompile>
+    <FxCompile Include="SpriteVS.hlsl">
+      <Filter>リソース ファイル</Filter>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\2D\Camera2D.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="nati.h">
+    <ClInclude Include="include\2D\Sprite.h">
       <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="include\math\Vector4.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="include\math\Vector3.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="include\math\Vector2.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="include\math\Quaternion.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="include\math\Matrix44.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="include\math\Matrix33.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="include\math\MathUtility.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="include\directX\DirectXCommon.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="include\base\WinApp.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="include\base\TextureManager.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="include\directX\d3dx12.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="include\directX\Buffers.h">
+      <Filter>Base\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\directX\ConstBuffer.h">
+      <Filter>Base\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\directX\IndexBuffer.h">
+      <Filter>Base\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\directX\VertexBuffer.h">
+      <Filter>Base\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PipelineFunc.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="include\input\Input.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>GameScene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
