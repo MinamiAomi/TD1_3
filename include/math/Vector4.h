@@ -72,10 +72,3 @@ public:
 };
 
 
-namespace Color {
-	static const Vector4 Black = { 0.0f,0.0f,0.0f,1.0f };
-	static const Vector4 White = { 1.0f,1.0f,1.0f,1.0f };
-	static const Vector4 Red   = { 1.0f,0.0f,0.0f,1.0f };
-	static const Vector4 Green = { 0.0f,1.0f,0.0f,1.0f };
-	static const Vector4 Blue  = { 0.0f,0.0f,1.0f,1.0f };
-};

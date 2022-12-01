@@ -208,5 +208,20 @@ namespace Math
 		return powf(base, exponent);
 	}
 
+
 }
 
+namespace Color {
+	
+	static const Vector4 Black = { 0.0f,0.0f,0.0f,1.0f };
+	static const Vector4 White = { 1.0f,1.0f,1.0f,1.0f };
+	static const Vector4 Red = { 1.0f,0.0f,0.0f,1.0f };
+	static const Vector4 Green = { 0.0f,1.0f,0.0f,1.0f };
+	static const Vector4 Blue = { 0.0f,0.0f,1.0f,1.0f };
+
+	Vector4 ToVectorColor(unsigned int color);
+	unsigned int ToColorCode(const Vector4& color);
+	unsigned int HsvaToRgba(unsigned int h, unsigned int s, unsigned int v, unsigned int a);
+	
+
+};

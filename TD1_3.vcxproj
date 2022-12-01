@@ -158,6 +158,7 @@
     <ClCompile Include="include\math\Vector.cpp" />
     <ClCompile Include="include\PipelineFunc.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MathUtility.cpp" />
     <ClCompile Include="SceneManager.cpp" />
   </ItemGroup>
   <ItemGroup>

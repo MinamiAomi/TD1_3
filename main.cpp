@@ -1,15 +1,16 @@
 #include "Game.h"
+#include "WinApp.h"
 
 // Windowsアプリのエントリーポイント(main関数)
 int MAIN
 {
 
 	Game* game = new Game;
-
-	game.get()->Initalize();
-	game.get()->Run();
-	game.get()->Finalize();
-
+	bool success = game->Initalize();
+	if (success) {
+		game->Run();
+	}
+	game->Finalize();
 	delete game;
 
 	return 0;
