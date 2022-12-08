@@ -118,7 +118,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)include;$(SolutionDir)include\base;$(SolutionDir)include\directX;$(SolutionDir)include\math;$(SolutionDir)include\2D;$(SolutionDir)include\input</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)include\engine;$(SolutionDir)include\engine\base;$(SolutionDir)include\engine\math;$(SolutionDir)include\engine\3D;$(SolutionDir)include\engine\2D;$(SolutionDir)include\engine\input;$(SolutionDir)include\game</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -147,78 +147,81 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="include\2D\Camera2D.cpp" />
-    <ClCompile Include="include\2D\Sprite.cpp" />
-    <ClCompile Include="include\base\TextureManager.cpp" />
-    <ClCompile Include="include\base\WinApp.cpp" />
-    <ClCompile Include="include\directX\DirectXCommon.cpp" />
-    <ClCompile Include="include\input\Input.cpp" />
-    <ClCompile Include="include\math\Matrix.cpp" />
-    <ClCompile Include="include\math\Vector.cpp" />
-    <ClCompile Include="include\PipelineFunc.cpp" />
+    <ClCompile Include="include\engine\2D\Camera2D.cpp" />
+    <ClCompile Include="include\engine\2D\Sprite.cpp" />
+    <ClCompile Include="include\engine\3D\Camera3D.cpp" />
+    <ClCompile Include="include\engine\3D\Material.cpp" />
+    <ClCompile Include="include\engine\3D\Meth.cpp" />
+    <ClCompile Include="include\engine\3D\Model.cpp" />
+    <ClCompile Include="include\engine\3D\Object3D.cpp" />
+    <ClCompile Include="include\engine\base\DirectXCommon.cpp" />
+    <ClCompile Include="include\engine\base\TextureManager.cpp" />
+    <ClCompile Include="include\engine\base\WinApp.cpp" />
+    <ClCompile Include="include\engine\input\Input.cpp" />
+    <ClCompile Include="include\engine\math\MathUtility.cpp" />
+    <ClCompile Include="include\engine\math\Matrix.cpp" />
+    <ClCompile Include="include\engine\math\Vector.cpp" />
+    <ClCompile Include="include\engine\PipelineFunc.cpp" />
+    <ClCompile Include="include\game\Game.cpp" />
+    <ClCompile Include="include\game\SceneManager.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MathUtility.cpp" />
-    <ClCompile Include="SceneManager.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Shape.hlsli" />
-    <None Include="Sprite.hlsli" />
-  </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="ShapePS.hlsl">
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
-    </FxCompile>
-    <FxCompile Include="ShapeVS.hlsl">
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
-    </FxCompile>
-    <FxCompile Include="SpritePS.hlsl">
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
-    </FxCompile>
-    <FxCompile Include="SpriteVS.hlsl">
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
-    </FxCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="GameObject.h" />
-    <ClInclude Include="include\2D\Camera2D.h" />
-    <ClInclude Include="include\2D\Sprite.h" />
-    <ClInclude Include="include\base\TextureManager.h" />
-    <ClInclude Include="include\base\WinApp.h" />
-    <ClInclude Include="include\directX\Buffers.h" />
-    <ClInclude Include="include\directX\ConstBuffer.h" />
-    <ClInclude Include="include\directX\d3dx12.h" />
-    <ClInclude Include="include\directX\DirectXCommon.h" />
-    <ClInclude Include="include\directX\IndexBuffer.h" />
-    <ClInclude Include="include\directX\VertexBuffer.h" />
-    <ClInclude Include="include\input\Input.h" />
-    <ClInclude Include="include\math\MathUtility.h" />
-    <ClInclude Include="include\math\Matrix33.h" />
-    <ClInclude Include="include\math\Matrix44.h" />
-    <ClInclude Include="include\math\Quaternion.h" />
-    <ClInclude Include="include\math\Vector2.h" />
-    <ClInclude Include="include\math\Vector3.h" />
-    <ClInclude Include="include\math\Vector4.h" />
-    <ClInclude Include="include\PipelineFunc.h" />
-    <ClInclude Include="SceneManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="DirectXTex\DirectXTex_Desktop_2022_Win10.vcxproj">
       <Project>{371b9fa9-4c90-4ac6-a123-aced756d6c77}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Model.hlsli" />
+    <None Include="Sprite.hlsli" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="ModelPS.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="ModelVS.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="SpritePS.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="SpriteVS.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\engine\2D\Camera2D.h" />
+    <ClInclude Include="include\engine\2D\Sprite.h" />
+    <ClInclude Include="include\engine\3D\Camera3D.h" />
+    <ClInclude Include="include\engine\3D\Material.h" />
+    <ClInclude Include="include\engine\3D\Meth.h" />
+    <ClInclude Include="include\engine\3D\Model.h" />
+    <ClInclude Include="include\engine\3D\Object3D.h" />
+    <ClInclude Include="include\engine\base\Buffers.h" />
+    <ClInclude Include="include\engine\base\ConstBuffer.h" />
+    <ClInclude Include="include\engine\base\d3dx12.h" />
+    <ClInclude Include="include\engine\base\DirectXCommon.h" />
+    <ClInclude Include="include\engine\base\IndexBuffer.h" />
+    <ClInclude Include="include\engine\base\TextureManager.h" />
+    <ClInclude Include="include\engine\base\VertexBuffer.h" />
+    <ClInclude Include="include\engine\base\WinApp.h" />
+    <ClInclude Include="include\engine\input\Input.h" />
+    <ClInclude Include="include\engine\math\MathUtility.h" />
+    <ClInclude Include="include\engine\math\Matrix33.h" />
+    <ClInclude Include="include\engine\math\Matrix44.h" />
+    <ClInclude Include="include\engine\math\Quaternion.h" />
+    <ClInclude Include="include\engine\math\Vector2.h" />
+    <ClInclude Include="include\engine\math\Vector3.h" />
+    <ClInclude Include="include\engine\math\Vector4.h" />
+    <ClInclude Include="include\engine\PipelineFunc.h" />
+    <ClInclude Include="include\game\BaseScene.h" />
+    <ClInclude Include="include\game\Game.h" />
+    <ClInclude Include="include\game\GameObject.h" />
+    <ClInclude Include="include\game\SceneManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

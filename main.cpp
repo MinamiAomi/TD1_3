@@ -1,17 +1,15 @@
 #include "Game.h"
-#include "WinApp.h"
+#include <memory>
 
 // Windowsアプリのエントリーポイント(main関数)
 int MAIN
 {
-
-	Game* game = new Game;
+	std::unique_ptr<Game> game(new Game);
 	bool success = game->Initalize();
 	if (success) {
 		game->Run();
 	}
 	game->Finalize();
-	delete game;
 
 	return 0;
 }

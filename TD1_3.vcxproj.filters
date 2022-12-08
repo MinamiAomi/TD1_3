@@ -1,167 +1,198 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="ソース ファイル">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{81f96df3-9027-40ef-8430-9ba55b3ccf3c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    <Filter Include="Engine\2D">
+      <UniqueIdentifier>{96c15120-02d8-4f7c-843c-c9e204f922bf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="リソース ファイル">
+    <Filter Include="Engine\3D">
+      <UniqueIdentifier>{02bd6917-9e02-41ee-9594-cdf4c5f41fa1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Base">
+      <UniqueIdentifier>{46490e67-c49c-4ad5-813e-e713da0f8166}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Input">
+      <UniqueIdentifier>{3f4cf579-fabf-4dde-bf49-d4b94bba5e38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Base\Buffer">
+      <UniqueIdentifier>{0e705ee9-e2cb-444c-94eb-1249c8723e3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Math">
+      <UniqueIdentifier>{81125c0c-d2d7-44c1-b8d1-74ecbf139a7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{893b0506-b8c1-4f76-9e5b-739c2fe8620f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\shader">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Game">
-      <UniqueIdentifier>{b7e1cbb9-67f7-40eb-aebd-c0b8777d2822}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameScene">
-      <UniqueIdentifier>{7db6ca70-0da5-413b-9d97-1329cf97f678}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Input">
-      <UniqueIdentifier>{c05b3827-4a1d-40bd-882c-a98f610a3dfb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Base">
-      <UniqueIdentifier>{cd4ae18d-a386-4aad-850a-11afdf3d9e42}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Math">
-      <UniqueIdentifier>{8bf65200-ba05-412c-a28f-8637cdb81ff5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Base\Buffer">
-      <UniqueIdentifier>{842bbf82-3553-4651-8d55-ae8e7084f578}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameObject">
-      <UniqueIdentifier>{29059eed-8390-4a81-8fdd-7c3a0a66ecbd}</UniqueIdentifier>
+    <Filter Include="Game\Scene">
+      <UniqueIdentifier>{b5c4b2e7-c8e1-4774-802f-66180c70136e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="include\2D\Camera2D.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="include\engine\2D\Camera2D.cpp">
+      <Filter>Engine\2D</Filter>
     </ClCompile>
-    <ClCompile Include="include\2D\Sprite.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="include\engine\2D\Sprite.cpp">
+      <Filter>Engine\2D</Filter>
     </ClCompile>
-    <ClCompile Include="include\math\Vector.cpp">
-      <Filter>Math</Filter>
+    <ClCompile Include="include\engine\3D\Camera3D.cpp">
+      <Filter>Engine\3D</Filter>
     </ClCompile>
-    <ClCompile Include="include\math\Matrix.cpp">
-      <Filter>Math</Filter>
+    <ClCompile Include="include\engine\3D\Material.cpp">
+      <Filter>Engine\3D</Filter>
     </ClCompile>
-    <ClCompile Include="include\directX\DirectXCommon.cpp">
-      <Filter>Base</Filter>
+    <ClCompile Include="include\engine\3D\Meth.cpp">
+      <Filter>Engine\3D</Filter>
     </ClCompile>
-    <ClCompile Include="include\base\TextureManager.cpp">
-      <Filter>Base</Filter>
+    <ClCompile Include="include\engine\3D\Model.cpp">
+      <Filter>Engine\3D</Filter>
     </ClCompile>
-    <ClCompile Include="include\base\WinApp.cpp">
-      <Filter>Base</Filter>
+    <ClCompile Include="include\engine\3D\Object3D.cpp">
+      <Filter>Engine\3D</Filter>
     </ClCompile>
-    <ClCompile Include="Game.cpp">
+    <ClCompile Include="include\engine\base\DirectXCommon.cpp">
+      <Filter>Engine\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="include\engine\base\TextureManager.cpp">
+      <Filter>Engine\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="include\engine\base\WinApp.cpp">
+      <Filter>Engine\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="include\engine\input\Input.cpp">
+      <Filter>Engine\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="include\engine\math\MathUtility.cpp">
+      <Filter>Engine\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="include\engine\math\Matrix.cpp">
+      <Filter>Engine\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="include\engine\math\Vector.cpp">
+      <Filter>Engine\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="include\game\Game.cpp">
       <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="include\PipelineFunc.cpp">
-      <Filter>Base</Filter>
+    <ClCompile Include="include\engine\PipelineFunc.cpp">
+      <Filter>Engine\Base</Filter>
     </ClCompile>
-    <ClCompile Include="include\input\Input.cpp">
-      <Filter>Input</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneManager.cpp">
-      <Filter>GameScene</Filter>
-    </ClCompile>
-    <ClCompile Include="MathUtility.cpp">
-      <Filter>Math</Filter>
+    <ClCompile Include="include\game\SceneManager.cpp">
+      <Filter>Game\Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Shape.hlsli">
-      <Filter>リソース ファイル</Filter>
+    <None Include="Model.hlsli">
+      <Filter>Engine\shader</Filter>
     </None>
     <None Include="Sprite.hlsli">
-      <Filter>リソース ファイル</Filter>
+      <Filter>Engine\shader</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="ShapePS.hlsl">
-      <Filter>リソース ファイル</Filter>
+    <FxCompile Include="ModelPS.hlsl">
+      <Filter>Engine\shader</Filter>
     </FxCompile>
-    <FxCompile Include="ShapeVS.hlsl">
-      <Filter>リソース ファイル</Filter>
+    <FxCompile Include="ModelVS.hlsl">
+      <Filter>Engine\shader</Filter>
     </FxCompile>
     <FxCompile Include="SpritePS.hlsl">
-      <Filter>リソース ファイル</Filter>
+      <Filter>Engine\shader</Filter>
     </FxCompile>
     <FxCompile Include="SpriteVS.hlsl">
-      <Filter>リソース ファイル</Filter>
+      <Filter>Engine\shader</Filter>
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\2D\Camera2D.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="include\engine\2D\Camera2D.h">
+      <Filter>Engine\2D</Filter>
     </ClInclude>
-    <ClInclude Include="include\2D\Sprite.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="include\engine\2D\Sprite.h">
+      <Filter>Engine\2D</Filter>
     </ClInclude>
-    <ClInclude Include="include\math\Vector4.h">
-      <Filter>Math</Filter>
+    <ClInclude Include="include\engine\3D\Camera3D.h">
+      <Filter>Engine\3D</Filter>
     </ClInclude>
-    <ClInclude Include="include\math\Vector3.h">
-      <Filter>Math</Filter>
+    <ClInclude Include="include\engine\3D\Material.h">
+      <Filter>Engine\3D</Filter>
     </ClInclude>
-    <ClInclude Include="include\math\Vector2.h">
-      <Filter>Math</Filter>
+    <ClInclude Include="include\engine\3D\Meth.h">
+      <Filter>Engine\3D</Filter>
     </ClInclude>
-    <ClInclude Include="include\math\Quaternion.h">
-      <Filter>Math</Filter>
+    <ClInclude Include="include\engine\3D\Model.h">
+      <Filter>Engine\3D</Filter>
     </ClInclude>
-    <ClInclude Include="include\math\Matrix44.h">
-      <Filter>Math</Filter>
+    <ClInclude Include="include\engine\3D\Object3D.h">
+      <Filter>Engine\3D</Filter>
     </ClInclude>
-    <ClInclude Include="include\math\Matrix33.h">
-      <Filter>Math</Filter>
+    <ClInclude Include="include\engine\base\d3dx12.h">
+      <Filter>Engine\Base</Filter>
     </ClInclude>
-    <ClInclude Include="include\math\MathUtility.h">
-      <Filter>Math</Filter>
+    <ClInclude Include="include\engine\base\DirectXCommon.h">
+      <Filter>Engine\Base</Filter>
     </ClInclude>
-    <ClInclude Include="include\directX\DirectXCommon.h">
-      <Filter>Base</Filter>
+    <ClInclude Include="include\engine\base\TextureManager.h">
+      <Filter>Engine\Base</Filter>
     </ClInclude>
-    <ClInclude Include="include\base\WinApp.h">
-      <Filter>Base</Filter>
+    <ClInclude Include="include\engine\base\WinApp.h">
+      <Filter>Engine\Base</Filter>
     </ClInclude>
-    <ClInclude Include="include\base\TextureManager.h">
-      <Filter>Base</Filter>
+    <ClInclude Include="include\engine\input\Input.h">
+      <Filter>Engine\Input</Filter>
     </ClInclude>
-    <ClInclude Include="include\directX\d3dx12.h">
-      <Filter>Base</Filter>
+    <ClInclude Include="include\engine\base\Buffers.h">
+      <Filter>Engine\Base\Buffer</Filter>
     </ClInclude>
-    <ClInclude Include="Game.h">
+    <ClInclude Include="include\engine\base\ConstBuffer.h">
+      <Filter>Engine\Base\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\engine\base\IndexBuffer.h">
+      <Filter>Engine\Base\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\engine\base\VertexBuffer.h">
+      <Filter>Engine\Base\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\engine\math\MathUtility.h">
+      <Filter>Engine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="include\engine\math\Matrix33.h">
+      <Filter>Engine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="include\engine\math\Matrix44.h">
+      <Filter>Engine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="include\engine\math\Quaternion.h">
+      <Filter>Engine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="include\engine\math\Vector2.h">
+      <Filter>Engine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="include\engine\math\Vector3.h">
+      <Filter>Engine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="include\engine\math\Vector4.h">
+      <Filter>Engine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="include\game\Game.h">
       <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="include\directX\Buffers.h">
-      <Filter>Base\Buffer</Filter>
+    <ClInclude Include="include\engine\PipelineFunc.h">
+      <Filter>Engine\Base</Filter>
     </ClInclude>
-    <ClInclude Include="include\directX\ConstBuffer.h">
-      <Filter>Base\Buffer</Filter>
+    <ClInclude Include="include\game\SceneManager.h">
+      <Filter>Game\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="include\directX\IndexBuffer.h">
-      <Filter>Base\Buffer</Filter>
+    <ClInclude Include="include\game\GameObject.h">
+      <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="include\directX\VertexBuffer.h">
-      <Filter>Base\Buffer</Filter>
-    </ClInclude>
-    <ClInclude Include="include\PipelineFunc.h">
-      <Filter>Base</Filter>
-    </ClInclude>
-    <ClInclude Include="include\input\Input.h">
-      <Filter>Input</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneManager.h">
-      <Filter>GameScene</Filter>
+    <ClInclude Include="include\game\BaseScene.h">
+      <Filter>Game\Scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
