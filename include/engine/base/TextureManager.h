@@ -17,7 +17,7 @@ private: // エイリアス
 		ComPtr<ID3D12Resource> buffer; // バッファ
 		D3D12_CPU_DESCRIPTOR_HANDLE cpuHandle = {}; // CPUハンドル
 		D3D12_GPU_DESCRIPTOR_HANDLE gpuHandle = {}; // GPUハンドル
-
+		std::string name;
 	};
 
 private: // 定数

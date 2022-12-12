@@ -28,7 +28,7 @@ public:
 	inline HINSTANCE GetHInstance() const { return mWndClass.hInstance; }
 
 	void Initialize(int windowWidth = 1280, int windowHeight = 720, const std::string& windowTitle = "DirectXGame");
-	bool WindowQUit();
+	bool WindowQuit();
 	void Finalize();
 
 private:

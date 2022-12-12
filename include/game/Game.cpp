@@ -1,8 +1,6 @@
 #include "Game.h"
-#include "WinApp.h"
-#include "DirectXCommon.h"
 #include "TextureManager.h"
-#include "Input.h"
+#include "Engine.h"
 #include "Sprite.h"
 #include "Model.h"
 #include "SceneManager.h"
@@ -14,63 +12,33 @@ Game::~Game()
 {}
 bool Game::Initalize(){
 
+	const int windowWidth = 1280;
+	const int windowHight = 720;
+	const std::string windowTitle = "á‹Ê“]‚ª‚µ";
 
-	m_winApp = WinApp::GetInstance();
-	m_winApp->Initialize(m_windowWidth, m_windowHeight, "á‹Ê“]‚ª‚µ");
-
-	m_dixCom = DirectXCommon::GetInstance();
-	m_dixCom->Initialize(m_winApp);
-
-	m_texMana = TextureManager::GetInstance();
-	m_texMana->Initialize(m_dixCom);
-
-	m_input = Input::GetInstance();
-	m_input->Initialize(m_winApp);
-
-	Sprite::StaticInitalize(m_dixCom, m_texMana, m_windowWidth, m_windowHeight);
-	
-	Model::StaticInitalize(m_dixCom, m_texMana);
+	m_engine = Engine::GetInstance();
+	m_engine->Initalize(windowWidth, windowHight, windowTitle);
+	m_engine->GetTextureManager()->LoadTexture("resources/images/white.png");
 
 	m_sceneMana = SceneManager::GetInstance();
 	m_sceneMana->Init(); 
-
-	assert(m_winApp != nullptr);
-	assert(m_dixCom != nullptr);
-	assert(m_texMana != nullptr);
-	assert(m_input != nullptr);
 
 	return true;
 }
 
 void Game::Finalize() 
 {
-	m_winApp->Finalize();
 }
 
 void Game::Run() 
 {
-	GameLoop();
-}
-
-void Game::GameLoop()
-{
-	while (m_winApp->WindowQUit() == false) {
-		BeginFrame();
+	while (m_engine->WindowQuit() == false) {
+		m_engine->BeginFrame();
 
 		m_sceneMana->Update();
 		m_sceneMana->Draw();
 
-		EndFrame();
+		m_engine->EndFrame();
 	}
 }
 
-void Game::BeginFrame()
-{
-	m_dixCom->PreDraw();
-	m_input->Update();
-}
-
-void Game::EndFrame()
-{
-	m_dixCom->PostDraw();
-}

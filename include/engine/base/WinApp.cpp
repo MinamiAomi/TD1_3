@@ -64,7 +64,7 @@ void WinApp::Initialize(int windowWidth, int windowHeight, const std::string& wi
 	ShowWindow(mHwnd, SW_SHOW);
 }
 
-bool WinApp::WindowQUit() 
+bool WinApp::WindowQuit() 
 {
 	MSG msg{};
 

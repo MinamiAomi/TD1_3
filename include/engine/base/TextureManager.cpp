@@ -44,6 +44,7 @@ void TextureManager::ResetAll()
 		it.buffer.Reset();
 		it.cpuHandle.ptr = 0;
 		it.gpuHandle.ptr = 0;
+		it.name.erase();
 	}
 
 	m_nextLoadIndex = 0;
@@ -58,6 +59,14 @@ D3D12_RESOURCE_DESC TextureManager::GetRsourceDesc(UINT texHandle)
 UINT TextureManager::LoadTexturePri(const std::string& filePath)
 {
 	assert(m_nextLoadIndex < kDescriptorCount);
+	
+
+	auto it = std::find_if(
+		m_textures.begin(), m_textures.end(), [&](const auto& tex) { return tex.name == filePath; });
+	
+	if (it != m_textures.end()) {
+		return static_cast<UINT>(std::distance(m_textures.begin(), it));
+	}
 
 	wchar_t wpath[256] = {};
 	MultiByteToWideChar(CP_ACP, 0, filePath.c_str(), -1, wpath, _countof(wpath));
@@ -129,6 +138,8 @@ UINT TextureManager::LoadTexturePri(const std::string& filePath)
 	srvDesc.Texture2D.MipLevels = texResourceDesc.MipLevels;
 
 	m_directXCommon->GetDevice()->CreateShaderResourceView(m_textures[m_nextLoadIndex].buffer.Get(), &srvDesc, m_textures[m_nextLoadIndex].cpuHandle);
+	
+	m_textures[m_nextLoadIndex].name = filePath;
 
 	return m_nextLoadIndex++;
 }

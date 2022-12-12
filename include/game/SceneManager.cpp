@@ -1,14 +1,20 @@
 #include "SceneManager.h"
 #include "BaseScene.h"
 
-SceneManager* SceneManager::GetInstance() 
+SceneManager::SceneManager(class Game* game) : 
+	GameObject(game) 
 {
-	static SceneManager instance;
-	return &instance;
+
+}
+
+SceneManager::~SceneManager() 
+{
 }
 
 void SceneManager::Init()
 {
+	Transition<class Title>();
+	m_commonData.reset(new SceneCommonData);
 }
 
 void SceneManager::Update()
