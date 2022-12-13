@@ -20,8 +20,8 @@ bool Game::Initalize(){
 	m_engine->Initalize(windowWidth, windowHight, windowTitle);
 	m_engine->GetTextureManager()->LoadTexture("resources/images/white.png");
 
-	m_sceneMana = SceneManager::GetInstance();
-	m_sceneMana->Init(); 
+	m_sceneMana = std::make_unique<SceneManager>();
+	m_sceneMana->Initalize(); 
 
 	return true;
 }

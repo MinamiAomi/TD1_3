@@ -1,12 +1,13 @@
 #pragma once
 #include "WinApp.h"
+#include <memory>
 
 class Game
 {
 
 private:
 	class Engine* m_engine = nullptr;
-	class SceneManager* m_sceneMana = nullptr;
+	std::unique_ptr<class SceneManager> m_sceneMana;
 
 public:
 	Game();

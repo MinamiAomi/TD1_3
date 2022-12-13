@@ -165,8 +165,8 @@
     <ClCompile Include="include\engine\PipelineFunc.cpp" />
     <ClCompile Include="include\game\Game.cpp" />
     <ClCompile Include="include\game\SceneManager.cpp" />
+    <ClCompile Include="include\game\TitleScene.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Title.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="DirectXTex\DirectXTex_Desktop_2022_Win10.vcxproj">
@@ -224,8 +224,9 @@
     <ClInclude Include="include\game\BaseScene.h" />
     <ClInclude Include="include\game\Game.h" />
     <ClInclude Include="include\game\GameObject.h" />
+    <ClInclude Include="include\game\SceneCommonData.h" />
     <ClInclude Include="include\game\SceneManager.h" />
-    <ClInclude Include="Title.h" />
+    <ClInclude Include="include\game\TitleScene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

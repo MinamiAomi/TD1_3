@@ -1,23 +1,22 @@
 #pragma once
-#include "GameObject.h"
+#include "SceneCommonData.h"
 #include <memory>
 #include <stack>
 
 class BaseScene;
-class SceneManager : 
-	public GameObject
+class SceneManager
 {
 
 private:
 	std::unique_ptr<BaseScene> m_scene;
-	std::shared_ptr<struct SceneCommonData> m_commonData;
+	std::shared_ptr<SceneCommonData> m_commonData;
 
 public:
-	SceneManager(class Game* game);
+	SceneManager();
 	~SceneManager();
 
 
-	void Init();
+	void Initalize();
 	void Update();
 	void Draw();
 	
@@ -34,4 +33,5 @@ template<class NextScene>
 inline void SceneManager::Transition()
 {
 	m_scene.reset(new NextScene(GetGame(), m_commonData);
+	m_scene->Initalize();
 }

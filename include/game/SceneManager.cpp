@@ -1,8 +1,7 @@
 #include "SceneManager.h"
 #include "BaseScene.h"
 
-SceneManager::SceneManager(class Game* game) : 
-	GameObject(game) 
+SceneManager::SceneManager() 
 {
 
 }
@@ -11,10 +10,10 @@ SceneManager::~SceneManager()
 {
 }
 
-void SceneManager::Init()
+void SceneManager::Initalize()
 {
-	Transition<class Title>();
 	m_commonData.reset(new SceneCommonData);
+	Transition<class Title>();
 }
 
 void SceneManager::Update()

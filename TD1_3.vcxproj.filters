@@ -95,7 +95,7 @@
     <ClCompile Include="include\engine\Engine.cpp">
       <Filter>Engine\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Title.cpp">
+    <ClCompile Include="include\game\TitleScene.cpp">
       <Filter>Game\Scene\Title</Filter>
     </ClCompile>
   </ItemGroup>
@@ -209,8 +209,11 @@
     <ClInclude Include="include\engine\Engine.h">
       <Filter>Engine\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="Title.h">
+    <ClInclude Include="include\game\TitleScene.h">
       <Filter>Game\Scene\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="include\game\SceneCommonData.h">
+      <Filter>Game\Scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

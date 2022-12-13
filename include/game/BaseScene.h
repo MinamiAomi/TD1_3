@@ -1,23 +1,19 @@
 #pragma once
-#include "GameObject.h"
+#include "SceneCommonData.h"
 #include <memory>
-struct SceneCommonData 
-{
 
-};
-
-class BaseScene :
-	public GameObject
+class BaseScene
 {
 private:
 	std::shared_ptr<SceneCommonData> m_commonData;
 
 public:
-	BaseScene(class Game* game, std::shared_ptr<SceneCommonData> commonData) : GameObject(game) {
+	BaseScene(std::shared_ptr<SceneCommonData> commonData) {
 		m_commonData = commonData;
 	}
 	virtual ~BaseScene() {}
 	
+	virtual void Initalize() = 0;
 	virtual void Update() = 0;
 	virtual void Draw() = 0;
 };
