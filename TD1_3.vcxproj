@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="include\engine\2D\Camera2D.cpp" />
     <ClCompile Include="include\engine\2D\Sprite.cpp" />
     <ClCompile Include="include\engine\3D\Camera3D.cpp" />
@@ -167,6 +168,7 @@
     <ClCompile Include="include\game\SceneManager.cpp" />
     <ClCompile Include="include\game\TitleScene.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="SceneCommonData.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="DirectXTex\DirectXTex_Desktop_2022_Win10.vcxproj">
@@ -196,6 +198,7 @@
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GameScene.h" />
     <ClInclude Include="include\engine\2D\Camera2D.h" />
     <ClInclude Include="include\engine\2D\Sprite.h" />
     <ClInclude Include="include\engine\3D\Camera3D.h" />
