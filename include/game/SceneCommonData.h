@@ -3,9 +3,7 @@
 
 struct SceneCommonData 
 {
-	unsigned int frame;
-	std::unique_ptr<class Model> carrotModel;
-	std::unique_ptr<class Model> sphereModel;
-	
-	void LoadModel();
+	class Engine* engine = nullptr;
+	class Resource* resource = nullptr;
+	unsigned int frame = 0;
 };

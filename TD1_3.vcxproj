@@ -147,7 +147,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="include\engine\2D\Camera2D.cpp" />
     <ClCompile Include="include\engine\2D\Sprite.cpp" />
     <ClCompile Include="include\engine\3D\Camera3D.cpp" />
@@ -165,10 +164,12 @@
     <ClCompile Include="include\engine\math\Vector.cpp" />
     <ClCompile Include="include\engine\PipelineFunc.cpp" />
     <ClCompile Include="include\game\Game.cpp" />
+    <ClCompile Include="include\game\GameScene.cpp" />
+    <ClCompile Include="include\game\SceneCommonData.cpp" />
     <ClCompile Include="include\game\SceneManager.cpp" />
     <ClCompile Include="include\game\TitleScene.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="SceneCommonData.cpp" />
+    <ClCompile Include="Resource.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="DirectXTex\DirectXTex_Desktop_2022_Win10.vcxproj">
@@ -198,7 +199,6 @@
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GameScene.h" />
     <ClInclude Include="include\engine\2D\Camera2D.h" />
     <ClInclude Include="include\engine\2D\Sprite.h" />
     <ClInclude Include="include\engine\3D\Camera3D.h" />
@@ -227,9 +227,11 @@
     <ClInclude Include="include\game\BaseScene.h" />
     <ClInclude Include="include\game\Game.h" />
     <ClInclude Include="include\game\GameObject.h" />
+    <ClInclude Include="include\game\GameScene.h" />
     <ClInclude Include="include\game\SceneCommonData.h" />
     <ClInclude Include="include\game\SceneManager.h" />
     <ClInclude Include="include\game\TitleScene.h" />
+    <ClInclude Include="Resource.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

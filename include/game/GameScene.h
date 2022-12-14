@@ -7,9 +7,8 @@ class GameScene :
 
 
 public:
-	GameScene(std::shared_ptr<SceneCommonData> commonData) : BaseScene(commonData) {
-	}
-	~GameScene() {}
+	GameScene(std::shared_ptr<SceneCommonData> commonData, SceneManager* sceneMana);
+	~GameScene();
 
 	void Initalize();
 	void Update();

@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "TextureManager.h"
 #include "Engine.h"
+#include "Resource.h"
 #include "Sprite.h"
 #include "Model.h"
 #include "SceneManager.h"
@@ -18,10 +19,13 @@ bool Game::Initalize(){
 
 	m_engine = Engine::GetInstance();
 	m_engine->Initalize(windowWidth, windowHight, windowTitle);
-	m_engine->GetTextureManager()->LoadTexture("resources/images/white.png");
+	
+
+	m_resource = Resource::GetInstance();
+	m_resource->Initalize(m_engine->GetTextureManager());
 
 	m_sceneMana = std::make_unique<SceneManager>();
-	m_sceneMana->Initalize(); 
+	m_sceneMana->Initalize(m_engine, m_resource);
 
 	return true;
 }

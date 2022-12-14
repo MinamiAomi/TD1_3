@@ -2,8 +2,8 @@
 #include "SceneCommonData.h"
 #include <memory>
 #include <stack>
+#include "BaseScene.h"
 
-class BaseScene;
 class SceneManager
 {
 
@@ -16,7 +16,7 @@ public:
 	~SceneManager();
 
 
-	void Initalize();
+	void Initalize(class Engine* engine, class Resource* resource);
 	void Update();
 	void Draw();
 	
@@ -32,6 +32,6 @@ private:
 template<class NextScene>
 inline void SceneManager::Transition()
 {
-	m_scene.reset(new NextScene(GetGame(), m_commonData);
+	m_scene.reset(new NextScene(m_commonData, this));
 	m_scene->Initalize();
 }
