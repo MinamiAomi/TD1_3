@@ -10,6 +10,7 @@ private:
 	using ModelPtr = std::unique_ptr<class Model>;
 public:
 	struct Images {
+		unsigned int whiteImage;
 
 	};
 
@@ -36,9 +37,9 @@ public:
 	
 	void Initalize(class TextureManager* tex);
 	
-	static const Images& GetImage() { return GetInstance()->m_images; }
-	static const Models& GetModel() { return GetInstance()->m_models; }
-	static const Sounds& GetSound() { return GetInstance()->m_sounds; }
+	const Images& GetImage() { return m_images; }
+	const Models& GetModel() { return m_models; }
+	const Sounds&  GetSound() { return m_sounds; }
 
 private:
 	Resource() = default;

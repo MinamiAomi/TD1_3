@@ -46,7 +46,7 @@ public: // 静的メンバ関数
 		UINT  textureHandle, Vector2 position, Vector2 size = { 0,0 }, Vector4 color = { 1,1,1,1 },
 		Vector2 anchorPoint = { 0,0 }, bool isFlipX = false, bool isFlipY = false);
 
-	static void Draw(Sprite& sprite, const class Camera2D* camera, BlendMode blend);
+	static void Draw(Sprite* sprite, class Camera2D* camera, BlendMode blend = kBlendModeNormal);
 
 private:
 	VertexBuffer<Vertex> vertexBuffer; // 頂点バッファ

@@ -19,7 +19,7 @@ bool Game::Initalize(){
 
 	m_engine = Engine::GetInstance();
 	m_engine->Initalize(windowWidth, windowHight, windowTitle);
-	
+	m_engine->GetDirectXCommon()->SetClearColor(Color::Black);
 
 	m_resource = Resource::GetInstance();
 	m_resource->Initalize(m_engine->GetTextureManager());

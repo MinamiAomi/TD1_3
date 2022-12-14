@@ -20,7 +20,7 @@ public:
 	Camera2D(unsigned int width, unsigned int height);
 	virtual ~Camera2D() {}
 
-	virtual void SetUpMatrix();
+	virtual void UpdateMatrix();
 	
 	void SetWindowWidth(unsigned int width) { windowWidth = width; }
 	unsigned int GetWindowWidth() const { return windowWidth; }
@@ -50,7 +50,7 @@ public:
 	Camera2DView();
 	Camera2DView(unsigned int width, unsigned int height);
 
-	void SetUpMatrix();
+	void UpdateMatrix();
 
 	void SetScroll(const Vector2& scr) { scroll = scr; }
 	const Vector2& GetScroll() const { return scroll; }

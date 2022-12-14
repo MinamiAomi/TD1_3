@@ -44,6 +44,12 @@
     <Filter Include="Game\Resource">
       <UniqueIdentifier>{7375eb1d-11e7-43a6-be89-a424f21c95f8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Object">
+      <UniqueIdentifier>{db755c75-4813-437a-84fc-4138dfea2695}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Object\Block">
+      <UniqueIdentifier>{5f1571d5-5bcf-451a-a188-4e5a2d378a3f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -110,8 +116,11 @@
     <ClCompile Include="include\game\SceneCommonData.cpp">
       <Filter>Game\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Resource.cpp">
+    <ClCompile Include="include\game\Resource.cpp">
       <Filter>Game\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Block.cpp">
+      <Filter>Game\Object\Block</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -233,8 +242,11 @@
     <ClInclude Include="include\game\GameScene.h">
       <Filter>Game\Scene\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Resource.h">
+    <ClInclude Include="include\game\Resource.h">
       <Filter>Game\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Block.h">
+      <Filter>Game\Object\Block</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -163,54 +163,29 @@ public:
 		return matrix.Inverse();
 	}
 
-	void SetIdentity() {
-		*this = CreateIdentity();
+	inline Matrix33 Transpose() const {
+		return {
+			m[0][0],m[1][0],m[2][0],
+			m[0][1],m[1][1],m[2][1],
+			m[0][2],m[1][2],m[2][2] };
 	}
 
-	// •ÏŠ·s—ñ‚Æ‚ÌŠ|‚¯Z(Œø—¦“I)
-		// Šg‘åk¬s—ñ‚Æ‚ÌŠ|‚¯Z
-	void inline MultiplyScaling(float scaleX, float scaleY) {
-		// |  _00  _01  0  |   |  X  0  0  |   |  _00X  _01Y  0  |
-		// |  _10  _11  0  | * |  0  Y  0  | = |  _10X  _11Y  0  |
-		// |  _20  _21  1  |   |  0  0  1  |   |  _20   _21   1  |
-		m[0][0] *= scaleX; m[0][1] *= scaleY;
-		m[1][0] *= scaleX; m[1][1] *= scaleY;
-	}
-	// Šg‘åk¬s—ñ‚Æ‚ÌŠ|‚¯Z
-	void inline MultiplyScaling(float scale) {
-		MultiplyScaling(scale, scale);
-	}
-	// Šg‘åk¬s—ñ‚Æ‚ÌŠ|‚¯Z
-	void inline MultiplyScaling(const Vector2& scale) {
-		MultiplyScaling(scale.x, scale.y);
-	}
-	// ‰ñ“]s—ñ‚Æ‚ÌŠ|‚¯Z
-	void inline MultiplyRotation(float theta) {
-		// |  _00  _01  0  |   |   c  s  0  |   | _00c+_01(-s)  _00s+_01c  0  |
-		// |  _10  _11  0  | * |  -s  c  0  | = | _10c+_11(-s)  _10s+_11c  0  |
-		// |  _20  _21  1  |   |   0  0  1  |   |          _20        _21  1  |
-		float s = sinf(theta);
-		float c = cosf(theta);
-		float tmp;
-		tmp = m[0][0] * c + m[0][1] * -s;
-		m[0][1] = m[0][0] * s + m[0][1] * c;
-		m[0][0] = tmp;
+	static inline Matrix33 CreateOrthographic(float left, float top, float right, float bottom) {
+		return {
+			2 / (right - left) ,						0,									0,
+			0,										2 / (top - bottom),					0,
+			(left + right) / (left - right),		(top + bottom) / (bottom - top),	1 };
 
-		tmp = m[1][0] * c + m[1][1] * -s;
-		m[1][1] = m[1][0] * s + m[1][1] * c;
-		m[1][0] = tmp;
 	}
-	// •½sˆÚ“®s—ñ‚Æ‚ÌŠ|‚¯Z
-	void inline MultiplyTranslation(float vecX, float vecY) {
-		// |  _00  _01  0  |   |  1  0  0  |   | _00    _01    0  |
-		// |  _10  _11  0  | * |  0  1  0  | = | _10	_11    0  |
-		// |  _20  _21  1  |   |  X  Y  1  |   | _20+X  _21+Y  1  |
-		m[2][0] += vecX;
-		m[2][1] += vecY;
+
+	static inline Matrix33 CreateViewport(float left, float top, float width, float height) {
+		float halfW = width / 2.0f;
+		float halfh = height / 2.0f;
+		return {
+			halfW,			0,				0,
+			0,				-halfh,			0,
+			left + halfW,	top + halfh,	1 };
 	}
-	// •½sˆÚ“®s—ñ‚Æ‚ÌŠ|‚¯Z
-	void inline MultiplyTranslation(const Vector2& vector) {
-		MultiplyTranslation(vector.x, vector.y);
-	}
+
 
 };

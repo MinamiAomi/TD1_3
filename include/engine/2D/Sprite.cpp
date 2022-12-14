@@ -173,7 +173,7 @@ std::unique_ptr<Sprite> Sprite::Create(uint32_t textureHandle, Vector2 position,
 	return std::make_unique<Sprite>(textureHandle, position, size, color, anchorPoint, isFlipX, isFlipY);
 }
 
-void Sprite::Draw(Sprite& sprite, const Camera2D* camera, BlendMode blend)
+void Sprite::Draw(Sprite* sprite, Camera2D* camera, BlendMode blend)
 {
 
 	auto* cmdList = diXCom->GetCommandList();
@@ -183,18 +183,24 @@ void Sprite::Draw(Sprite& sprite, const Camera2D* camera, BlendMode blend)
 	// 三角形リストにセット
 	cmdList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 	// 頂点データを転送
-	sprite.TransferVertex(cmdList, texManager);
+	sprite->TransferVertex(cmdList, texManager);
 	// インデックスバッファをセット
 	indexBuffer.IASet(cmdList);
 	// 定数を転送
-	sprite.TransferConstData(cmdList, camera);
+	sprite->TransferConstData(cmdList, camera);
 	// 画像をセット
-	texManager->SetGraphicsRootDescriptorTable(cmdList, 1, sprite.GetTextureHandle());
+	texManager->SetGraphicsRootDescriptorTable(cmdList, 1, sprite->GetTextureHandle());
 	// 描画
 	cmdList->DrawIndexedInstanced(kIndexCount, 1, 0, 0, 0);
 }
 
-Sprite::Sprite() {}
+Sprite::Sprite() 
+{
+	vertexBuffer.Create(diXCom->GetDevice(), kVertexCount);
+	vertexBuffer.Map();
+	constBuffer.Create(diXCom->GetDevice());
+	constBuffer.Map();
+}
 
 Sprite::Sprite(UINT textureHandle, Vector2 position, Vector2 size, Vector4 color, Vector2 anchorPoint, bool isFlipX, bool isFlipY) :
 	textureHandle(textureHandle),

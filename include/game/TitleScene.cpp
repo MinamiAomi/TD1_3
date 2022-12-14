@@ -9,16 +9,14 @@
 TitleScene::TitleScene(std::shared_ptr<SceneCommonData> commonData, SceneManager* sceneMana) :
 	BaseScene(commonData, sceneMana) 
 {
-	test.reset(new Sprite);
 }
 
 TitleScene::~TitleScene() {}
 
 void TitleScene::Initalize()
 {
-	m_commonData->resource->GetImage().whiteImage;
-	test->SetPosition({ 0,0 });
-	test->SetTextureHandle(0);
+	test = std::make_unique<Sprite>(m_commonData->resource->GetImage().whiteImage, Vector2{ 0,0 }, Vector2{ 100,100 });
+	test->SetColor(Color::ToVector4(0xFFFF00FF));
 }
 
 void TitleScene::Update()
@@ -33,4 +31,5 @@ void TitleScene::Update()
 
 void TitleScene::Draw()
 {
+	Sprite::Draw(test.get(), m_commonData->camera2D.get());
 }

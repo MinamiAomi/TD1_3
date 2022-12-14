@@ -21,6 +21,10 @@ void Resource::Initalize(TextureManager* tex)
 
 void Resource::LoadImages()
 {
+	std::string imageDir = "resources/images/";
+
+	m_images.whiteImage = m_texMana->LoadTexture(imageDir + "white.png");
+
 }
 
 void Resource::LoadModels()
