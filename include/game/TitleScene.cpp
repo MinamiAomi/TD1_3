@@ -23,7 +23,7 @@ void TitleScene::Update()
 {
 	auto input = m_commonData->engine->GetInput();
 
-	if (input->IsKeyTrigger(DIK_T)) {
+	if (input->IsMouseTrigger(kMouseButtonLeft)) {
 		m_sceneMana->Transition<GameScene>();
 	}
 

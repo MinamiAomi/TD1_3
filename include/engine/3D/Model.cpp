@@ -9,6 +9,8 @@
 #include <sstream>
 #include <map>
 #include <iomanip>
+#include "WorldTransform.h"
+#include "CameraTransform.h"
 
 #pragma comment(lib,"d3dcompiler.lib")
 
@@ -99,11 +101,11 @@ void Model::StaticInitalize(DirectXCommon* dixcom, TextureManager* texmana, cons
 		CD3DX12_DESCRIPTOR_RANGE(D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 1, 0);
 
 	// ルートパラメータ
-	CD3DX12_ROOT_PARAMETER rootParams[kRootParameterCount] = {};
-	rootParams[kWorldTransform].InitAsConstantBufferView(0);
-	rootParams[kCamera].InitAsConstantBufferView(1);
-	rootParams[kMaterial].InitAsConstantBufferView(2);
-	rootParams[kTexture].InitAsDescriptorTable(1, &descriptorRange);
+	CD3DX12_ROOT_PARAMETER rootParams[kRootParameterIndexCount] = {};
+	rootParams[kRootParameterIndexWorldTransform].InitAsConstantBufferView(0);
+	rootParams[kRootParameterIndexCameraTransform].InitAsConstantBufferView(1);
+	rootParams[kRootParameterIndexMaterial].InitAsConstantBufferView(2);
+	rootParams[kRootParameterIndexTexture].InitAsDescriptorTable(1, &descriptorRange);
 
 
 	// テクスチャサンプラーの設定
@@ -295,7 +297,7 @@ std::unique_ptr<Model> Model::CreateFromObj(const std::string& path)
 				}
 				else {
 					currentMeth->AddVertex(tmpV);
-					UINT index = currentMeth->GetVertexCount() - 1;
+					UINT index = (UINT)currentMeth->GetVertexCount() - 1;
 					currentMeth->AddIndex(index);
 					entryVertexIds[key] = index;
 				}
@@ -380,6 +382,19 @@ std::unique_ptr<Model> Model::CreateFromObj(const std::string& path)
 
 }
 
+void Model::Draw(WorldTransform* world, CameraTransform* camera) const
+{
+	auto cmdList = diXCom->GetCommandList();
+	for (auto& meth : m_meths) {
+		cmdList->SetGraphicsRootSignature(rootSignature.Get());
+		cmdList->SetPipelineState(pipelineState.Get());
+		cmdList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+		world->Transfer(cmdList, kRootParameterIndexWorldTransform);
+		camera->Transfer(cmdList, kRootParameterIndexCameraTransform);
+		meth->Draw(cmdList, kRootParameterIndexMaterial, kRootParameterIndexTexture);
+	}
+}
+
 void Model::Draw(ID3D12GraphicsCommandList* cmdList, Object3D* object)
 {
 	for (auto& it : m_meths) {
@@ -387,6 +402,6 @@ void Model::Draw(ID3D12GraphicsCommandList* cmdList, Object3D* object)
 		cmdList->SetPipelineState(pipelineState.Get());
 		cmdList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 		object->Transfer(cmdList);
-		it->Draw(cmdList, kMaterial, kTexture);
+		it->Draw(cmdList, kRootParameterIndexMaterial, kRootParameterIndexTexture);
 	}
 }

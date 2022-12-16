@@ -26,6 +26,7 @@ public:
 	inline int GetWindowWidth() const { return mWindowWidth; }
 	inline int GetWindowHeight() const { return mWindowHeight; }
 	inline HINSTANCE GetHInstance() const { return mWndClass.hInstance; }
+	inline const wchar_t* GetWindowClassName() const { return mWndClass.lpszClassName; }
 
 	void Initialize(int windowWidth = 1280, int windowHeight = 720, const std::string& windowTitle = "DirectXGame");
 	bool WindowQuit();

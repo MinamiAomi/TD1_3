@@ -28,14 +28,14 @@ public:
 	};
 
 
-	enum RootParameter 
+	enum RootParameterIndex 
 	{
-		kWorldTransform,			// ワールド行列
-		kCamera,		// カメラデータ（行列も含む）
-		kMaterial,		// マテリアル
-		kTexture,       // テクスチャ
+		kRootParameterIndexWorldTransform,			// ワールド行列
+		kRootParameterIndexCameraTransform,		// カメラデータ（行列も含む）
+		kRootParameterIndexMaterial,		// マテリアル
+		kRootParameterIndexTexture,       // テクスチャ
 
-		kRootParameterCount
+		kRootParameterIndexCount
 	};
 
 private:
@@ -71,6 +71,8 @@ private:
 
 public:
 	~Model() {}
+
+	void Draw(class WorldTransform* world, class CameraTransform* camera) const;
 
 	void Draw(ID3D12GraphicsCommandList* cmdList, class Object3D* object);
 private:

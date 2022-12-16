@@ -1,6 +1,6 @@
 #pragma once
 #include <cmath>	
-
+#include <cassert>
 // 同じ型を２つ保持するクラス（Vector2の親）
 template<class TYPE>
 class Twins {
@@ -98,5 +98,75 @@ public:
 	}
 	friend inline Vector2 operator/(const Vector2& a, float s) {
 		return { a.x / s, a.y / s };
+	}
+
+	inline float Dot(const Vector2& vec) const {
+		return x * vec.x + y * vec.y;
+	}
+
+	inline float Cross(const Vector2& vec) const {
+		return x * vec.y - y * vec.x;
+	}
+	// 長さの二乗
+	inline float LengthSquare() const {
+		return Dot(*this);
+	}
+
+	inline float Length() const {
+		return sqrtf(LengthSquare());
+	}
+
+	// 他ベクトルとの距離
+	inline float Distance(const  Vector2& v) const {
+		return (v - *this).Length();
+	}
+
+	inline Vector2 Normalized() const {
+		float len = Length();
+		assert(len != 0);
+		return *this / len;
+	}
+
+	// 中点
+	inline Vector2 Mid(const Vector2& v) const {
+		return (*this + v) / 2.0f;
+	}
+
+	inline Vector2 Rotated(float theta) const {
+		float s = sinf(theta);
+		float c = cosf(theta);
+		return { x * c - y * s, x * s + y * c };
+	}
+
+
+	// 線形補間
+	static inline  Vector2 Lerp(float t, const  Vector2& start, const  Vector2& end) {
+		return start + t * (end - start);
+	}
+
+	static inline float Dot(const Vector2& a, const Vector2& b) {
+		return a.x * b.x + a.y * b.y;
+	}
+
+	static inline float Cross(const Vector2& a, const Vector2& b) {
+		return a.x * b.y - a.y * b.x ;
+	}
+
+	static inline float LengthSquare(const Vector2& a) {
+		return Dot(a, a);
+	}
+
+	static inline float Length(const Vector2& a) {
+		return sqrtf(LengthSquare(a));
+	}
+
+	static inline Vector2 Normalize(const Vector2& a) {
+		float len = Length(a);
+		return len != 0 ? a / len : a;
+	}
+
+	// 中点
+	static inline Vector2 Mid(const Vector2& a, const Vector2& b) {
+		return (a + b) / 2.0f;
 	}
 };

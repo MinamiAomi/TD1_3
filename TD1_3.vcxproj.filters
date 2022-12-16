@@ -50,6 +50,12 @@
     <Filter Include="Game\Object\Block">
       <UniqueIdentifier>{5f1571d5-5bcf-451a-a188-4e5a2d378a3f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\3D\Transform">
+      <UniqueIdentifier>{0df3977a-2946-4a00-83e2-97c4598560b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Object\Camera">
+      <UniqueIdentifier>{470b43cc-35be-4195-a15d-7542b26a3f1f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -119,8 +125,20 @@
     <ClCompile Include="include\game\Resource.cpp">
       <Filter>Game\Resource</Filter>
     </ClCompile>
-    <ClCompile Include="Block.cpp">
+    <ClCompile Include="include\game\Block.cpp">
       <Filter>Game\Object\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="include\game\MainCamera.cpp">
+      <Filter>Game\Object\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="include\engine\3D\CameraTransform.cpp">
+      <Filter>Engine\3D\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="include\engine\3D\WorldTransform.cpp">
+      <Filter>Engine\3D\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="include\engine\math\Shape.cpp">
+      <Filter>Engine\Math</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -245,8 +263,20 @@
     <ClInclude Include="include\game\Resource.h">
       <Filter>Game\Resource</Filter>
     </ClInclude>
-    <ClInclude Include="Block.h">
+    <ClInclude Include="include\game\Block.h">
       <Filter>Game\Object\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="include\game\MainCamera.h">
+      <Filter>Game\Object\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="include\engine\3D\CameraTransform.h">
+      <Filter>Engine\3D\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="include\engine\3D\WorldTransform.h">
+      <Filter>Engine\3D\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="include\engine\math\Shape.h">
+      <Filter>Engine\Math</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

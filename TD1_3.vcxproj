@@ -147,14 +147,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Block.cpp" />
     <ClCompile Include="include\engine\2D\Camera2D.cpp" />
     <ClCompile Include="include\engine\2D\Sprite.cpp" />
     <ClCompile Include="include\engine\3D\Camera3D.cpp" />
+    <ClCompile Include="include\engine\3D\CameraTransform.cpp" />
     <ClCompile Include="include\engine\3D\Material.cpp" />
     <ClCompile Include="include\engine\3D\Meth.cpp" />
     <ClCompile Include="include\engine\3D\Model.cpp" />
     <ClCompile Include="include\engine\3D\Object3D.cpp" />
+    <ClCompile Include="include\engine\3D\WorldTransform.cpp" />
     <ClCompile Include="include\engine\base\DirectXCommon.cpp" />
     <ClCompile Include="include\engine\base\TextureManager.cpp" />
     <ClCompile Include="include\engine\base\WinApp.cpp" />
@@ -162,10 +163,13 @@
     <ClCompile Include="include\engine\input\Input.cpp" />
     <ClCompile Include="include\engine\math\MathUtility.cpp" />
     <ClCompile Include="include\engine\math\Matrix.cpp" />
+    <ClCompile Include="include\engine\math\Shape.cpp" />
     <ClCompile Include="include\engine\math\Vector.cpp" />
     <ClCompile Include="include\engine\PipelineFunc.cpp" />
+    <ClCompile Include="include\game\Block.cpp" />
     <ClCompile Include="include\game\Game.cpp" />
     <ClCompile Include="include\game\GameScene.cpp" />
+    <ClCompile Include="include\game\MainCamera.cpp" />
     <ClCompile Include="include\game\Resource.cpp" />
     <ClCompile Include="include\game\SceneCommonData.cpp" />
     <ClCompile Include="include\game\SceneManager.cpp" />
@@ -200,14 +204,15 @@
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Block.h" />
     <ClInclude Include="include\engine\2D\Camera2D.h" />
     <ClInclude Include="include\engine\2D\Sprite.h" />
     <ClInclude Include="include\engine\3D\Camera3D.h" />
+    <ClInclude Include="include\engine\3D\CameraTransform.h" />
     <ClInclude Include="include\engine\3D\Material.h" />
     <ClInclude Include="include\engine\3D\Meth.h" />
     <ClInclude Include="include\engine\3D\Model.h" />
     <ClInclude Include="include\engine\3D\Object3D.h" />
+    <ClInclude Include="include\engine\3D\WorldTransform.h" />
     <ClInclude Include="include\engine\base\Buffers.h" />
     <ClInclude Include="include\engine\base\ConstBuffer.h" />
     <ClInclude Include="include\engine\base\d3dx12.h" />
@@ -222,14 +227,17 @@
     <ClInclude Include="include\engine\math\Matrix33.h" />
     <ClInclude Include="include\engine\math\Matrix44.h" />
     <ClInclude Include="include\engine\math\Quaternion.h" />
+    <ClInclude Include="include\engine\math\Shape.h" />
     <ClInclude Include="include\engine\math\Vector2.h" />
     <ClInclude Include="include\engine\math\Vector3.h" />
     <ClInclude Include="include\engine\math\Vector4.h" />
     <ClInclude Include="include\engine\PipelineFunc.h" />
     <ClInclude Include="include\game\BaseScene.h" />
+    <ClInclude Include="include\game\Block.h" />
     <ClInclude Include="include\game\Game.h" />
     <ClInclude Include="include\game\GameObject.h" />
     <ClInclude Include="include\game\GameScene.h" />
+    <ClInclude Include="include\game\MainCamera.h" />
     <ClInclude Include="include\game\Resource.h" />
     <ClInclude Include="include\game\SceneCommonData.h" />
     <ClInclude Include="include\game\SceneManager.h" />

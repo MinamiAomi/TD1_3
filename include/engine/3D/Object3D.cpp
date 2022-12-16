@@ -53,6 +53,6 @@ void Object3D::Draw(Model* model)
 void Object3D::Transfer(ID3D12GraphicsCommandList* cmdList) 
 {
 	m_constBuffer.MapPtr()->world = m_worldMatrix;
-	m_constBuffer.SetGraphicsRootConstantBufferView(cmdList, Model::kWorldTransform);
-	m_camera->SetGraphicsCommand(cmdList, Model::kCamera);
+	m_constBuffer.SetGraphicsRootConstantBufferView(cmdList, Model::kRootParameterIndexWorldTransform);
+	m_camera->SetGraphicsCommand(cmdList, Model::kRootParameterIndexCameraTransform);
 }
