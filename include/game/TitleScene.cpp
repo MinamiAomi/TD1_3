@@ -21,15 +21,20 @@ void TitleScene::Initalize()
 
 void TitleScene::Update()
 {
-	auto input = m_commonData->engine->GetInput();
-
-	if (input->IsMouseTrigger(kMouseButtonLeft)) {
-		m_sceneMana->Transition<GameScene>();
-	}
+	
 
 }
 
 void TitleScene::Draw()
 {
 	Sprite::Draw(test.get(), m_commonData->camera2D.get());
+}
+
+void TitleScene::ChangeScene()
+{
+	auto input = m_commonData->engine->GetInput();
+
+	if (input->IsMouseTrigger(kMouseButtonLeft)) {
+		m_sceneMana->Transition<GameScene>();
+	}
 }

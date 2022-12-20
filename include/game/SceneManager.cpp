@@ -33,3 +33,8 @@ void SceneManager::Draw()
 	m_scene->Draw();
 }
 
+void SceneManager::ChangeScene()
+{
+	m_scene->ChangeScene();
+}
+

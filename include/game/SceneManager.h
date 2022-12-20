@@ -19,7 +19,7 @@ public:
 	void Initalize(class Engine* engine, class Resource* resource);
 	void Update();
 	void Draw();
-	
+	void ChangeScene();
 
 	template<class NextScene>
 	void Transition();

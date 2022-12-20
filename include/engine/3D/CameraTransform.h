@@ -2,8 +2,9 @@
 #include "MathUtility.h"
 #include "ConstBuffer.h"
 
-struct CameraTransform
+class CameraTransform
 {
+public:
 	struct ConstBufferDataCamera
 	{
 		Matrix44 view;
@@ -11,7 +12,10 @@ struct CameraTransform
 		Vector3 cameraPos;
 	};
 
+private:
 	ConstBuffer<ConstBufferDataCamera> constBuffer;
+
+public:
 
 	Vector3 position = { 0.0f,0.0f,-50.0f }; // 視点座標
 	Vector3 target = { 0.0f,0.0f,0.0f }; // 注視点座標
@@ -29,11 +33,16 @@ struct CameraTransform
 	void SetRay(const Vector3& ray) { target = position + ray; }
 	const Vector3& GetRay() const { return target - position; }
 
+	void MoveVector(const Vector3& vec) { 
+		position += vec; 
+		target += vec;
+	}
+
 	/// <summary>
 	/// 初期化（定数バッファの生成を行う）
 	/// </summary>
 	/// <param name="dev"></param>
-	void Initalize(ID3D12Device* dev);
+	void Initalize();
 	/// <summary>
 	/// 行列の更新
 	/// </summary>

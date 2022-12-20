@@ -4,6 +4,7 @@
 
 #pragma comment(lib,"dinput8.lib")
 #pragma comment(lib,"dxguid.lib")
+#pragma comment (lib, "xinput.lib")
 
 Input* Input::GetInstance() 
 {
@@ -13,10 +14,12 @@ Input* Input::GetInstance()
 
 void Input::Initialize(WinApp* winApp)
 {
+	m_winApp = winApp;
+
 	HRESULT result = S_FALSE;
 	// DirectInputの初期化
 	result = DirectInput8Create(
-		winApp->GetHInstance(), DIRECTINPUT_HEADER_VERSION, 
+		m_winApp->GetHInstance(), DIRECTINPUT_HEADER_VERSION,
 		IID_IDirectInput8, (void**)&m_directInput, nullptr);
 	assert(SUCCEEDED(result));
 
@@ -28,7 +31,7 @@ void Input::Initialize(WinApp* winApp)
 	assert(SUCCEEDED(result));
 	// 排他制御レベルのセット
 	result = m_keyboard->SetCooperativeLevel(
-		winApp->GetHwnd(), DISCL_FOREGROUND | DISCL_NONEXCLUSIVE | DISCL_NOWINKEY);
+		m_winApp->GetHwnd(), DISCL_FOREGROUND | DISCL_NONEXCLUSIVE | DISCL_NOWINKEY);
 	assert(SUCCEEDED(result));
 
 	// マウスデバイスの生成
@@ -39,16 +42,16 @@ void Input::Initialize(WinApp* winApp)
 	assert(SUCCEEDED(result));
 	// 排他制御レベルのセット
 	result = m_mouse->SetCooperativeLevel(
-		winApp->GetHwnd(), DISCL_FOREGROUND | DISCL_NONEXCLUSIVE | DISCL_NOWINKEY);
+		m_winApp->GetHwnd(), DISCL_FOREGROUND | DISCL_NONEXCLUSIVE | DISCL_NOWINKEY);
 	assert(SUCCEEDED(result));
 }
 
 void Input::Update() {
-	memcpy(m_preKeys, m_keys, kKeyDataNum);
+	memcpy(m_preKeys, m_curkeys, kKeyDataNum);
 	// キーボード情報の取得開始
 	m_keyboard->Acquire();
 	// 全キーの入力状態を取得する
-	m_keyboard->GetDeviceState(sizeof(m_keys), m_keys);
+	m_keyboard->GetDeviceState(sizeof(m_curkeys), m_curkeys);
 	
 	m_preMouseState = m_curMouseState;
 	// マウス情報の取得開始
@@ -60,4 +63,21 @@ void Input::Update() {
 	GetCursorPos(&p);
 	ScreenToClient(m_winApp->GetHwnd(), &p);
 	m_mousePos = { (float)p.x,(float)p.y };
+
+	// xinputの最大接続数
+	static constexpr size_t kXInputConnectMaxCount = 4;
+	// 現在の状態を前回の状態に保存
+	for (auto& it : m_gamePads) {
+		it.preState = it.curState;
+	}
+	XINPUT_STATE tmpState = {};
+	for (size_t i = 0; i < kXInputConnectMaxCount; i++) {
+		auto success = XInputGetState((DWORD)i, &tmpState);
+		if (success == ERROR_SUCCESS) {
+			if (m_gamePads.size() <= i) {
+				m_gamePads.emplace_back();
+			}
+			m_gamePads.at(i).curState = tmpState;
+		}
+	}
 }

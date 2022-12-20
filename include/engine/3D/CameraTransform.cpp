@@ -1,8 +1,11 @@
 #include "CameraTransform.h"
+#include "DirectXCommon.h"
 
-void CameraTransform::Initalize(ID3D12Device* dev)
+void CameraTransform::Initalize()
 {
-	constBuffer.Create(dev);
+	auto dixcom = DirectXCommon::GetInstance();
+	assert(dixcom->IsInit());
+	constBuffer.Create(dixcom->GetDevice());
 	constBuffer.Map();
 }
 

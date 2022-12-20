@@ -17,6 +17,7 @@ public:
 	struct Models {
 		ModelPtr carrot;
 		ModelPtr sphere;
+		ModelPtr cube;
 	};
 
 	struct Sounds {

@@ -3,14 +3,19 @@
 #include "ConstBuffer.h"
 
 
-struct WorldTransform
+class WorldTransform
 {
+public:
 	struct ConstBudderDataTransform
 	{
 		Matrix44 world;
 	};
 
+private:
 	ConstBuffer<ConstBudderDataTransform> constBuffer;
+	
+public:
+	
 	Vector3 scale = { 1.0f,1.0f,1.0f };
 	Vector3 rotation = { 0.0f,0.0f,0.0f };
 	Vector3 position = { 0.0f,0.0f,0.0f };
@@ -21,7 +26,7 @@ struct WorldTransform
 	/// 初期化（定数バッファの生成を行う）
 	/// </summary>
 	/// <param name="dev"></param>
-	void Initalize(ID3D12Device* dev);
+	void Initalize();
 	/// <summary>
 	/// 行列の更新
 	/// </summary>

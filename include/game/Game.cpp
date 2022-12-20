@@ -39,6 +39,7 @@ void Game::Run()
 	while (m_engine->WindowQuit() == false) {
 		m_engine->BeginFrame();
 
+		m_sceneMana->ChangeScene();
 		m_sceneMana->Update();
 		m_sceneMana->Draw();
 

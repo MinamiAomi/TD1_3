@@ -1,41 +1,31 @@
 #pragma once
 #include "WorldTransform.h"
 #include "MathUtility.h"
+#include "Shape.h"
+#include "jsonLoader.h"
+
 
 class Block
 {
 
 private:
 
-	Vector2 m_position;
-	float m_width, m_height;
-	float m_theta;
+	Shape2D::RectAngle m_rect;
 
 	// 3D用
 	WorldTransform m_world;
 	class Model* m_model;
-
-#ifdef _DEBUG
-	// デバッグ用
-	std::unique_ptr<class Sprite> m_sprite;
-#endif // _DEBUG
-
 
 public:
 	Block();
 	~Block();
 	
 
-
+	void Initalize(const BlockJsonData& data, float z_width);
 	void Update();
 
-	void Draw();
+	void Draw(class CameraTransform* camera);
 
-#ifdef _DEBUG
-	void Draw2D();
-#endif // _DEBUG
-
-
-
+	operator BlockJsonData() const;
 };
 

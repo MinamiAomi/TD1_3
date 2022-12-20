@@ -56,6 +56,12 @@
     <Filter Include="Game\Object\Camera">
       <UniqueIdentifier>{470b43cc-35be-4195-a15d-7542b26a3f1f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\JsonLoader">
+      <UniqueIdentifier>{ddce7f6e-b7c0-47db-91c0-c9fb56d1c1d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Object\Stage">
+      <UniqueIdentifier>{d0c027e2-b9a6-40a2-89dc-c4f0ecdbd577}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -139,6 +145,9 @@
     </ClCompile>
     <ClCompile Include="include\engine\math\Shape.cpp">
       <Filter>Engine\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="include\game\Stage.cpp">
+      <Filter>Game\Object\Stage</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -277,6 +286,15 @@
     </ClInclude>
     <ClInclude Include="include\engine\math\Shape.h">
       <Filter>Engine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="include\engine\json.hpp">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\game\Stage.h">
+      <Filter>Game\Object\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="include\game\jsonLoader.h">
+      <Filter>Game\JsonLoader</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

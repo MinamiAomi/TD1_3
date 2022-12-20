@@ -1,9 +1,11 @@
 #include "WorldTransform.h"
+#include "DirectXCommon.h"
 
-
-void WorldTransform::Initalize(ID3D12Device* dev)
+void WorldTransform::Initalize()
 {
-	constBuffer.Create(dev);
+	auto dixcom = DirectXCommon::GetInstance();
+	assert(dixcom->IsInit());
+	constBuffer.Create(dixcom->GetDevice());
 	constBuffer.Map();
 }
 

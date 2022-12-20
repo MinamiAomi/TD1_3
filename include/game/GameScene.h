@@ -6,7 +6,8 @@ class GameScene :
 {
 
 private:
-
+	unsigned int m_curStageNumber = 0;	// 現在のステージ
+	std::unique_ptr<class Stage> m_curStage;	// 現在のステージ
 
 public:
 	GameScene(std::shared_ptr<SceneCommonData> commonData, SceneManager* sceneMana);
@@ -15,6 +16,6 @@ public:
 	void Initalize();
 	void Update();
 	void Draw();
-
+	void ChangeScene();
 };
 

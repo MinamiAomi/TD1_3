@@ -173,6 +173,7 @@
     <ClCompile Include="include\game\Resource.cpp" />
     <ClCompile Include="include\game\SceneCommonData.cpp" />
     <ClCompile Include="include\game\SceneManager.cpp" />
+    <ClCompile Include="include\game\Stage.cpp" />
     <ClCompile Include="include\game\TitleScene.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -223,6 +224,7 @@
     <ClInclude Include="include\engine\base\WinApp.h" />
     <ClInclude Include="include\engine\Engine.h" />
     <ClInclude Include="include\engine\input\Input.h" />
+    <ClInclude Include="include\engine\json.hpp" />
     <ClInclude Include="include\engine\math\MathUtility.h" />
     <ClInclude Include="include\engine\math\Matrix33.h" />
     <ClInclude Include="include\engine\math\Matrix44.h" />
@@ -237,10 +239,12 @@
     <ClInclude Include="include\game\Game.h" />
     <ClInclude Include="include\game\GameObject.h" />
     <ClInclude Include="include\game\GameScene.h" />
+    <ClInclude Include="include\game\jsonLoader.h" />
     <ClInclude Include="include\game\MainCamera.h" />
     <ClInclude Include="include\game\Resource.h" />
     <ClInclude Include="include\game\SceneCommonData.h" />
     <ClInclude Include="include\game\SceneManager.h" />
+    <ClInclude Include="include\game\Stage.h" />
     <ClInclude Include="include\game\TitleScene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

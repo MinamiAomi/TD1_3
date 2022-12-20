@@ -17,6 +17,6 @@ public:
 	void Initalize();
 	void Update();
 	void Draw();
-
+	void ChangeScene();
 };
 

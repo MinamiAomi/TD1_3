@@ -31,6 +31,7 @@ void Resource::LoadModels()
 {
 	m_models.carrot = Model::CreateFromObj("carrot/Carrot.obj");
 	m_models.sphere = Model::CreateFromObj("sphere/UVSphere.obj");
+	m_models.cube = Model::CreateFromObj("cube/Cube.obj");
 }
 
 void Resource::LoadSounds()
