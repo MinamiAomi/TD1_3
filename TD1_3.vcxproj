@@ -174,8 +174,8 @@
     <ClCompile Include="include\game\SceneCommonData.cpp" />
     <ClCompile Include="include\game\SceneManager.cpp" />
     <ClCompile Include="include\game\Stage.cpp" />
+    <ClCompile Include="include\game\TestObj.cpp" />
     <ClCompile Include="include\game\TitleScene.cpp" />
-    <ClCompile Include="include\TestObj.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -246,8 +246,8 @@
     <ClInclude Include="include\game\SceneCommonData.h" />
     <ClInclude Include="include\game\SceneManager.h" />
     <ClInclude Include="include\game\Stage.h" />
+    <ClInclude Include="include\game\TestObj.h" />
     <ClInclude Include="include\game\TitleScene.h" />
-    <ClInclude Include="include\TestObj.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -7,7 +7,7 @@
 #include "MainCamera.h"
 #include "json.hpp"
 
-
+#include "TestObj.h"
 
 std::string Stage::s_stageDataFileName = "Stage.json";
 

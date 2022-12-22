@@ -152,7 +152,7 @@
     <ClCompile Include="include\game\Stage.cpp">
       <Filter>Game\Object\Stage</Filter>
     </ClCompile>
-    <ClCompile Include="include\TestObj.cpp">
+    <ClCompile Include="include\game\TestObj.cpp">
       <Filter>Game\Object\TestObj</Filter>
     </ClCompile>
   </ItemGroup>
@@ -302,7 +302,7 @@
     <ClInclude Include="include\game\jsonLoader.h">
       <Filter>Game\JsonLoader</Filter>
     </ClInclude>
-    <ClInclude Include="include\TestObj.h">
+    <ClInclude Include="include\game\TestObj.h">
       <Filter>Game\Object\TestObj</Filter>
     </ClInclude>
   </ItemGroup>
