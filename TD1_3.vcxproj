@@ -175,8 +175,8 @@
     <ClCompile Include="include\game\SceneManager.cpp" />
     <ClCompile Include="include\game\Stage.cpp" />
     <ClCompile Include="include\game\TitleScene.cpp" />
+    <ClCompile Include="include\TestObj.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="TestObj.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="DirectXTex\DirectXTex_Desktop_2022_Win10.vcxproj">
@@ -247,7 +247,7 @@
     <ClInclude Include="include\game\SceneManager.h" />
     <ClInclude Include="include\game\Stage.h" />
     <ClInclude Include="include\game\TitleScene.h" />
-    <ClInclude Include="TestObj.h" />
+    <ClInclude Include="include\TestObj.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
