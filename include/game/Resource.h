@@ -18,6 +18,7 @@ public:
 		ModelPtr carrot;
 		ModelPtr sphere;
 		ModelPtr cube;
+		ModelPtr axis;
 	};
 
 	struct Sounds {

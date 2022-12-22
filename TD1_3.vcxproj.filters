@@ -62,6 +62,9 @@
     <Filter Include="Game\Object\Stage">
       <UniqueIdentifier>{d0c027e2-b9a6-40a2-89dc-c4f0ecdbd577}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Object\TestObj">
+      <UniqueIdentifier>{f7090ace-c3e8-4624-8a08-7e7bc6c1a780}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -148,6 +151,9 @@
     </ClCompile>
     <ClCompile Include="include\game\Stage.cpp">
       <Filter>Game\Object\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="TestObj.cpp">
+      <Filter>Game\Object\TestObj</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -295,6 +301,9 @@
     </ClInclude>
     <ClInclude Include="include\game\jsonLoader.h">
       <Filter>Game\JsonLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="TestObj.h">
+      <Filter>Game\Object\TestObj</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

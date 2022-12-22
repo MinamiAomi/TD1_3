@@ -15,6 +15,8 @@ private:
 	std::vector<std::unique_ptr<class Block>> m_blocks;	// 地面となるブロック
 	std::unique_ptr<class MainCamera> m_camera;	// カメラ
 
+	std::unique_ptr<class TestObj> m_testObj;
+
 public:
 	Stage();
 	~Stage();
