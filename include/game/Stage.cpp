@@ -24,8 +24,10 @@ void Stage::Initalize(unsigned int stageIndex)
 {
 	m_stageIndex = stageIndex;
 	LoadData();
-	m_camera.reset(new MainCamera());
+	m_camera.reset(new MainCamera);
 	m_camera->Initalize();
+	m_testObj.reset(new TestObj);
+	m_testObj->Initalize(m_camera->GetCameraTransform());
 }
 
 void Stage::Update()
@@ -34,6 +36,7 @@ void Stage::Update()
 	for (auto& it : m_blocks) {
 		it->Update();
 	}
+	m_testObj->Update();
 }
 
 void Stage::Draw()
@@ -41,6 +44,7 @@ void Stage::Draw()
 	for (auto& it : m_blocks) {
 		it->Draw(m_camera->GetCameraTransform());
 	}
+	m_testObj->Draw(m_camera->GetCameraTransform());
 }
 
 void Stage::LoadData()

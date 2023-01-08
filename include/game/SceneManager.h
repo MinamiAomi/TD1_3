@@ -16,7 +16,7 @@ public:
 	~SceneManager();
 
 
-	void Initalize(class Engine* engine, class Resource* resource);
+	void Initalize(class App* engine, class Resource* resource);
 	void Update();
 	void Draw();
 	void ChangeScene();

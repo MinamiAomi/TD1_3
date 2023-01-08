@@ -7,9 +7,6 @@
     <Filter Include="Engine\2D">
       <UniqueIdentifier>{96c15120-02d8-4f7c-843c-c9e204f922bf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\3D">
-      <UniqueIdentifier>{02bd6917-9e02-41ee-9594-cdf4c5f41fa1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Base">
       <UniqueIdentifier>{46490e67-c49c-4ad5-813e-e713da0f8166}</UniqueIdentifier>
     </Filter>
@@ -32,9 +29,6 @@
     <Filter Include="Game\Scene">
       <UniqueIdentifier>{b5c4b2e7-c8e1-4774-802f-66180c70136e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Engine">
-      <UniqueIdentifier>{19a3ef41-7b06-4ba4-841c-ff257036b67a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\Scene\Title">
       <UniqueIdentifier>{412db490-d4c6-4ab4-9eb1-719255a235a6}</UniqueIdentifier>
     </Filter>
@@ -50,9 +44,6 @@
     <Filter Include="Game\Object\Block">
       <UniqueIdentifier>{5f1571d5-5bcf-451a-a188-4e5a2d378a3f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\3D\Transform">
-      <UniqueIdentifier>{0df3977a-2946-4a00-83e2-97c4598560b2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\Object\Camera">
       <UniqueIdentifier>{470b43cc-35be-4195-a15d-7542b26a3f1f}</UniqueIdentifier>
     </Filter>
@@ -64,6 +55,15 @@
     </Filter>
     <Filter Include="Game\Object\TestObj">
       <UniqueIdentifier>{f7090ace-c3e8-4624-8a08-7e7bc6c1a780}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\App">
+      <UniqueIdentifier>{19a3ef41-7b06-4ba4-841c-ff257036b67a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\3D">
+      <UniqueIdentifier>{02bd6917-9e02-41ee-9594-cdf4c5f41fa1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\3D\Transform">
+      <UniqueIdentifier>{0df3977a-2946-4a00-83e2-97c4598560b2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -119,8 +119,8 @@
     <ClCompile Include="include\game\SceneManager.cpp">
       <Filter>Game\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="include\engine\Engine.cpp">
-      <Filter>Engine\Engine</Filter>
+    <ClCompile Include="include\engine\App.cpp">
+      <Filter>Engine\App</Filter>
     </ClCompile>
     <ClCompile Include="include\game\TitleScene.cpp">
       <Filter>Game\Scene\Title</Filter>
@@ -154,6 +154,12 @@
     </ClCompile>
     <ClCompile Include="include\game\TestObj.cpp">
       <Filter>Game\Object\TestObj</Filter>
+    </ClCompile>
+    <ClCompile Include="Quaternion.cpp">
+      <Filter>Engine\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugText.cpp">
+      <Filter>Engine\2D</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -263,8 +269,8 @@
     <ClInclude Include="include\game\BaseScene.h">
       <Filter>Game\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="include\engine\Engine.h">
-      <Filter>Engine\Engine</Filter>
+    <ClInclude Include="include\engine\App.h">
+      <Filter>Engine\App</Filter>
     </ClInclude>
     <ClInclude Include="include\game\TitleScene.h">
       <Filter>Game\Scene\Title</Filter>
@@ -304,6 +310,9 @@
     </ClInclude>
     <ClInclude Include="include\game\TestObj.h">
       <Filter>Game\Object\TestObj</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugText.h">
+      <Filter>Engine\2D</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

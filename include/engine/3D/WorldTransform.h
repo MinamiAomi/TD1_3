@@ -17,7 +17,7 @@ private:
 public:
 	
 	Vector3 scale = { 1.0f,1.0f,1.0f };
-	Vector3 rotation = { 0.0f,0.0f,0.0f };
+	Quaternion rotate = Quaternion::Identity;
 	Vector3 position = { 0.0f,0.0f,0.0f };
 	Matrix44 worldMatrix;
 	WorldTransform* parent = nullptr;

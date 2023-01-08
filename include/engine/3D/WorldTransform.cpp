@@ -15,11 +15,15 @@ void WorldTransform::UpdateMatrix()
 
 	scaMat = Matrix44::CreateScaling(scale);
 
-	rotMat *= Matrix44::CreateRotationZ(rotation.z);
-	rotMat *= Matrix44::CreateRotationX(rotation.x);
-	rotMat *= Matrix44::CreateRotationY(rotation.y);
+	//rotMat = Matrix44::CreateRotationFromEuler(rotation);
 
-	traMat *= Matrix44::CreateTranslation(position);
+	//rotMat *= Matrix44::CreateRotationZ(rotate.z);
+	//rotMat *= Matrix44::CreateRotationX(rotate.x);
+	//rotMat *= Matrix44::CreateRotationY(rotate.y);
+
+	rotMat = Matrix44::CreateRotationFromQuaternion(rotate);
+
+	traMat = Matrix44::CreateTranslation(position);
 
 	worldMatrix = Matrix44::Identity;
 	worldMatrix *= scaMat;

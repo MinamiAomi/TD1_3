@@ -1,4 +1,5 @@
 #pragma once
+#include "Vector3.h"
 
 // 同じ型を４つ保持するクラス（Vector2の親）
 template<class TYPE>
@@ -68,7 +69,12 @@ public:
 	Vector4() : x(0.0f), y(0.0f), z(0.0f), w(0.0f) {}
 	Vector4(float x, float y, float z, float w) : x(x), y(y), z(z), w(w) {}
 	Vector4(const Vector4& v) : x(v.x), y(v.y), z(v.z), w(v.w) {}
+	Vector4(const Vector3& v, float w) : x(v.x), y(v.y), z(v.z), w(w) {}
+	Vector4(const Vector2& v1, const Vector2& v2) : x(v1.x), y(v1.y), z(v2.x), w(v2.y) {}
 	~Vector4() {}
+
+	Vector3 xyz() const { return { x,y,z }; }
+	Vector2 xy() const { return { x,y }; }
 
 	void xyz(float ix, float iy, float iz) { x = ix, y = iy, z = iz; }
 	void xy(float ix, float iy) { x = ix, y = iy; }

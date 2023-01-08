@@ -1,4 +1,4 @@
-#include "Engine.h"
+#include "App.h"
 #include "WinApp.h"
 #include "DirectXCommon.h"
 #include "TextureManager.h"
@@ -7,13 +7,13 @@
 #include "Model.h"
 #include <cassert>
 
-Engine* Engine::GetInstance()
+App* App::GetInstance()
 {
-    static Engine instance;
+    static App instance;
     return &instance;
 }
 
-void Engine::Initalize(int windowWidth, int windowHeight, const std::string& windowTitle)
+void App::Initalize(int windowWidth, int windowHeight, const std::string& windowTitle)
 {
 	m_windowData = { windowWidth,windowHeight,windowTitle };
 
@@ -39,23 +39,23 @@ void Engine::Initalize(int windowWidth, int windowHeight, const std::string& win
 	assert(m_input != nullptr);
 }
 
-void Engine::BeginFrame()
+void App::BeginFrame()
 {
 	m_dixCom->PreDraw();
 	m_input->Update();
 }
 
-void Engine::EndFrame()
+void App::EndFrame()
 {
 	m_dixCom->PostDraw();
 }
 
-bool Engine::WindowQuit()
+bool App::WindowQuit()
 {
 	return m_winApp->WindowQuit();
 }
 
-void Engine::Finalize()
+void App::Finalize()
 {
 	m_winApp->Finalize();
 }

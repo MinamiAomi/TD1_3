@@ -30,8 +30,13 @@ public:
 
 	Matrix44 projMat; // 射影行列
 
-	void SetRay(const Vector3& ray) { target = position + ray; }
-	const Vector3& GetRay() const { return target - position; }
+	void ray(const Vector3& ray) { target = position + ray; }
+	// 視線
+	Vector3 ray() const { return target - position; }
+	// 前方(正規化済み)
+	Vector3 forward() const { return Normalize(Vector3{ target.x - position.x, 0.0f, target.z - position.z }); }
+	// 前方と上ベクトルから右ベクトルを得る(正規化済み)
+	Vector3 right() const { return Normalize(Cross(ray(), -up)); }
 
 	void MoveVector(const Vector3& vec) { 
 		position += vec; 
@@ -47,6 +52,12 @@ public:
 	/// 行列の更新
 	/// </summary>
 	void UpdateMatrix();
+	/// <summary>
+	/// トランスフォームで更新
+	/// </summary>
+	/// <param name="transform"></param>
+	/// <param name="upRotate">上ベクトルを回転するか</param>
+	void UpdateWithTransform(const class WorldTransform& transform, bool upRotate = false);
 	/// <summary>
 	/// 行列を転送
 	/// </summary>

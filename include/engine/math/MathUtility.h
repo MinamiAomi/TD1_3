@@ -12,7 +12,9 @@ namespace Math
 	constexpr float Pi = 3.14159265359f;
 	constexpr float TwoPi = 2.0f * Pi;
 	constexpr float PiDiv2 = Pi / 2.0f;
-
+	constexpr float Radian = 2.0f * Pi;
+	constexpr float HalfRadian = Pi;
+	constexpr float QuarterRadian = Pi / 2.0f;
 
 	/// <summary>
 	/// 弧度法変換
@@ -97,10 +99,25 @@ namespace Math
 	/// <param name="range">範囲</param>
 	/// <param name="min">最小</param>
 	/// <returns></returns>
+	//inline float Loop(float value, float range, float min = 0.0f) {
+	//	float a = fmodf(value, range);
+	//	if (a == 0) return a;
+	//	return a > 0 ? a + min : a + min + range;
+	//}
+	/// <summary>
+	/// 値をループさせる
+	/// </summary>
+	/// <param name="value">値</param>
+	/// <param name="range">範囲</param>
+	/// <param name="min">最小</param>
+	/// <returns></returns>
 	inline float Loop(float value, float range, float min = 0.0f) {
-		float a = fmodf(value, range);
-		if (a == 0) return a;
-		return a > 0 ? a + min : a + min + range;
+		if (min < value && value < min + range) return value;
+		float x = fmodf(value - min, range);
+		if (x < 0) {
+			x += range;
+		}
+		return x + min;
 	}
 	/// <summary>
 	/// 絶対値

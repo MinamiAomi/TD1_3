@@ -12,7 +12,7 @@ SceneManager::~SceneManager()
 {
 }
 
-void SceneManager::Initalize(class Engine* engine, class Resource* resource)
+void SceneManager::Initalize(class App* engine, class Resource* resource)
 {
 	m_commonData = std::make_shared<SceneCommonData>();
 	m_commonData->engine = engine;

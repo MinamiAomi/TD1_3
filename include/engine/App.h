@@ -7,7 +7,7 @@ struct WindowData {
 	std::string windowTitle = "Title";
 };
 
-class Engine
+class App
 {
 
 private:
@@ -19,7 +19,7 @@ private:
 	class Input* m_input = nullptr;
 
 public:
-	static Engine* GetInstance();
+	static App* GetInstance();
 
 	const WindowData& GetWindowData() const { return m_windowData; }
 	WinApp* GetWinApp() { return m_winApp; }
@@ -34,9 +34,9 @@ public:
 	void Finalize();
 
 private:
-	Engine() = default;
-	~Engine() = default;
-	Engine(const Engine&) = delete;
-	const Engine& operator=(const Engine&) = delete;
+	App() = default;
+	~App() = default;
+	App(const App&) = delete;
+	const App& operator=(const App&) = delete;
 };
 

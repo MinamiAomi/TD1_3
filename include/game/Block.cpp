@@ -25,7 +25,7 @@ void Block::Initalize(const BlockJsonData& data, float z_width)
 
 	m_world.position = { m_rect.center,0.0f };
 	m_world.scale = { m_rect.width,m_rect.height,z_width };
-	m_world.rotation = { 0.0f,0.0f,m_rect.theta };
+	m_world.rotate = Quaternion(m_rect.theta, Vector3::UnitZ);
 	
 }
 

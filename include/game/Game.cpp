@@ -1,11 +1,14 @@
 #include "Game.h"
 #include "TextureManager.h"
-#include "Engine.h"
+#include "App.h"
+#include "Input.h"
 #include "Resource.h"
 #include "Sprite.h"
 #include "Model.h"
 #include "SceneManager.h"
 #include <cassert>
+
+bool Game::m_isDebugMode = false;
 
 Game::Game()
 {}
@@ -17,15 +20,15 @@ bool Game::Initalize(){
 	const int windowHight = 720;
 	const std::string windowTitle = "á‹Ê“]‚ª‚µ";
 
-	m_engine = Engine::GetInstance();
-	m_engine->Initalize(windowWidth, windowHight, windowTitle);
-	m_engine->GetDirectXCommon()->SetClearColor(Color::Black);
+	m_app = App::GetInstance();
+	m_app->Initalize(windowWidth, windowHight, windowTitle);
+	m_app->GetDirectXCommon()->SetClearColor(Color::Black);
 
 	m_resource = Resource::GetInstance();
-	m_resource->Initalize(m_engine->GetTextureManager());
+	m_resource->Initalize(m_app->GetTextureManager());
 
 	m_sceneMana = std::make_unique<SceneManager>();
-	m_sceneMana->Initalize(m_engine, m_resource);
+	m_sceneMana->Initalize(m_app, m_resource);
 
 	return true;
 }
@@ -36,14 +39,18 @@ void Game::Finalize()
 
 void Game::Run() 
 {
-	while (m_engine->WindowQuit() == false) {
-		m_engine->BeginFrame();
+	while (m_app->WindowQuit() == false) {
+		m_app->BeginFrame();
+
+		if (m_app->GetInput()->IsKeyTrigger(DIK_TAB)) {
+			m_isDebugMode ^= true;
+		}
 
 		m_sceneMana->ChangeScene();
 		m_sceneMana->Update();
 		m_sceneMana->Draw();
 
-		m_engine->EndFrame();
+		m_app->EndFrame();
 	}
 }
 

@@ -47,6 +47,7 @@ public: // 静的メンバ関数
 		Vector2 anchorPoint = { 0,0 }, bool isFlipX = false, bool isFlipY = false);
 
 	static void Draw(Sprite* sprite, class Camera2D* camera, BlendMode blend = kBlendModeNormal);
+	static void Draw(Sprite* sprite, const Matrix44& mat, BlendMode blend = kBlendModeNormal);
 
 private:
 	VertexBuffer<Vertex> vertexBuffer; // 頂点バッファ
@@ -89,6 +90,6 @@ public:
 
 private:
 	void TransferVertex(ID3D12GraphicsCommandList* cmdList, TextureManager* texMana);
-	void TransferConstData(ID3D12GraphicsCommandList* cmdList, const class Camera2D* camera);
+	void TransferConstData(ID3D12GraphicsCommandList* cmdList, const Matrix44& mat);
 };
 

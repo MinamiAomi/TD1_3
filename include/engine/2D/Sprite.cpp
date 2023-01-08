@@ -187,7 +187,27 @@ void Sprite::Draw(Sprite* sprite, Camera2D* camera, BlendMode blend)
 	// インデックスバッファをセット
 	indexBuffer.IASet(cmdList);
 	// 定数を転送
-	sprite->TransferConstData(cmdList, camera);
+	sprite->TransferConstData(cmdList, camera->GetTransformMatrix());
+	// 画像をセット
+	texManager->SetGraphicsRootDescriptorTable(cmdList, 1, sprite->GetTextureHandle());
+	// 描画
+	cmdList->DrawIndexedInstanced(kIndexCount, 1, 0, 0, 0);
+}
+
+void Sprite::Draw(Sprite* sprite, const Matrix44& mat, BlendMode blend)
+{
+	auto* cmdList = diXCom->GetCommandList();
+	// パイプラインをセット
+	cmdList->SetPipelineState(pipelineState[blend].Get());
+	cmdList->SetGraphicsRootSignature(rootSignature.Get());
+	// 三角形リストにセット
+	cmdList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+	// 頂点データを転送
+	sprite->TransferVertex(cmdList, texManager);
+	// インデックスバッファをセット
+	indexBuffer.IASet(cmdList);
+	// 定数を転送
+	sprite->TransferConstData(cmdList, mat);
 	// 画像をセット
 	texManager->SetGraphicsRootDescriptorTable(cmdList, 1, sprite->GetTextureHandle());
 	// 描画
@@ -260,9 +280,9 @@ void Sprite::TransferVertex(ID3D12GraphicsCommandList* cmdList, TextureManager* 
 	vertexBuffer.IASet(cmdList);
 }
 
-void Sprite::TransferConstData(ID3D12GraphicsCommandList* cmdList, const Camera2D* camera) {
+void Sprite::TransferConstData(ID3D12GraphicsCommandList* cmdList, const Matrix44& mat) {
 	worldMat = Matrix44::CreateRotationZ(rotation) * Matrix44::CreateTranslation({ position, 0.0f });
-	constBuffer.MapPtr()->matrix = worldMat * camera->GetTransformMatrix();
+	constBuffer.MapPtr()->matrix = worldMat * mat;
 	constBuffer.MapPtr()->color = color;
 	constBuffer.SetGraphicsRootConstantBufferView(cmdList, 0);
 }

@@ -25,6 +25,7 @@ public:
 	inline void Set(const TYPE& sx, const TYPE& sy, const TYPE& sz) { x = sx, y = sy, z = sz; }
 	inline void Set(const Triplet& t) { x = t.x, y = t.y, z = t.z; }
 	inline void Set(const Twins<TYPE>& t, const TYPE& iz) { x = t.x, y = t.y, z = iz; }
+	inline TYPE& operator[](size_t i) { return *(&x + i); }
 
 	inline Triplet operator+() const { return { x, y, z }; }
 	inline Triplet operator-() const { return { -x,-y, -z }; }
@@ -64,16 +65,28 @@ public:
 	static const Vector3 UnitZ;
 
 public:
-	float x;	// x成分
-	float y; // y成分
-	float z; // z成分
+	float x = 0.0f;	// x成分
+	float y = 0.0f; // y成分
+	float z = 0.0f; // z成分
 
 public:
-	Vector3() : x(0.0f), y(0.0f), z(0.0f) {}
-	Vector3(float x, float y, float z) : x(x), y(y), z(z) {}
-	Vector3(const Vector3& v) : x(v.x), y(v.y), z(v.z) {}
-	Vector3(const Vector2& v2, float z) : x(v2.x), y(v2.y), z(z) {}
-	~Vector3() {}
+	inline Vector3() {}
+	inline Vector3(float x, float y, float z) : x(x), y(y), z(z) {}
+	inline Vector3(const Vector3& v) : x(v.x), y(v.y), z(v.z) {}
+	inline Vector3(const Vector2& v2, float z) : x(v2.x), y(v2.y), z(z) {}
+
+	inline void Set(float x, float y, float z) { *this = { x, y, z }; }
+	inline void Set(const Vector3& v) { *this = v; }
+	inline void Set(const Vector2& v, float z) { *this = { v, z }; }
+	inline float& operator[](size_t i) { return *(&x + i); }
+
+	inline void xy(const Vector2& xy) { x = xy.x, y = xy.y; }
+	inline void yz(const Vector2& yz) { y = yz.x, z = yz.y; }
+	inline void xz(const Vector2& xz) { x = xz.x, z = xz.y; }
+
+	inline Vector2 xy() const { return { x, y }; }
+	inline Vector2 yz() const { return { y, z }; }
+	inline Vector2 xz() const { return { x, z }; }
 
 	inline Vector3 operator+() const { return { x, y, z }; }
 	inline Vector3 operator-() const { return { -x,-y, -z }; }
@@ -117,119 +130,76 @@ public:
 	friend inline Vector3 operator/(const Vector3& a, float s) {
 		return { a.x / s, a.y / s, a.z / s };
 	}
-
-	inline float Dot(const Vector3& vec) const {
-		return x * vec.x + y * vec.y + z * vec.z;
+	friend inline Vector3 Multipliy(const Vector3& v1, const Vector3& v2) {
+		return { v1.x * v2.x, v1.y * v2.y, v1.z * v2.z };
 	}
-
-	inline Vector3 Cross(const Vector3& vec) const {
-		return { y * vec.z - z * vec.y, z * vec.x - x * vec.z, x * vec.y - y * vec.x };
+	// 内積
+	friend inline float Dot(const Vector3& v1, const Vector3& v2) {
+		return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
 	}
+	// 外積
+	friend inline Vector3 Cross(const Vector3& v1, const Vector3& v2) {
+		return { v1.y * v2.z - v1.z * v2.y, v1.z * v2.x -v1. x * v2.z, v1.x * v2.y - v1.y * v2.x };
+	}
+	// 他ベクトルとの距離
+	friend inline float Distance(const Vector3& v1, const Vector3& v2) {
+		return (v2 - v1).Length();
+	}
+	// 中点
+	friend inline Vector3 Mid(const Vector3& v1, const Vector3& v2) {
+		return (v1 + v2) / 2.0f;
+	}
+	// 線形補間
+	friend inline  Vector3 Lerp(float param, const  Vector3& start, const  Vector3& end) {
+		return start + param * (end - start);
+	}
+	
 	// 長さの二乗
 	inline float LengthSquare() const {
-		return Dot(*this);
+		return Dot(*this, *this);
 	}
-
+	// 長さ
 	inline float Length() const {
 		return sqrtf(LengthSquare());
 	}
 
-	// 他ベクトルとの距離
-	inline float Distance(const  Vector3& v) const {
-		return (v - *this).Length();
-	}
-
+	// 正規化
 	inline Vector3 Normalized() const {
-		float len = Length();
-		assert(len != 0);
-		return *this / len;
+		return *this / Length();
 	}
-
-	// 中点
-	inline Vector3 Mid(const Vector3& v) const {
-		return (*this + v) / 2.0f;
-	}
-
-	inline Vector3 RotationX(float theta) const {
-		float s = sinf(theta);
-		float c = cosf(theta);
+	inline Vector3 RotatedX(float angle) const {
+		float s = sinf(angle);
+		float c = cosf(angle);
 		return { x, y * c - z * s, y * s + z * c };
 	}
 
-	inline Vector3 RotationY(float theta) const {
-		float s = sinf(theta);
-		float c = cosf(theta);
+	inline Vector3 RotatedY(float angle) const {
+		float s = sinf(angle);
+		float c = cosf(angle);
 		return { x * c + z * s, y, -x * s + z * c };
 	}
 
-	inline Vector3 RotationZ(float theta) const {
-		float s = sinf(theta);
-		float c = cosf(theta);
+	inline Vector3 RotatedZ(float angle) const {
+		float s = sinf(angle);
+		float c = cosf(angle);
 		return { x * c - y * s, x * s + y * c, z };
 	}
 
-
-	// 線形補間
-	static inline  Vector3 Lerp(float t, const  Vector3& start, const  Vector3& end) {
-		return start + t * (end - start);
+	friend Vector3 Normalize(const Vector3& v) {
+		return v.Normalized();
+	}
+	
+	inline bool IsZero() const {
+		return x == 0.0f && y == 0.0f && z == 0.0f;
 	}
 
-	static inline float Dot(const Vector3& a, const Vector3& b) {
-		return a.x * b.x + a.y * b.y + a.z * b.z;
+	friend inline bool operator==(const Vector3& v1, const Vector3& v2) {
+		return v1.x == v2.x && v1.y == v2.y && v1.z == v2.z;
 	}
-
-	static inline Vector3 Cross(const Vector3& a, const Vector3& b) {
-		return { a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x };
-	}
-
-	static inline float LengthSquare(const Vector3& a) {
-		return Dot(a, a);
-	}
-
-	static inline float Length(const Vector3& a) {
-		return sqrtf(LengthSquare(a));
-	}
-
-	static inline Vector3 Normalize(const Vector3& a) {
-		float len = Length(a);
-		return len != 0 ? a / len : a;
-	}
-
-	// 中点
-	static inline Vector3 Mid(const Vector3& a, const Vector3& b) {
-		return (a + b) / 2.0f;
+	friend inline bool operator!=(const Vector3& v1, const Vector3& v2) {
+		return v1.x != v2.x || v1.y != v2.y || v1.z != v2.z;
 	}
 }; 
 
-inline float Dot(const Vector3& a, const Vector3& b) {
-	return a.x * b.x + a.y * b.y + a.z * b.z;
-}
-
-inline Vector3 Cross(const Vector3& a, const Vector3& b) {
-	return { a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x };
-}
-
-inline float LengthSquare(const Vector3& a)  {
-	return Dot(a, a);
-}
-
-inline float Length(const Vector3& a) {
-	return sqrtf(LengthSquare(a));
-}
-
-inline Vector3 Normalize(const Vector3& a) {
-	float len = Length(a);
-	return len != 0 ? a / len : a;
-}
-
-// 中点
-inline Vector3 Mid(const Vector3& a, const Vector3& b) {
-	return (a + b) / 2.0f;
-}
-
-// 線形補間
-inline Vector3 Lerp(float t, const  Vector3& start, const  Vector3& end) {
-	return start + t * (end - start);
-}
 
 #endif

@@ -118,7 +118,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)include\engine;$(SolutionDir)include\engine\base;$(SolutionDir)include\engine\math;$(SolutionDir)include\engine\3D;$(SolutionDir)include\engine\2D;$(SolutionDir)include\engine\input;$(SolutionDir)include\game</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)include\engine;$(SolutionDir)include\engine\base;$(SolutionDir)include\engine\math;$(SolutionDir)include\engine\3D;$(SolutionDir)include\engine\2D;$(SolutionDir)include\engine\input;$(SolutionDir)include\game;$(SolutionDir)include;$(SolutionDir)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -135,7 +135,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)include;$(SolutionDir)include\base;$(SolutionDir)include\directX;$(SolutionDir)include\math;$(SolutionDir)include\2D;$(SolutionDir)include\input</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)include\engine;$(SolutionDir)include\engine\base;$(SolutionDir)include\engine\math;$(SolutionDir)include\engine\3D;$(SolutionDir)include\engine\2D;$(SolutionDir)include\engine\input;$(SolutionDir)include\game;$(SolutionDir)include;$(SolutionDir)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DebugText.cpp" />
     <ClCompile Include="include\engine\2D\Camera2D.cpp" />
     <ClCompile Include="include\engine\2D\Sprite.cpp" />
     <ClCompile Include="include\engine\3D\Camera3D.cpp" />
@@ -159,7 +160,7 @@
     <ClCompile Include="include\engine\base\DirectXCommon.cpp" />
     <ClCompile Include="include\engine\base\TextureManager.cpp" />
     <ClCompile Include="include\engine\base\WinApp.cpp" />
-    <ClCompile Include="include\engine\Engine.cpp" />
+    <ClCompile Include="include\engine\App.cpp" />
     <ClCompile Include="include\engine\input\Input.cpp" />
     <ClCompile Include="include\engine\math\MathUtility.cpp" />
     <ClCompile Include="include\engine\math\Matrix.cpp" />
@@ -177,6 +178,7 @@
     <ClCompile Include="include\game\TestObj.cpp" />
     <ClCompile Include="include\game\TitleScene.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Quaternion.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="DirectXTex\DirectXTex_Desktop_2022_Win10.vcxproj">
@@ -191,21 +193,30 @@
     <FxCompile Include="ModelPS.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
     </FxCompile>
     <FxCompile Include="ModelVS.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
     </FxCompile>
     <FxCompile Include="SpritePS.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
     </FxCompile>
     <FxCompile Include="SpriteVS.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DebugText.h" />
     <ClInclude Include="include\engine\2D\Camera2D.h" />
     <ClInclude Include="include\engine\2D\Sprite.h" />
     <ClInclude Include="include\engine\3D\Camera3D.h" />
@@ -223,7 +234,7 @@
     <ClInclude Include="include\engine\base\TextureManager.h" />
     <ClInclude Include="include\engine\base\VertexBuffer.h" />
     <ClInclude Include="include\engine\base\WinApp.h" />
-    <ClInclude Include="include\engine\Engine.h" />
+    <ClInclude Include="include\engine\App.h" />
     <ClInclude Include="include\engine\input\Input.h" />
     <ClInclude Include="include\engine\json.hpp" />
     <ClInclude Include="include\engine\math\MathUtility.h" />
