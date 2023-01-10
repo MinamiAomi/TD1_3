@@ -54,8 +54,6 @@ void DebugText::Printf(const std::string& fmt, Args ... args) {
 	sprintf_s(&buf[0], len + 1, fmt.c_str(), args ...);
 	std::string fmtStr(&buf[0], &buf[0] + len);
 
-	for () {
-		
-	}
+	
 
 }

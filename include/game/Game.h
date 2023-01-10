@@ -19,5 +19,6 @@ public:
 	void Finalize();
 	void Run();
 
+	static bool IsDebugMode() { return m_isDebugMode; }
 };
 

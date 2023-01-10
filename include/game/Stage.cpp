@@ -6,8 +6,10 @@
 #include "Block.h"
 #include "MainCamera.h"
 #include "json.hpp"
-
+#include "Input.h"
 #include "TestObj.h"
+
+#include "Game.h"
 
 std::string Stage::s_stageDataFileName = "Stage.json";
 
@@ -32,11 +34,26 @@ void Stage::Initalize(unsigned int stageIndex)
 
 void Stage::Update()
 {
+	auto input = Input::GetInstance();
+
 	m_camera->Update();
+	
+	if (Game::IsDebugMode()) {
+		if (input->IsMouseTrigger(kMouseButtonLeft)) {
+			m_blocks.push_back();
+		}
+
+
+	}
+	
 	for (auto& it : m_blocks) {
 		it->Update();
 	}
-	m_testObj->Update();
+	
+	if (Game::IsDebugMode()) {
+		m_testObj->Update();
+	}
+
 }
 
 void Stage::Draw()
@@ -44,7 +61,9 @@ void Stage::Draw()
 	for (auto& it : m_blocks) {
 		it->Draw(m_camera->GetCameraTransform());
 	}
-	m_testObj->Draw(m_camera->GetCameraTransform());
+	if (Game::IsDebugMode()) {
+		m_testObj->Draw(m_camera->GetCameraTransform());
+	}
 }
 
 void Stage::LoadData()

@@ -11,6 +11,7 @@ private:
 public:
 	struct Images {
 		unsigned int whiteImage;
+		unsigned int debugImage;
 
 	};
 

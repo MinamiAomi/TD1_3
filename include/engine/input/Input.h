@@ -11,6 +11,7 @@
 #include <vector>
 
 #include "Vector2.h"
+#include "Matrix44.h"
 
 #define MOOUSE_ON_VALUE 0x80
 
@@ -128,7 +129,6 @@ public: // ƒƒ“ƒoŠÖ”
 	/// </summary>
 	/// <returns></returns>
 	inline float GetWheel() const;
-
 
 };
 

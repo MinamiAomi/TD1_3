@@ -40,25 +40,9 @@ void TestObj::Update()
 		up += -1;
 	}
 
-
-	Vector3 mouseFar = { input->GetMousePosition(), 1.0f};
-	Vector3 mouseNear = { input->GetMousePosition(), 0.0f };
-	
-	Matrix44 viewportInv= Matrix44::CreateViewport(0, 0, 1280, 720).Inverse();
-	Matrix44 projInv = m_camera->projMat.Inverse();
-	Matrix44 viewInv = m_camera->viewMat.Inverse();
-
-	Matrix44 invMat = viewportInv * projInv * viewInv;
-
-	Vector4 farV4 = Vector4{ mouseFar, 1.0f } * invMat;
-	Vector4 nearV4 = Vector4{ mouseNear, 1.0f } * invMat;
-
-	mouseFar = farV4.xyz() / farV4.w;
-	mouseNear = nearV4.xyz() / nearV4.w;
-
 	
 	
-	Vector3 mouseRay = mouseFar - mouseNear;
+	Vector3 mouseRay = input->GetMouseRay(Matrix44::CreateViewport(0, 0, 1280, 720), m_camera->projMat, m_camera->viewMat);
 
 	Vector3 wallNormal = -Vector3::UnitZ;
 
