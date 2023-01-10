@@ -1,6 +1,7 @@
 #include "MainCamera.h"
 #include "Input.h"
 
+#include "Game.h"
 
 MainCamera::MainCamera()
 {
@@ -79,26 +80,30 @@ void MainCamera::Input() {
 
 void MainCamera::Move() {
 	
-	// éãê¸à⁄ìÆ
-	if (lookInput.IsZero() == false) {
-		if (lookInput.y != 0.0f) {
-			m_pitchAngle += lookInput.y * m_lookSpeed;
-			m_pitchAngle = Math::Clamp(m_pitchAngle, m_upperPitchAngle, m_lowerPitchAngle);
+	if (Game::IsDebugMode()) {
 
+		// éãê¸à⁄ìÆ
+		if (lookInput.IsZero() == false) {
+			if (lookInput.y != 0.0f) {
+				m_pitchAngle += lookInput.y * m_lookSpeed;
+				m_pitchAngle = Math::Clamp(m_pitchAngle, m_upperPitchAngle, m_lowerPitchAngle);
+
+			}
+			if (lookInput.x != 0.0f) {
+				m_yawAngle += lookInput.x * m_lookSpeed;
+				m_yawAngle = Math::Loop(m_yawAngle, Math::Radian);
+
+			}
+			m_transform.rotate = Quaternion::CreateFromYaw(m_yawAngle) * Quaternion::CreateFromPitch(m_pitchAngle);
 		}
-		if (lookInput.x != 0.0f) {
-			m_yawAngle += lookInput.x * m_lookSpeed;
-			m_yawAngle = Math::Loop(m_yawAngle, Math::Radian);
-			
+
+
+		// à⁄ìÆÇµÇƒÇ¢ÇÈ
+		if (moveInput.IsZero() == false) {
+			Vector3 xzMove = m_transform.rotate * Multipliy(moveInput, Vector3(1.0f, 0.0f, 1.0f));
+			m_transform.position += Normalize(Vector3(xzMove.x, moveInput.y, xzMove.z)) * m_moveSpeed;
 		}
-		m_transform.rotate = Quaternion::CreateFromYaw(m_yawAngle) * Quaternion::CreateFromPitch(m_pitchAngle);
-	}
 
-
-	// à⁄ìÆÇµÇƒÇ¢ÇÈ
-	if (moveInput.IsZero() == false) {
-		Vector3 xzMove = m_transform.rotate * Multipliy(moveInput, Vector3(1.0f, 0.0f, 1.0f));
-		m_transform.position += Normalize(Vector3(xzMove.x, moveInput.y, xzMove.z)) * m_moveSpeed;
 	}
 
 }

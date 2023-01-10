@@ -28,6 +28,12 @@ public:
 		m[3][0] = _30, m[3][1] = _31, m[3][2] = _32, m[3][3] = _33;
 	}
 
+	Vector3 GetX() const { return { m[0][0],m[1][0],m[2][0] }; }
+	Vector3 GetY() const { return { m[0][1],m[1][1],m[2][1] }; }
+	Vector3 GetZ() const { return { m[0][2],m[1][2],m[2][2] }; }
+
+	Vector3 GetTranslation() const { return { m[3][0],m[3][1],m[3][2] }; }
+
 	friend inline Matrix44 operator*(float s, const Matrix44& m) {
 		return {
 			s * m.m[0][0],s * m.m[0][1],s * m.m[0][2],s * m.m[0][3],
@@ -456,5 +462,19 @@ public:
 			0.0f,			-halfh,			0.0f,			0.0f,
 			0.0f,			0.0f,			farZ - nearZ,	0.0f,
 			left + halfW,	top + halfh,	nearZ,			1.0f };
+	}
+
+	static inline Vector3 FromScreenVector(const Vector3& screen, const Matrix44& viewportInv, const Matrix44& projInv, const Matrix44& viewInv, const Matrix44& worldInv = Identity)
+	{
+		Matrix44 invMat = viewportInv * projInv * viewInv * worldInv;
+
+		FromScreenVector(screen, invMat);
+	}
+
+	static inline Vector3 FromScreenVector(const Vector3& screen, const Matrix44& invMat)
+	{
+		Vector4 tmp = Vector4{ screen, 1.0f } * invMat;
+
+		return tmp.xyz() / tmp.w;
 	}
 };

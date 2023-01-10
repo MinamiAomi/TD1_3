@@ -9,6 +9,8 @@ private:
 	// テスト用スプライトを描画
 	std::unique_ptr<class Sprite> test;
 
+	std::unique_ptr<class Sprite> debug;
+
 public:
 	TitleScene(std::shared_ptr<SceneCommonData> commonData, SceneManager* sceneMana);
 	~TitleScene();

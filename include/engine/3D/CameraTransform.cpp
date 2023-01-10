@@ -8,6 +8,7 @@ void CameraTransform::Initalize()
 	assert(dixcom->IsInit());
 	constBuffer.Create(dixcom->GetDevice());
 	constBuffer.Map();
+
 }
 
 void CameraTransform::UpdateMatrix()

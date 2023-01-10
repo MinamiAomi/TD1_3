@@ -30,6 +30,7 @@ public:
 
 	Matrix44 projMat; // Ë‰es—ñ
 
+
 	void ray(const Vector3& ray) { target = position + ray; }
 	// ‹ü
 	Vector3 ray() const { return target - position; }
