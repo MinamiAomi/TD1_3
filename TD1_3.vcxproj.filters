@@ -161,19 +161,19 @@
     <ClCompile Include="include\game\TestObj.cpp">
       <Filter>Game\Object\TestObj</Filter>
     </ClCompile>
-    <ClCompile Include="Quaternion.cpp">
-      <Filter>Engine\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="DebugText.cpp">
-      <Filter>Engine\2D</Filter>
-    </ClCompile>
-    <ClCompile Include="SnowBall.cpp">
+    <ClCompile Include="include\game\SnowBall.cpp">
       <Filter>Game\Object\SnowBall</Filter>
     </ClCompile>
-    <ClCompile Include="Collision2D.cpp">
+    <ClCompile Include="include\game\Collision2D.cpp">
       <Filter>Game\Collision</Filter>
     </ClCompile>
-    <ClCompile Include="TimeMamager.cpp" />
+    <ClCompile Include="include\engine\TimeMamager.cpp" />
+    <ClCompile Include="include\engine\math\Quaternion.cpp">
+      <Filter>Engine\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="include\engine\2D\DebugText.cpp">
+      <Filter>Engine\2D</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Model.hlsli">
@@ -324,15 +324,15 @@
     <ClInclude Include="include\game\TestObj.h">
       <Filter>Game\Object\TestObj</Filter>
     </ClInclude>
-    <ClInclude Include="DebugText.h">
-      <Filter>Engine\2D</Filter>
-    </ClInclude>
-    <ClInclude Include="SnowBall.h">
+    <ClInclude Include="include\game\SnowBall.h">
       <Filter>Game\Object\SnowBall</Filter>
     </ClInclude>
-    <ClInclude Include="Collision2D.h">
+    <ClInclude Include="include\game\Collision2D.h">
       <Filter>Game\Collision</Filter>
     </ClInclude>
-    <ClInclude Include="TimeManager.h" />
+    <ClInclude Include="include\engine\TimeManager.h" />
+    <ClInclude Include="include\engine\2D\DebugText.h">
+      <Filter>Engine\2D</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
