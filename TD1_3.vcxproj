@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Collision2D.cpp" />
     <ClCompile Include="DebugText.cpp" />
     <ClCompile Include="include\engine\2D\Camera2D.cpp" />
     <ClCompile Include="include\engine\2D\Sprite.cpp" />
@@ -179,6 +180,8 @@
     <ClCompile Include="include\game\TitleScene.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Quaternion.cpp" />
+    <ClCompile Include="SnowBall.cpp" />
+    <ClCompile Include="TimeMamager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="DirectXTex\DirectXTex_Desktop_2022_Win10.vcxproj">
@@ -216,6 +219,7 @@
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Collision2D.h" />
     <ClInclude Include="DebugText.h" />
     <ClInclude Include="include\engine\2D\Camera2D.h" />
     <ClInclude Include="include\engine\2D\Sprite.h" />
@@ -259,6 +263,8 @@
     <ClInclude Include="include\game\Stage.h" />
     <ClInclude Include="include\game\TestObj.h" />
     <ClInclude Include="include\game\TitleScene.h" />
+    <ClInclude Include="SnowBall.h" />
+    <ClInclude Include="TimeManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

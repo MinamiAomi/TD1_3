@@ -65,6 +65,12 @@
     <Filter Include="Engine\3D\Transform">
       <UniqueIdentifier>{0df3977a-2946-4a00-83e2-97c4598560b2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Object\SnowBall">
+      <UniqueIdentifier>{90a59d1f-2083-4e0a-827e-e938d735fc15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Collision">
+      <UniqueIdentifier>{0cb64cdc-4d57-473d-8579-63a193791d5e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -161,6 +167,13 @@
     <ClCompile Include="DebugText.cpp">
       <Filter>Engine\2D</Filter>
     </ClCompile>
+    <ClCompile Include="SnowBall.cpp">
+      <Filter>Game\Object\SnowBall</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision2D.cpp">
+      <Filter>Game\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeMamager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Model.hlsli">
@@ -314,5 +327,12 @@
     <ClInclude Include="DebugText.h">
       <Filter>Engine\2D</Filter>
     </ClInclude>
+    <ClInclude Include="SnowBall.h">
+      <Filter>Game\Object\SnowBall</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision2D.h">
+      <Filter>Game\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeManager.h" />
   </ItemGroup>
 </Project>

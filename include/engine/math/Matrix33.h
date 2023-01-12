@@ -18,6 +18,9 @@ public:
 		m[2][0] = _20, m[2][1] = _21, m[2][2] = _22;
 	}
 
+	Vector2 GetX() const { return { m[0][0],m[0][1] }; }
+	Vector2 GetY() const { return { m[1][0],m[1][1] }; }
+
 	const float* operator[](size_t i) const {
 		return m[i];
 	}
