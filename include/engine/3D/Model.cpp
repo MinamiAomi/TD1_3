@@ -51,7 +51,7 @@ void Model::StaticInitalize(DirectXCommon* dixcom, TextureManager* texmana, cons
 
 	// 頂点シェーダの読み込みとコンパイル
 	result = D3DCompileFromFile(
-		L"ModelVS.hlsl", // シェーダファイル名
+		L"./resources/shaders/ModelVS.hlsl", // シェーダファイル名
 		nullptr,
 		D3D_COMPILE_STANDARD_FILE_INCLUDE,
 		"main", "vs_5_0", // エントリーポイント名、シェーダーモデル指定
@@ -63,7 +63,7 @@ void Model::StaticInitalize(DirectXCommon* dixcom, TextureManager* texmana, cons
 #endif // _DEBUG
 
 	result = D3DCompileFromFile(
-		L"ModelPS.hlsl", // シェーダファイル名
+		L"./resources/shaders/ModelPS.hlsl", // シェーダファイル名
 		nullptr,
 		D3D_COMPILE_STANDARD_FILE_INCLUDE,
 		"main", "ps_5_0", // エントリーポイント名、シェーダーモデル指定

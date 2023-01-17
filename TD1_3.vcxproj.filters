@@ -176,28 +176,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Model.hlsli">
-      <Filter>Engine\shader</Filter>
-    </None>
-    <None Include="Sprite.hlsli">
-      <Filter>Engine\shader</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="ModelPS.hlsl">
-      <Filter>Engine\shader</Filter>
-    </FxCompile>
-    <FxCompile Include="ModelVS.hlsl">
-      <Filter>Engine\shader</Filter>
-    </FxCompile>
-    <FxCompile Include="SpritePS.hlsl">
-      <Filter>Engine\shader</Filter>
-    </FxCompile>
-    <FxCompile Include="SpriteVS.hlsl">
-      <Filter>Engine\shader</Filter>
-    </FxCompile>
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="include\engine\2D\Camera2D.h">
       <Filter>Engine\2D</Filter>
     </ClInclude>
@@ -334,5 +312,27 @@
     <ClInclude Include="include\engine\2D\DebugText.h">
       <Filter>Engine\2D</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\shaders\Model.hlsli">
+      <Filter>Engine\shader</Filter>
+    </None>
+    <None Include="resources\shaders\Sprite.hlsli">
+      <Filter>Engine\shader</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="resources\shaders\ModelPS.hlsl">
+      <Filter>Engine\shader</Filter>
+    </FxCompile>
+    <FxCompile Include="resources\shaders\ModelVS.hlsl">
+      <Filter>Engine\shader</Filter>
+    </FxCompile>
+    <FxCompile Include="resources\shaders\SpritePS.hlsl">
+      <Filter>Engine\shader</Filter>
+    </FxCompile>
+    <FxCompile Include="resources\shaders\SpriteVS.hlsl">
+      <Filter>Engine\shader</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>
