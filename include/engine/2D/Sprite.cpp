@@ -43,7 +43,7 @@ void Sprite::StaticInitalize(DirectXCommon* dixCom, TextureManager* texMan, UINT
 
 	// 頂点シェーダの読み込みとコンパイル
 	result = D3DCompileFromFile(
-		L"SpriteVS.hlsl", // シェーダファイル名
+		L"./resources/shaders/SpriteVS.hlsl", // シェーダファイル名
 		nullptr,
 		D3D_COMPILE_STANDARD_FILE_INCLUDE,
 		"main", "vs_5_0", // エントリーポイント名、シェーダーモデル指定
@@ -55,7 +55,7 @@ void Sprite::StaticInitalize(DirectXCommon* dixCom, TextureManager* texMan, UINT
 #endif // _DEBUG
 
 	result = D3DCompileFromFile(
-		L"SpritePS.hlsl", // シェーダファイル名
+		L"./resources/shaders/SpritePS.hlsl", // シェーダファイル名
 		nullptr,
 		D3D_COMPILE_STANDARD_FILE_INCLUDE,
 		"main", "ps_5_0", // エントリーポイント名、シェーダーモデル指定

@@ -7,6 +7,9 @@ class MainCamera
 {
 
 private:
+	WorldTransform m_worldCenter;
+
+
 	WorldTransform m_transform;
 	CameraTransform m_camera;
 
@@ -18,13 +21,19 @@ private:
 	float m_upperPitchAngle = Math::ToRadians(-89.0f); // 見上げるときの最大角
 	float m_lowerPitchAngle = Math::ToRadians(89.0f); // 見下ろすときの最大角
 	
+	float m_worldRotationSpeed = Math::ToRadians(1.0f);
+	float m_worldMoveSpeed = 1.0f;
+
 	// 入力変数
 	// マウスによって始点移動
 	bool mouseInput = false;
 	// 移動（x : 左右.右が＋ y : 上下.上が＋ ｚ : 前後 前が＋）
-	Vector3 moveInput = {};
+	Vector3 debugMoveInput = {};
 	// 視線移動（x : 水平.右が＋ y : 垂直.上が＋）
-	Vector2 lookInput = {};
+	Vector2 debugLookInput = {};
+
+	Vector2 moveInput = {};
+	int rotationInput = {};
 
 public:
 	MainCamera();
@@ -34,6 +43,7 @@ public:
 	void Update();
 
 	CameraTransform* GetCameraTransform() { return &m_camera; }
+	WorldTransform* GetWorldCenterTransform() { return &m_worldCenter; }
 
 private:
 	void Input();

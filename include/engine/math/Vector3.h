@@ -74,6 +74,7 @@ public:
 	inline Vector3(float x, float y, float z) : x(x), y(y), z(z) {}
 	inline Vector3(const Vector3& v) : x(v.x), y(v.y), z(v.z) {}
 	inline Vector3(const Vector2& v2, float z) : x(v2.x), y(v2.y), z(z) {}
+	inline Vector3(float xyz) : x(xyz), y(xyz), z(xyz) {}
 
 	inline void Set(float x, float y, float z) { *this = { x, y, z }; }
 	inline void Set(const Vector3& v) { *this = v; }
@@ -189,6 +190,10 @@ public:
 		return v.Normalized();
 	}
 	
+	friend inline Vector3 Reflected(const Vector3& v, const Vector3& normal) {
+		return Dot(normal, -v) * 2.0f * normal + v;
+	}
+
 	inline bool IsZero() const {
 		return x == 0.0f && y == 0.0f && z == 0.0f;
 	}

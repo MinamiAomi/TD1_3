@@ -25,7 +25,7 @@ void Resource::LoadImages()
 
 	m_images.whiteImage = m_texMana->LoadTexture(imageDir + "white.png");
 	m_images.debugImage = m_texMana->LoadTexture(imageDir + "Debug.png");
-
+	m_images.TitleImage = m_texMana->LoadTexture(imageDir + "Title.png");
 }
 
 void Resource::LoadModels()

@@ -130,6 +130,7 @@ public: // メンバ関数
 	/// <returns></returns>
 	inline float GetWheel() const;
 
+
 };
 
 #pragma region インライン定義
