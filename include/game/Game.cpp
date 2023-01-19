@@ -6,6 +6,7 @@
 #include "Sprite.h"
 #include "Model.h"
 #include "SceneManager.h"
+#include "TimeManager.h"
 #include <cassert>
 
 bool Game::m_isDebugMode = false;
@@ -41,7 +42,7 @@ void Game::Run()
 {
 	while (m_app->WindowQuit() == false) {
 		m_app->BeginFrame();
-
+		TimeManager::GetInstance()->Update();
 		if (m_app->GetInput()->IsKeyTrigger(DIK_TAB)) {
 			m_isDebugMode ^= true;
 		}

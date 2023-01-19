@@ -147,8 +147,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="DebugText.cpp" />
     <ClCompile Include="include\engine\2D\Camera2D.cpp" />
+    <ClCompile Include="include\engine\2D\DebugText.cpp" />
     <ClCompile Include="include\engine\2D\Sprite.cpp" />
     <ClCompile Include="include\engine\3D\Camera3D.cpp" />
     <ClCompile Include="include\engine\3D\CameraTransform.cpp" />
@@ -164,21 +164,24 @@
     <ClCompile Include="include\engine\input\Input.cpp" />
     <ClCompile Include="include\engine\math\MathUtility.cpp" />
     <ClCompile Include="include\engine\math\Matrix.cpp" />
+    <ClCompile Include="include\engine\math\Quaternion.cpp" />
     <ClCompile Include="include\engine\math\Shape.cpp" />
     <ClCompile Include="include\engine\math\Vector.cpp" />
     <ClCompile Include="include\engine\PipelineFunc.cpp" />
+    <ClCompile Include="include\engine\TimeMamager.cpp" />
     <ClCompile Include="include\game\Block.cpp" />
+    <ClCompile Include="include\game\Collision2D.cpp" />
     <ClCompile Include="include\game\Game.cpp" />
     <ClCompile Include="include\game\GameScene.cpp" />
     <ClCompile Include="include\game\MainCamera.cpp" />
     <ClCompile Include="include\game\Resource.cpp" />
     <ClCompile Include="include\game\SceneCommonData.cpp" />
     <ClCompile Include="include\game\SceneManager.cpp" />
+    <ClCompile Include="include\game\SnowBall.cpp" />
     <ClCompile Include="include\game\Stage.cpp" />
     <ClCompile Include="include\game\TestObj.cpp" />
     <ClCompile Include="include\game\TitleScene.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Quaternion.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="DirectXTex\DirectXTex_Desktop_2022_Win10.vcxproj">
@@ -186,38 +189,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Model.hlsli" />
-    <None Include="Sprite.hlsli" />
-  </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="ModelPS.hlsl">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
-    </FxCompile>
-    <FxCompile Include="ModelVS.hlsl">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
-    </FxCompile>
-    <FxCompile Include="SpritePS.hlsl">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
-    </FxCompile>
-    <FxCompile Include="SpriteVS.hlsl">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
-    </FxCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="DebugText.h" />
     <ClInclude Include="include\engine\2D\Camera2D.h" />
+    <ClInclude Include="include\engine\2D\DebugText.h" />
     <ClInclude Include="include\engine\2D\Sprite.h" />
     <ClInclude Include="include\engine\3D\Camera3D.h" />
     <ClInclude Include="include\engine\3D\CameraTransform.h" />
@@ -246,8 +219,10 @@
     <ClInclude Include="include\engine\math\Vector3.h" />
     <ClInclude Include="include\engine\math\Vector4.h" />
     <ClInclude Include="include\engine\PipelineFunc.h" />
+    <ClInclude Include="include\engine\TimeManager.h" />
     <ClInclude Include="include\game\BaseScene.h" />
     <ClInclude Include="include\game\Block.h" />
+    <ClInclude Include="include\game\Collision2D.h" />
     <ClInclude Include="include\game\Game.h" />
     <ClInclude Include="include\game\GameObject.h" />
     <ClInclude Include="include\game\GameScene.h" />
@@ -256,9 +231,40 @@
     <ClInclude Include="include\game\Resource.h" />
     <ClInclude Include="include\game\SceneCommonData.h" />
     <ClInclude Include="include\game\SceneManager.h" />
+    <ClInclude Include="include\game\SnowBall.h" />
     <ClInclude Include="include\game\Stage.h" />
     <ClInclude Include="include\game\TestObj.h" />
     <ClInclude Include="include\game\TitleScene.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\shaders\Model.hlsli" />
+    <None Include="resources\shaders\Sprite.hlsli" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="resources\shaders\ModelPS.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="resources\shaders\ModelVS.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="resources\shaders\SpritePS.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="resources\shaders\SpriteVS.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+    </FxCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

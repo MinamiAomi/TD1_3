@@ -8,7 +8,7 @@
 #include "json.hpp"
 #include "Input.h"
 #include "TestObj.h"
-
+#include "SnowBall.h"
 #include "Game.h"
 
 std::string Stage::s_stageDataFileName = "Stage.json";
@@ -25,11 +25,14 @@ Stage::~Stage()
 void Stage::Initalize(unsigned int stageIndex)
 {
 	m_stageIndex = stageIndex;
-	LoadData();
 	m_camera.reset(new MainCamera);
 	m_camera->Initalize();
+	m_snowBall.reset(new SnowBall);
+	m_snowBall->Initalize();
+	LoadData();
 	m_testObj.reset(new TestObj);
 	m_testObj->Initalize(m_camera->GetCameraTransform());
+	
 }
 
 void Stage::Update()
@@ -38,9 +41,11 @@ void Stage::Update()
 
 	m_camera->Update();
 	
+	m_snowBall->Update();
+
 	if (Game::IsDebugMode()) {
 		if (input->IsMouseTrigger(kMouseButtonLeft)) {
-			m_blocks.push_back();
+			//m_blocks.emplace_back();
 		}
 
 
@@ -49,6 +54,13 @@ void Stage::Update()
 	for (auto& it : m_blocks) {
 		it->Update();
 	}
+
+	m_snowBall->SetCollider();
+	for (auto& it : m_blocks) {
+		it->SetCollider();
+	}
+		
+	m_snowBall->Collision(m_blocks);
 	
 	if (Game::IsDebugMode()) {
 		m_testObj->Update();
@@ -61,6 +73,7 @@ void Stage::Draw()
 	for (auto& it : m_blocks) {
 		it->Draw(m_camera->GetCameraTransform());
 	}
+	m_snowBall->Draw(m_camera->GetCameraTransform());
 	if (Game::IsDebugMode()) {
 		m_testObj->Draw(m_camera->GetCameraTransform());
 	}
@@ -83,7 +96,7 @@ void Stage::LoadData()
 		// ブロック要素を取得
 		for (const auto& block : data.at("blocks")) {
 			auto addBlock = std::make_unique<Block>();
-			addBlock->Initalize(block, zwidth);
+			addBlock->Initalize(block, zwidth, m_camera->GetWorldCenterTransform());
 			m_blocks.push_back(std::move(addBlock));
 		}
 	}

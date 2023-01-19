@@ -100,6 +100,9 @@ public:
 		return { x * c - y * s, x * s + y * c };
 	}
 
+	friend inline Vector2 Reflected(const Vector2& v, const Vector2& normal) {
+		return Dot(normal, -v) * 2.0f * normal + v;
+	}
 	inline bool IsZero() const {
 		return x == 0.0f && y == 0.0f;
 	}

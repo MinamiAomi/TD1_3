@@ -3,7 +3,7 @@
 #include "MathUtility.h"
 #include "Shape.h"
 #include "jsonLoader.h"
-
+#include "Collision2D.h"
 
 class Block
 {
@@ -16,15 +16,24 @@ private:
 	WorldTransform m_world;
 	class Model* m_model;
 
+	WorldTransform m_collTrans;
+	Matrix44 m_collRot;
+
+
+	Collider2D::OBB m_collider;
+
 public:
 	Block();
 	~Block();
 	
 
-	void Initalize(const BlockJsonData& data, float z_width);
+	void Initalize(const BlockJsonData& data, float z_width, WorldTransform* parent);
 	void Update();
 
 	void Draw(class CameraTransform* camera);
+	
+	void SetCollider();
+	const Collider2D::OBB& GetCollider() const { return m_collider; }
 
 	operator BlockJsonData() const;
 };
