@@ -12,7 +12,7 @@ public:
 	struct Images {
 		unsigned int whiteImage;
 		unsigned int debugImage;
-
+		unsigned int TitleImage;
 	};
 
 	struct Models {

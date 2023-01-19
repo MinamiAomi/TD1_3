@@ -8,7 +8,7 @@ class TitleScene :
 private:
 	// テスト用スプライトを描画
 	std::unique_ptr<class Sprite> test;
-
+	class Sprite* t = nullptr;
 	std::unique_ptr<class Sprite> debug;
 
 public:

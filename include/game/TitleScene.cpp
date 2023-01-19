@@ -13,7 +13,9 @@ TitleScene::TitleScene(std::shared_ptr<SceneCommonData> commonData, SceneManager
 {
 }
 
-TitleScene::~TitleScene() {}
+TitleScene::~TitleScene() {
+	delete t;
+}
 
 void TitleScene::Initalize()
 {
@@ -21,6 +23,15 @@ void TitleScene::Initalize()
 	debug = std::make_unique<Sprite>(m_commonData->resource->GetImage().debugImage, Vector2{ 0,0 }, Vector2{ 200,100 });
 	debug->SetTextureRect({ 0,0 }, { 128,64 });
 	test->SetColor(Color::ToVector4(0xFFFF00FF));
+	t = new Sprite;
+	t->SetPosition({ 640,360 });
+	t->SetSize({ 1280,720 });
+	t->SetTextureHandle(Resource::GetInstance()->GetImage().TitleImage);
+	t->SetTextureRect({ 0,0 }, { 1280, 720 });
+	t->SetAnchorPoint(t->GetSize() * 0.5f);
+	t->SetColor(Color::White);
+
+	
 }
 
 void TitleScene::Update()
@@ -36,6 +47,8 @@ void TitleScene::Draw()
 	if (Game::IsDebugMode()) {
 		Sprite::Draw(debug.get(), m_commonData->camera2D.get());
 	}
+
+	Sprite::Draw(t, m_commonData->camera2D.get());
 }
 
 void TitleScene::ChangeScene()
