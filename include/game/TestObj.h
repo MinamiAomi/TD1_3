@@ -5,10 +5,8 @@ class TestObj
 {
 private:
 	WorldTransform m_transform = {};
-	WorldTransform m_transform2 = {};
 	class Model* m_model = nullptr;
 	class CameraTransform* m_camera = nullptr;
-	Quaternion rotation;
 
 
 public:
