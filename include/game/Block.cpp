@@ -7,7 +7,6 @@ Block::Block()
 {
 	m_model = nullptr;
 	m_world.Initalize();
-	m_collTrans.Initalize();
 }
 
 Block::~Block()
@@ -52,14 +51,6 @@ void Block::Draw(class CameraTransform* camera)
 	m_world.UpdateMatrix();
 	m_model->Draw(&m_world, camera);
 
-	m_collRot[3][0] = 0.0f;
-	m_collRot[3][1] = 0.0f;
-	m_collRot[3][2] = 0.0f;
-
-	m_collTrans.position = { m_collider.center,-20 };
-	m_collTrans.scale = { m_collider.size[0],m_collider.size[1],2 };
-	m_collTrans.worldMatrix = Matrix44::CreateScaling(m_collTrans.scale) * m_collRot * Matrix44::CreateTranslation(m_collTrans.position);
-	m_model->Draw(&m_collTrans, camera);
 
 }
 
@@ -72,11 +63,9 @@ void Block::SetCollider()
 
 	m_collider.center = m_world.worldMatrix.GetTranslation().xy();
 	
-	Matrix33 rotMat = parMat * Matrix33::CreateRotation(m_rect.theta);
+	Matrix33 rotMat = Matrix33::CreateRotation(m_rect.theta + m_world.parent->rotate.Angle());
 	m_collider.direction[0] = rotMat.GetX();
 	m_collider.direction[1] = rotMat.GetY();
-
-	m_collRot = m_world.parent->worldMatrix * Matrix44::CreateRotationFromQuaternion(m_world.rotate);
 
 	m_collider.size[0] = m_rect.width;
 	m_collider.size[1] = m_rect.height;
