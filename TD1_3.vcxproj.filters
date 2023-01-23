@@ -71,6 +71,9 @@
     <Filter Include="Game\Collision">
       <UniqueIdentifier>{0cb64cdc-4d57-473d-8579-63a193791d5e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Object\Player">
+      <UniqueIdentifier>{157a549c-2e33-45ac-aacc-375143c0cf03}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -173,6 +176,9 @@
     </ClCompile>
     <ClCompile Include="include\engine\2D\DebugText.cpp">
       <Filter>Engine\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="include\game\Player.cpp">
+      <Filter>Game\Object\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -311,6 +317,9 @@
     <ClInclude Include="include\engine\TimeManager.h" />
     <ClInclude Include="include\engine\2D\DebugText.h">
       <Filter>Engine\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="include\game\Player.h">
+      <Filter>Game\Object\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

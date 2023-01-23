@@ -11,24 +11,11 @@ void WorldTransform::Initalize()
 
 void WorldTransform::UpdateMatrix() 
 {
-	Matrix44 scaMat, rotMat, traMat;
-
-	scaMat = Matrix44::CreateScaling(scale);
-
-	//rotMat = Matrix44::CreateRotationFromEuler(rotation);
-
-	//rotMat *= Matrix44::CreateRotationZ(rotate.z);
-	//rotMat *= Matrix44::CreateRotationX(rotate.x);
-	//rotMat *= Matrix44::CreateRotationY(rotate.y);
-
-	rotMat = Matrix44::CreateRotationFromQuaternion(rotate);
-
-	traMat = Matrix44::CreateTranslation(position);
-
+	
 	worldMatrix = Matrix44::Identity;
-	worldMatrix *= scaMat;
-	worldMatrix *= rotMat;
-	worldMatrix *= traMat;
+	worldMatrix *= Matrix44::CreateScaling(scale);
+	worldMatrix *= Matrix44::CreateRotationFromQuaternion(rotate);
+	worldMatrix *= Matrix44::CreateTranslation(position);
 
 	if (parent != nullptr) {
 		worldMatrix *= parent->worldMatrix;

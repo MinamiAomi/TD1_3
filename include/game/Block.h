@@ -16,10 +16,7 @@ private:
 	WorldTransform m_world;
 	class Model* m_model;
 
-	WorldTransform m_collTrans;
-	Matrix44 m_collRot;
-
-
+	
 	Collider2D::OBB m_collider;
 
 public:
