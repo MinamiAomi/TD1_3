@@ -19,8 +19,8 @@ TitleScene::~TitleScene() {
 
 void TitleScene::Initalize()
 {
-	test = std::make_unique<Sprite>(m_commonData->resource->GetImage().whiteImage, Vector2{ 640,360 }, Vector2{ 100,100 });
-	debug = std::make_unique<Sprite>(m_commonData->resource->GetImage().debugImage, Vector2{ 0,0 }, Vector2{ 200,100 });
+	test = std::make_unique<Sprite>(Resource::GetInstance()->GetImage().whiteImage, Vector2{640,360}, Vector2{100,100});
+	debug = std::make_unique<Sprite>(Resource::GetInstance()->GetImage().debugImage, Vector2{ 0,0 }, Vector2{ 200,100 });
 	debug->SetTextureRect({ 0,0 }, { 128,64 });
 	test->SetColor(Color::ToVector4(0xFFFF00FF));
 	t = new Sprite;
@@ -42,7 +42,7 @@ void TitleScene::Update()
 
 void TitleScene::Draw()
 {
-	Sprite::Draw(test.get(), m_commonData->camera2D.get());
+	//Sprite::Draw(test.get(), m_commonData->camera2D.get());
 
 	if (Game::IsDebugMode()) {
 		Sprite::Draw(debug.get(), m_commonData->camera2D.get());
@@ -53,7 +53,7 @@ void TitleScene::Draw()
 
 void TitleScene::ChangeScene()
 {
-	auto input = m_commonData->engine->GetInput();
+	auto input = App::GetInstance()->GetInput();
 
 	if (input->IsKeyTrigger(DIK_T)) {
 		m_sceneMana->Transition<GameScene>();

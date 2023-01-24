@@ -28,8 +28,8 @@ bool Game::Initalize(){
 	m_resource = Resource::GetInstance();
 	m_resource->Initalize(m_app->GetTextureManager());
 
-	m_sceneMana = std::make_unique<SceneManager>();
-	m_sceneMana->Initalize(m_app, m_resource);
+	m_sceneMana = SceneManager::GetInstance();
+	m_sceneMana->Initalize();
 
 	return true;
 }

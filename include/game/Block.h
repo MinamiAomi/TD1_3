@@ -7,6 +7,16 @@
 
 class Block
 {
+private:
+	// Zé≤ï˚å¸ÇÃïù
+	static float s_zWidth;
+	// ã§óLÉJÉÅÉâ
+	static class CameraTransform* s_camera;
+
+public:
+	static void zWidth(float zWidth) { s_zWidth = zWidth; }
+	static float zWidth() { return s_zWidth; }
+	static void camera(CameraTransform* camera) { s_camera = camera; }
 
 private:
 
@@ -23,14 +33,21 @@ public:
 	Block();
 	~Block();
 	
+	void center(const Vector2& center) { m_rect.center = center; }
+	void width(float width) { m_rect.width = width; }
+	void height(float height) { m_rect.height = height; }
+	void rotate(float rotate) { m_rect.theta = rotate; }
+	void parent(WorldTransform* parent) { m_world.parent = parent; }
+
+
 
 	void Initalize(const BlockJsonData& data, float z_width, WorldTransform* parent);
+	void Initalize();
 	void Update();
-
-	void Draw(class CameraTransform* camera);
+	void PreCollision();
+	void Draw();
 	
-	void SetCollider();
-	const Collider2D::OBB& GetCollider() const { return m_collider; }
+	const Collider2D::OBB& collider() const { return m_collider; }
 
 	operator BlockJsonData() const;
 };

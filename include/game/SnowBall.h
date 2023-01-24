@@ -10,7 +10,7 @@ class SnowBall
 
 private:
 	WorldTransform m_transform;
-	float m_radius = 3.0f;
+	float m_radius = 1.0f;
 
 	Collider2D::Circle m_collider;
 
@@ -19,16 +19,20 @@ private:
 
 	float m_gravity = 9.8f * 8;
 
+	class CameraTransform* m_camera = nullptr;
 
 public:
 	SnowBall();
 	~SnowBall();
 
+	void camera(CameraTransform* camera) { m_camera = camera; }
+
 	void Initalize();
 	void Update();
-	void Draw(class CameraTransform* camera);
+	void PreCollision();
+	void OnCollision();
+	void Draw();
 
-	void SetCollider();
 	const Collider2D::Circle GetCollider()const { return m_collider; }
 
 	void Collision(std::vector<std::unique_ptr<class Block>>& blocks);

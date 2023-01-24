@@ -7,9 +7,10 @@ class GameScene :
 {
 
 private:
-	unsigned int m_curStageNumber = 0;	// 現在のステージ
-	std::unique_ptr<class Stage> m_curStage;	// 現在のステージ
-
+	std::unique_ptr<class Stage> m_stage;	// 現在のステージ
+	std::unique_ptr<class SnowBall> m_snowBall; //　雪玉
+	std::unique_ptr<class Player> m_player;	// プレイヤー
+//	std::unique_ptr<class TestObj> m_test;
 	std::unique_ptr<class Sprite> debug;
 
 public:

@@ -13,10 +13,6 @@ private:
 private:
 	unsigned int m_stageIndex = 0;	// ステージナンバー
 	std::vector<std::unique_ptr<class Block>> m_blocks;	// 地面となるブロック
-	std::unique_ptr<class MainCamera> m_camera;	// カメラ
-	std::unique_ptr<class SnowBall> m_snowBall;	// 雪玉
-
-	std::unique_ptr<class TestObj> m_testObj;
 
 public:
 	Stage();

@@ -8,7 +8,7 @@ class Game
 private:
 	class App* m_app = nullptr;
 	class Resource* m_resource = nullptr;
-	std::unique_ptr<class SceneManager> m_sceneMana;
+	class SceneManager* m_sceneMana;
 	
 	static bool m_isDebugMode;
 

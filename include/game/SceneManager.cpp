@@ -3,20 +3,14 @@
 #include "TitleScene.h"
 #include "Camera2D.h"
 
-SceneManager::SceneManager() 
-{
-
+SceneManager* SceneManager::GetInstance() {
+	static SceneManager instance;
+	return &instance;
 }
 
-SceneManager::~SceneManager() 
-{
-}
-
-void SceneManager::Initalize(class App* engine, class Resource* resource)
+void SceneManager::Initalize()
 {
 	m_commonData = std::make_shared<SceneCommonData>();
-	m_commonData->engine = engine;
-	m_commonData->resource = resource;
 	m_commonData->camera2D = std::make_unique<Camera2D>();
 	m_commonData->camera2D->UpdateMatrix();
 
