@@ -13,6 +13,7 @@ public:
 		unsigned int whiteImage;
 		unsigned int debugImage;
 		unsigned int TitleImage;
+		unsigned int NumberImage;
 	};
 
 	struct Models {

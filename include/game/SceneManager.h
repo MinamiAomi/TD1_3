@@ -12,11 +12,11 @@ private:
 	std::shared_ptr<SceneCommonData> m_commonData;
 
 public:
-	SceneManager();
-	~SceneManager();
+	static SceneManager* GetInstance();
 
+	const SceneCommonData& commonData() const { return *m_commonData.get(); }
 
-	void Initalize(class App* engine, class Resource* resource);
+	void Initalize();
 	void Update();
 	void Draw();
 	void ChangeScene();
@@ -25,6 +25,8 @@ public:
 	void Transition();
 
 private:
+	SceneManager() = default;
+	~SceneManager() = default;
 	SceneManager(const SceneManager&) = delete;
 	const SceneManager& operator=(const SceneManager&) = delete;
 };

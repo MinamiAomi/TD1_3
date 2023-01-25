@@ -64,21 +64,14 @@ void Input::Update() {
 	ScreenToClient(m_winApp->GetHwnd(), &p);
 	m_mousePos = { (float)p.x,(float)p.y };
 
-	// xinput‚ÌÅ‘åÚ‘±”
-	static constexpr size_t kXInputConnectMaxCount = 4;
+	
 	// Œ»İ‚Ìó‘Ô‚ğ‘O‰ñ‚Ìó‘Ô‚É•Û‘¶
 	for (auto& it : m_gamePads) {
 		it.preState = it.curState;
 	}
 	XINPUT_STATE tmpState = {};
 	for (size_t i = 0; i < kXInputConnectMaxCount; i++) {
-		auto success = XInputGetState((DWORD)i, &tmpState);
-		if (success == ERROR_SUCCESS) {
-			if (m_gamePads.size() <= i) {
-				m_gamePads.emplace_back();
-			}
-			m_gamePads.at(i).curState = tmpState;
-		}
+		XInputGetState((DWORD)i, &m_gamePads[i].curState);
 	}
 }
 

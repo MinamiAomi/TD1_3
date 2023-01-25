@@ -8,6 +8,7 @@
 #include "SceneManager.h"
 #include "TimeManager.h"
 #include <cassert>
+#include "Stage.h"
 
 bool Game::m_isDebugMode = false;
 
@@ -28,14 +29,17 @@ bool Game::Initalize(){
 	m_resource = Resource::GetInstance();
 	m_resource->Initalize(m_app->GetTextureManager());
 
-	m_sceneMana = std::make_unique<SceneManager>();
-	m_sceneMana->Initalize(m_app, m_resource);
+	m_sceneMana = SceneManager::GetInstance();
+	m_sceneMana->Initalize();
+
+	Stage::LoadJson();
 
 	return true;
 }
 
 void Game::Finalize() 
 {
+	Stage::SaveJson();
 }
 
 void Game::Run() 

@@ -2,6 +2,11 @@
 #include <vector>
 #include <memory>
 #include <string>
+#include "WorldTransform.h"
+#include "json.hpp"
+
+class Sprite;
+class Block;
 
 class Stage
 {
@@ -9,28 +14,41 @@ class Stage
 private:
 	static std::string s_stageDataFileName;	// ステージデータファイル名
 
+	static std::unique_ptr<nlohmann::json> s_stageData;
+
+public:
+	static void LoadJson();
+	static void SaveJson();
 
 private:
 	unsigned int m_stageIndex = 0;	// ステージナンバー
-	std::vector<std::unique_ptr<class Block>> m_blocks;	// 地面となるブロック
-	std::unique_ptr<class MainCamera> m_camera;	// カメラ
-	std::unique_ptr<class SnowBall> m_snowBall;	// 雪玉
+	WorldTransform m_transform;
+	std::vector<std::unique_ptr<Block>> m_blocks;	// 地面となるブロック
 
-	std::unique_ptr<class TestObj> m_testObj;
+	std::unique_ptr<Sprite> m_number;
+	
+	float m_width = {};
+	float m_height = {};
+
+	float m_angle = {};
 
 public:
 	Stage();
 	~Stage();
 
-	void Initalize(unsigned int stageIndex);
-	void Update();
-	void Draw();
+	float angle() const { return m_angle; }
 
-	const std::vector<std::unique_ptr<class Block>>& GetBlockArray()const { return m_blocks; }
+	void Initalize();
+	void Update(const Vector2& player);
+	void PreCollision();
+	void Draw3D();
+	void Draw2D();
+
+	const std::vector<std::unique_ptr<class Block>>& blocks()const { return m_blocks; }
 	unsigned int GetStageIndex() const { return m_stageIndex; }
 
 private:
-	void LoadData();
-	void SaveData();
+	void LoadStageData();
+	void SaveStageData();	
 };
 
