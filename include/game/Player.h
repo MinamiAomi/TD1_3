@@ -31,12 +31,18 @@ private:
 	float m_rotateInput = {};
 	bool m_isKeyMoveInput = false;
 
+	float left;
+	float right;
+	float top;
+	float bottom;
+
 public:
 	Player();
 	~Player();
 
 	std::array<Block, kBlockCount> blocks() const { return m_blocks; }
 	CameraTransform* camera() { return &m_camera; }
+	Vector2 positionXY() const { return m_camera.position.xy(); }
 
 	void Initalize();
 	void Update();

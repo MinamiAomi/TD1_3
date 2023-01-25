@@ -10,7 +10,7 @@ class SnowBall
 
 private:
 	WorldTransform m_transform;
-	float m_radius = 1.0f;
+	float m_radius = 0.5f;
 
 	Collider2D::Circle m_collider;
 
@@ -30,10 +30,10 @@ public:
 	void Initalize();
 	void Update();
 	void PreCollision();
-	void OnCollision();
+	void OnCollision(const Vector2& closestPoint);
 	void Draw();
 
-	const Collider2D::Circle GetCollider()const { return m_collider; }
+	const Collider2D::Circle collider()const { return m_collider; }
 
 	void Collision(std::vector<std::unique_ptr<class Block>>& blocks);
 

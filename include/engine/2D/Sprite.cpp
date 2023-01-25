@@ -254,9 +254,9 @@ void Sprite::TransferVertex(ID3D12GraphicsCommandList* cmdList, TextureManager* 
 	float posBottom = posTop + size.y;
 
 	float uvLeft = texBase.x / static_cast<float>(resDesc.Width);
-	float uvRight = texBase.x + texSize.x / static_cast<float>(resDesc.Width);
+	float uvRight = (texBase.x + texSize.x) / static_cast<float>(resDesc.Width);
 	float uvTop = texBase.y / static_cast<float>(resDesc.Height);
-	float uvBottom = texBase.y + texSize.y / static_cast<float>(resDesc.Height);
+	float uvBottom = (texBase.y + texSize.y) / static_cast<float>(resDesc.Height);
 
 	if (isFlipX == true) {
 		Math::Swap(uvLeft, uvRight);

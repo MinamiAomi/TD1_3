@@ -24,7 +24,8 @@ void SceneManager::Update()
 
 void SceneManager::Draw()
 {
-	m_scene->Draw();
+	m_scene->Draw3D();
+	m_scene->Draw2D();
 }
 
 void SceneManager::ChangeScene()

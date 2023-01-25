@@ -13,14 +13,15 @@ Player::~Player()
 void Player::Initalize()
 {
 	m_transform.Initalize();
+	m_transform.scale = { 1.0f,1.0f,1.0f };
 	m_camera.Initalize();
-	m_camera.position = { 0.0f,0.0f,-5.0f };
+	m_camera.position = { 0.0f,0.0f,-15.0f };
 
 	float as = 1280.0f / 720.0f;
-	float left = -as;
-	float right = left + as * 2;
-	float top = 1.0f;
-	float bottom = top - 2.0f;
+	left = -as;
+	right = left + as * 2;
+	top = 1.0f;
+	bottom = top - 2.0f;
 	float width = 0.05f;
 
 	m_blocks[kLeftBlock].center({ left, 0.0f });
@@ -51,12 +52,25 @@ void Player::Initalize()
 void Player::Update()
 {
 	Input();
+	//m_transform.position.x += 0.1f * m_moveInput.x;
+	//m_transform.position.y += 0.1f * m_moveInput.y;
+
+	auto input = App::GetInstance()->GetInput();
+
+
+	Vector2 move = 0.1f * m_moveInput;
+	m_transform.position.xy(m_transform.position.xy() + move);
+	m_camera.position.xy(m_camera.position.xy() + move);
+	m_camera.target.xy(m_camera.target.xy() + move);
+
+
 	m_camera.position.z += 0.1f * m_scaleInput;
-
 	float dist = Math::Abs(m_camera.position.z - m_camera.target.z);
-
-	m_transform.scale = { dist / 3.5f, dist / 3.5f, 1.0f };
+	m_transform.scale = { dist / 4.6f, dist / 4.6f, 1.0f };
 	//m_camera.position.y = dist / 3.5f;
+
+
+	m_transform.UpdateMatrix();
 	m_camera.UpdateMatrix();
 }
 
@@ -64,7 +78,7 @@ void Player::PreCollision()
 {
 	m_transform.UpdateMatrix();
 	for (auto& it : m_blocks) {
-		it.PreCollision();
+		it.PreCollision2();
 	}
 }
 
@@ -108,13 +122,5 @@ void Player::Input()
 	// Šg‘å
 	if (input->IsKeyPressed(DIK_LSHIFT) || input->IsPadButtonPressed(0, kPadRightTrigger)) {
 		m_scaleInput += -1.0f;
-	}
-	// ”½ŽžŒv‰ñ‚è
-	if (input->IsKeyPressed(DIK_Q) || input->IsPadButtonPressed(0, kPadButtonLeftShoulder)) {
-		m_rotateInput += 1.0f;
-	}
-	// ŽžŒv‰ñ‚è
-	if (input->IsKeyPressed(DIK_E) || input->IsPadButtonPressed(0, kPadButtonRightShoulder)) {
-		m_rotateInput += -1.0f;
 	}
 }

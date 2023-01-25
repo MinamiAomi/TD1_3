@@ -16,7 +16,7 @@ SnowBall::~SnowBall()
 void SnowBall::Initalize()
 {
 	m_transform.Initalize();
-	m_transform.position = Vector3(0, 0, 0);
+	m_transform.position = Vector3(0, 3, 0);
 	m_transform.scale = Vector3(m_radius);
 	
 }
@@ -26,13 +26,13 @@ void SnowBall::Update()
 	auto input = Input::GetInstance();
 
 	if (input->IsKeyTrigger(DIK_R)) {
-		m_transform.position = Vector3(0, 30, 0);
+		m_transform.position = Vector3(0, 3, 0);
 		m_velocity = Vector2::Zero;
 	}
 
 	Vector2 force;
 
-	//force += -Vector2::UnitY * m_gravity;
+	force += -Vector2::UnitY * m_gravity;
 
 	m_velocity += force / m_mass * Time::deltaTime();
 
@@ -49,8 +49,14 @@ void SnowBall::PreCollision()
 	m_collider.radius = m_radius;
 }
 
-void SnowBall::OnCollision()
+void SnowBall::OnCollision(const Vector2& closestPoint)
 {
+	Vector2 pos = m_transform.position.xy();
+	Vector2 normal = pos - closestPoint;
+	normal = normal.Normalized();
+	m_velocity = Reflected(m_velocity, normal) * 0.8f;
+	Vector2 newPos = closestPoint + normal * m_radius;
+	pos = newPos;
 }
 
 void SnowBall::Draw()

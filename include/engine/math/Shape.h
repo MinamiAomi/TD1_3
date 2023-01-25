@@ -26,24 +26,24 @@ namespace Shape2D
 	// ‰ñ“]‚ ‚è‹éŒ`
 	struct RectAngle : public Rect
 	{
-		float theta;
+		float rotate;
 
 		Vector2 LeftTop() const {
 			Vector2 tmp = { -width / 2.0f, height / 2.0f };
-			return { center + tmp.Rotated(theta) };
+			return { center + tmp.Rotated(rotate) };
 		}
 		Vector2 RightTop() const {
 			Vector2 tmp = { width / 2.0f, height / 2.0f };
-			return { center + tmp.Rotated(theta) };
+			return { center + tmp.Rotated(rotate) };
 		}
 		Vector2 LeftBottom() const {
 			Vector2 tmp = { -width / 2.0f, -height / 2.0f };
-			return { center + tmp.Rotated(theta) };
+			return { center + tmp.Rotated(rotate) };
 
 		}
 		Vector2 RightBottom() const {
 			Vector2 tmp = { width / 2.0f, -height / 2.0f };
-			return { center + tmp.Rotated(theta) };
+			return { center + tmp.Rotated(rotate) };
 		}
 	};
 	// ‰~

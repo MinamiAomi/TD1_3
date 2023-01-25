@@ -2,6 +2,8 @@
 #include "BaseScene.h"
 #include <memory>
 
+#include "WorldTransform.h"
+
 class GameScene :
 	public BaseScene
 {
@@ -12,6 +14,8 @@ private:
 	std::unique_ptr<class Player> m_player;	// ÉvÉåÉCÉÑÅ[
 //	std::unique_ptr<class TestObj> m_test;
 	std::unique_ptr<class Sprite> debug;
+	
+	WorldTransform world;
 
 public:
 	GameScene(std::shared_ptr<SceneCommonData> commonData, SceneManager* sceneMana);
@@ -19,7 +23,8 @@ public:
 
 	void Initalize();
 	void Update();
-	void Draw();
+	void Draw3D();
+	void Draw2D();
 	void ChangeScene();
 };
 

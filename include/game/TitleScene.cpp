@@ -40,7 +40,11 @@ void TitleScene::Update()
 
 }
 
-void TitleScene::Draw()
+void TitleScene::Draw3D()
+{
+}
+
+void TitleScene::Draw2D()
 {
 	//Sprite::Draw(test.get(), m_commonData->camera2D.get());
 
