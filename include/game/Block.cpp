@@ -133,7 +133,7 @@ void Block::Draw()
 	m_world.UpdateMatrix();
 	m_model->Draw(&m_world, s_camera);
 	//Resource::GetInstance()->GetModel().axis->Draw(&coll, s_camera);
-	m_model->Draw(&coll, s_camera);
+	//m_model->Draw(&coll, s_camera);
 }
 
 Block::operator BlockJsonData() const

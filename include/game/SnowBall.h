@@ -19,6 +19,9 @@ private:
 
 	float m_gravity = 9.8f * 8;
 
+	Vector2 normal = {};
+	Vector2 prePos = {};
+
 	class CameraTransform* m_camera = nullptr;
 
 public:

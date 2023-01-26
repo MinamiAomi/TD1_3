@@ -66,7 +66,6 @@ void GameScene::Update()
 	for (auto& block : blocks) {
 		if (Collision2D::Hit_Circle_OBB(player, *block, closestPoint)) {
 			m_snowBall->OnCollision(closestPoint);
-			break;
 		}
 
 	}
