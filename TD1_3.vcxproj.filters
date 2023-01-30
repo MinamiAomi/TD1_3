@@ -74,6 +74,9 @@
     <Filter Include="Game\Object\Player">
       <UniqueIdentifier>{157a549c-2e33-45ac-aacc-375143c0cf03}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Object\Item">
+      <UniqueIdentifier>{a802d734-d1f0-4f7c-a67d-88961f7933e1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -179,6 +182,9 @@
     </ClCompile>
     <ClCompile Include="include\game\Player.cpp">
       <Filter>Game\Object\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="include\game\Item.cpp">
+      <Filter>Game\Object\Item</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -320,6 +326,9 @@
     </ClInclude>
     <ClInclude Include="include\game\Player.h">
       <Filter>Game\Object\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="include\game\Item.h">
+      <Filter>Game\Object\Item</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

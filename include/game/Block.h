@@ -32,9 +32,6 @@ private:
 	Type m_type;
 
 	Shape2D::RectAngle m_rect;
-
-	
-
 	// 3D—p
 	WorldTransform m_world;
 	class Model* m_model;

@@ -173,6 +173,7 @@
     <ClCompile Include="include\game\Collision2D.cpp" />
     <ClCompile Include="include\game\Game.cpp" />
     <ClCompile Include="include\game\GameScene.cpp" />
+    <ClCompile Include="include\game\Item.cpp" />
     <ClCompile Include="include\game\MainCamera.cpp" />
     <ClCompile Include="include\game\Player.cpp" />
     <ClCompile Include="include\game\Resource.cpp" />
@@ -227,6 +228,7 @@
     <ClInclude Include="include\game\Game.h" />
     <ClInclude Include="include\game\GameObject.h" />
     <ClInclude Include="include\game\GameScene.h" />
+    <ClInclude Include="include\game\Item.h" />
     <ClInclude Include="include\game\jsonLoader.h" />
     <ClInclude Include="include\game\MainCamera.h" />
     <ClInclude Include="include\game\Player.h" />
