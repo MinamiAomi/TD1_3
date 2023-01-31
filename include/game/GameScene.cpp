@@ -10,7 +10,7 @@
 #include "Game.h"
 #include "Sprite.h"
 #include "TestObj.h"
-
+#include "Item.h"
 
 #include "Model.h"
 #include "Resource.h"
@@ -32,6 +32,7 @@ void GameScene::Initalize()
 	m_snowBall = std::make_unique<SnowBall>();
 	m_snowBall->Initalize();
 	Block::camera(m_player->camera());
+	Item::camera(m_player->camera());
 	m_snowBall->camera(m_player->camera());
 	//m_test = std::make_unique<TestObj>();
 	//m_test->Initalize();

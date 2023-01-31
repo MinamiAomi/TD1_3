@@ -186,6 +186,9 @@
     <ClCompile Include="include\game\Item.cpp">
       <Filter>Game\Object\Item</Filter>
     </ClCompile>
+    <ClCompile Include="include\game\CarrotItem.cpp">
+      <Filter>Game\Object\Item</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\engine\2D\Camera2D.h">
@@ -328,6 +331,9 @@
       <Filter>Game\Object\Player</Filter>
     </ClInclude>
     <ClInclude Include="include\game\Item.h">
+      <Filter>Game\Object\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="include\game\CarrotItem.h">
       <Filter>Game\Object\Item</Filter>
     </ClInclude>
   </ItemGroup>

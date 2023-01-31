@@ -5,6 +5,7 @@
 #include <cassert>
 #include "Block.h"
 #include "MainCamera.h"
+#include "CarrotItem.h"
 
 #include "Input.h"
 #include "TestObj.h"
@@ -14,7 +15,8 @@
 #include "SceneManager.h"
 #include "Resource.h"
 
-std::string Stage::s_stageDataFileName = "Stage.json";
+
+std::string Stage::s_stageDataFileName = "resources/text/Stage.json";
 std::unique_ptr<nlohmann::json> Stage::s_stageData = std::make_unique<nlohmann::json>();
 
 void Stage::LoadJson()
@@ -82,6 +84,9 @@ void Stage::Update(const Vector2& player)
 	for (auto& it : m_blocks) {
 		it->Update();
 	}
+	for (auto& it : m_items) {
+		it->Update();
+	}
 
 	m_transform.UpdateMatrix();
 }
@@ -100,6 +105,9 @@ void Stage::Draw3D()
 	m_transform.UpdateMatrix();
 
 	for (auto& it : m_blocks) {
+		it->Draw();
+	}
+	for (auto& it : m_items) {
 		it->Draw();
 	}
 
@@ -190,6 +198,22 @@ void Stage::LoadStageData()
 		addBlock->Initalize();
 		m_blocks.push_back(std::move(addBlock));
 	}
+
+	for (const auto& item : data.at("items")) {
+		std::unique_ptr<Item> tmp;
+		if (item.at("name") == "carrot") {
+			tmp = std::make_unique<CarrotItem>();
+		}
+		if (tmp) {
+			tmp->position(Vector3(item.at("pos").at(0), item.at("pos").at(1), 0.0f));
+			tmp->scale(Vector3(item.at("scale")));
+			tmp->parent(&m_transform);
+			m_items.push_back(std::move(tmp));
+		}
+	}
+
+
+
 
 }
 

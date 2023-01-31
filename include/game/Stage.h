@@ -7,6 +7,7 @@
 
 class Sprite;
 class Block;
+class Item;
 
 class Stage
 {
@@ -24,6 +25,7 @@ private:
 	unsigned int m_stageIndex = 0;	// ステージナンバー
 	WorldTransform m_transform;
 	std::vector<std::unique_ptr<Block>> m_blocks;	// 地面となるブロック
+	std::vector<std::unique_ptr<Item>> m_items;	//	ゴール条件に必要なアイテム
 
 	std::unique_ptr<Sprite> m_number;
 	

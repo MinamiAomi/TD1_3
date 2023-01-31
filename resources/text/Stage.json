@@ -44,6 +44,32 @@
                 ]
             ],
             "height": 10,
+            "items": [
+                {
+                    "name": "bucket",
+                    "pos": [
+                        1,
+                        1
+                    ],
+                    "scale": 1
+                },
+                {
+                    "name": "carrot",
+                    "pos": [
+                        3,
+                        3
+                    ],
+                    "scale": 0.2
+                },
+                {
+                    "name": "eye",
+                    "pos": [
+                        1,
+                        1
+                    ],
+                    "scale": 1
+                }
+            ],
             "width": 10
         },
         {
@@ -90,6 +116,32 @@
                 ]
             ],
             "height": 10,
+            "items": [
+                {
+                    "name": "bucket",
+                    "pos": [
+                        1,
+                        1
+                    ],
+                    "scale": 1
+                },
+                {
+                    "name": "carrot",
+                    "pos": [
+                        3,
+                        3
+                    ],
+                    "scale": 0.2
+                },
+                {
+                    "name": "eye",
+                    "pos": [
+                        1,
+                        1
+                    ],
+                    "scale": 1
+                }
+            ],
             "width": 10
         }
     ]
