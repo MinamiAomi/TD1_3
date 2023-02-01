@@ -77,6 +77,9 @@
     <Filter Include="Game\Object\Item">
       <UniqueIdentifier>{a802d734-d1f0-4f7c-a67d-88961f7933e1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Object\Goal">
+      <UniqueIdentifier>{886eaf26-2025-4f84-891d-8b0fbe1c32e9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -188,6 +191,15 @@
     </ClCompile>
     <ClCompile Include="include\game\CarrotItem.cpp">
       <Filter>Game\Object\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="include\game\BucketItem.cpp">
+      <Filter>Game\Object\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="include\game\EyeItem.cpp">
+      <Filter>Game\Object\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="include\game\Goal.cpp">
+      <Filter>Game\Object\Goal</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -336,6 +348,15 @@
     <ClInclude Include="include\game\CarrotItem.h">
       <Filter>Game\Object\Item</Filter>
     </ClInclude>
+    <ClInclude Include="include\game\BucketItem.h">
+      <Filter>Game\Object\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="include\game\EyeItem.h">
+      <Filter>Game\Object\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="include\game\Goal.h">
+      <Filter>Game\Object\Goal</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\shaders\Model.hlsli">
@@ -343,6 +364,9 @@
     </None>
     <None Include="resources\shaders\Sprite.hlsli">
       <Filter>Engine\shader</Filter>
+    </None>
+    <None Include="resources\shaders\Block.hlsli">
+      <Filter>Game\Object\Block</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -357,6 +381,12 @@
     </FxCompile>
     <FxCompile Include="resources\shaders\SpriteVS.hlsl">
       <Filter>Engine\shader</Filter>
+    </FxCompile>
+    <FxCompile Include="resources\shaders\BlockPS.hlsl">
+      <Filter>Game\Object\Block</Filter>
+    </FxCompile>
+    <FxCompile Include="resources\shaders\BlockVS.hlsl">
+      <Filter>Game\Object\Block</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>

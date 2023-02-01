@@ -24,3 +24,10 @@ bool Collision2D::Hit_Circle_OBB(const Collider2D::Circle& circle, const Collide
 	Vector2 v = closestPt - circle.center;
 	return v.LengthSquare() <= circle.radius * circle.radius;
 }
+
+bool Collision2D::Hit_Circle_Circle(const Collider2D::Circle& circle1, const Collider2D::Circle& circle2)
+{
+	float distTwo = Vector2(circle1.center - circle2.center).LengthSquare();
+	float radius = circle1.radius + circle2.radius;
+	return distTwo <= radius;
+}

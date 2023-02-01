@@ -27,7 +27,7 @@ protected:
 	WorldTransform m_transform;
 	Collider2D::Circle m_collider;
 
-
+	bool m_get;
 public:
 	Item();
 	virtual ~Item() {}
@@ -35,13 +35,14 @@ public:
 	void position(const Vector3& pos) { m_transform.position = pos; }
 	void scale(const Vector3& sca) { m_transform.scale = sca; }
 	void parent(WorldTransform* parent) { m_transform.parent = parent; }
-
+	const Collider2D::Circle& collider() const { return m_collider; }
+	bool get() const { return m_get; }
 
 	virtual void Initalize() = 0;
 	virtual void Update() = 0;
 	virtual void Draw() = 0;
-
-	virtual void OnCollision() = 0;
+	void PreCollision();
+	void OnCollision();
 
 	virtual TypeId typeId() const = 0;
 };

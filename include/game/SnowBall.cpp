@@ -21,6 +21,9 @@ void SnowBall::Initalize()
 
 	normal = Vector2::Zero;
 	
+	m_goalItems[0] = {};
+	m_goalItems[1] = {};
+	m_goalItems[2] = {};
 }
 
 void SnowBall::Update()
@@ -59,7 +62,7 @@ void SnowBall::PreCollision()
 	m_collider.radius = m_radius;
 }
 
-void SnowBall::OnCollision(const Vector2& closestPoint)
+void SnowBall::OnCollisionBlock(const Vector2& closestPoint)
 {
 	
 	Vector2 pos = m_transform.position.xy();
@@ -74,6 +77,11 @@ void SnowBall::OnCollision(const Vector2& closestPoint)
 	//m_velocity = Reflected(m_velocity, normal) * 0.8f;
 	m_velocity += -Dot(m_velocity, normal) * normal;
 	
+}
+
+void SnowBall::OnCollisionItem(Item::TypeId type)
+{
+	m_goalItems[type] = true;
 }
 
 void SnowBall::Draw()

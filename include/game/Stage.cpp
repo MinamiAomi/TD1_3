@@ -6,6 +6,8 @@
 #include "Block.h"
 #include "MainCamera.h"
 #include "CarrotItem.h"
+#include "BucketItem.h"
+#include "EyeItem.h"
 
 #include "Input.h"
 #include "TestObj.h"
@@ -14,7 +16,7 @@
 #include "Sprite.h"
 #include "SceneManager.h"
 #include "Resource.h"
-
+#include "Goal.h"
 
 std::string Stage::s_stageDataFileName = "resources/text/Stage.json";
 std::unique_ptr<nlohmann::json> Stage::s_stageData = std::make_unique<nlohmann::json>();
@@ -45,13 +47,14 @@ Stage::~Stage()
 
 void Stage::Initalize()
 {
-	m_stageIndex = 1;
+	m_stageIndex = 0;
 	
 	m_transform.position = Vector3::Zero;
 	m_transform.rotate = Quaternion::Identity;
 	m_transform.scale = { 1.0f,1.0f,1.0f };
 
 	LoadStageData();
+	
 
 	m_number = std::make_unique<Sprite>(Resource::GetInstance()->GetImage().NumberImage, Vector2{ 0, 0 }, Vector2{ 50, 50 });
 
@@ -87,6 +90,7 @@ void Stage::Update(const Vector2& player)
 	for (auto& it : m_items) {
 		it->Update();
 	}
+	m_goal->Update();
 
 	m_transform.UpdateMatrix();
 }
@@ -97,6 +101,10 @@ void Stage::PreCollision()
 	for (auto& it : m_blocks) {
 		it->PreCollision1(m_angle);
 	}
+	for (auto& it : m_items) {
+		it->PreCollision();
+	}
+	m_goal->PreCollision(m_angle);
 }
 
 
@@ -110,7 +118,7 @@ void Stage::Draw3D()
 	for (auto& it : m_items) {
 		it->Draw();
 	}
-
+	m_goal->Draw();
 	m_number->SetTextureRect({ 32 * (float)m_stageIndex, 0 }, { 32,32 });
 }
 
@@ -125,10 +133,10 @@ void Stage::LoadStageData()
 	m_blocks.clear();
 	// ステージ配列のステージ番号要素を取得
 	const auto& data = s_stageData->at("stage").at(m_stageIndex);
-	
+
 	data.at("width").get_to(m_width);
 	data.at("height").get_to(m_height);
-	
+
 	float w = 1.0f;
 
 	// ステージ左辺ブロック
@@ -141,7 +149,7 @@ void Stage::LoadStageData()
 	left->parent(&m_transform);
 	left->Initalize();
 	m_blocks.push_back(std::move(left));
-	
+
 	// ステージ上辺ブロック
 	auto top = std::make_unique<Block>();
 	top->type(Block::kBlockTypeNone);
@@ -167,7 +175,7 @@ void Stage::LoadStageData()
 	// ステージ上辺ブロック
 	auto bottom = std::make_unique<Block>();
 	bottom->type(Block::kBlockTypeNone);
-	bottom->center({ 0.0f,-m_height});
+	bottom->center({ 0.0f,-m_height });
 	bottom->rotate(0.0f);
 	bottom->width(m_width + w);
 	bottom->height(w);
@@ -204,17 +212,28 @@ void Stage::LoadStageData()
 		if (item.at("name") == "carrot") {
 			tmp = std::make_unique<CarrotItem>();
 		}
+		else if (item.at("name") == "bucket") {
+			tmp = std::make_unique<BucketItem>();
+		}
+		else if (item.at("name") == "eye") {
+			tmp = std::make_unique<EyeItem>();
+		}
 		if (tmp) {
 			tmp->position(Vector3(item.at("pos").at(0), item.at("pos").at(1), 0.0f));
 			tmp->scale(Vector3(item.at("scale")));
 			tmp->parent(&m_transform);
+			tmp->Initalize();
 			m_items.push_back(std::move(tmp));
 		}
 	}
 
-
-
-
+	std::unique_ptr<Goal> tmpInstance;
+	tmpInstance = std::make_unique<Goal>();
+	tmpInstance->position({ data.at("goal").at("pos").at(0), data.at("goal").at("pos").at(1)});
+	tmpInstance->rotate( data.at("goal").at("rot"));
+	tmpInstance->parent(&m_transform);
+	tmpInstance->Initalize();
+	m_goal = std::move(tmpInstance);
 }
 
 void Stage::SaveStageData()

@@ -170,10 +170,13 @@
     <ClCompile Include="include\engine\PipelineFunc.cpp" />
     <ClCompile Include="include\engine\TimeMamager.cpp" />
     <ClCompile Include="include\game\Block.cpp" />
+    <ClCompile Include="include\game\BucketItem.cpp" />
     <ClCompile Include="include\game\CarrotItem.cpp" />
     <ClCompile Include="include\game\Collision2D.cpp" />
+    <ClCompile Include="include\game\EyeItem.cpp" />
     <ClCompile Include="include\game\Game.cpp" />
     <ClCompile Include="include\game\GameScene.cpp" />
+    <ClCompile Include="include\game\Goal.cpp" />
     <ClCompile Include="include\game\Item.cpp" />
     <ClCompile Include="include\game\MainCamera.cpp" />
     <ClCompile Include="include\game\Player.cpp" />
@@ -225,11 +228,14 @@
     <ClInclude Include="include\engine\TimeManager.h" />
     <ClInclude Include="include\game\BaseScene.h" />
     <ClInclude Include="include\game\Block.h" />
+    <ClInclude Include="include\game\BucketItem.h" />
     <ClInclude Include="include\game\CarrotItem.h" />
     <ClInclude Include="include\game\Collision2D.h" />
+    <ClInclude Include="include\game\EyeItem.h" />
     <ClInclude Include="include\game\Game.h" />
     <ClInclude Include="include\game\GameObject.h" />
     <ClInclude Include="include\game\GameScene.h" />
+    <ClInclude Include="include\game\Goal.h" />
     <ClInclude Include="include\game\Item.h" />
     <ClInclude Include="include\game\jsonLoader.h" />
     <ClInclude Include="include\game\MainCamera.h" />
@@ -243,10 +249,23 @@
     <ClInclude Include="include\game\TitleScene.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="resources\shaders\Block.hlsli" />
     <None Include="resources\shaders\Model.hlsli" />
     <None Include="resources\shaders\Sprite.hlsli" />
   </ItemGroup>
   <ItemGroup>
+    <FxCompile Include="resources\shaders\BlockPS.hlsl">
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+    </FxCompile>
+    <FxCompile Include="resources\shaders\BlockVS.hlsl">
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
     <FxCompile Include="resources\shaders\ModelPS.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>

@@ -1,13 +1,43 @@
 #pragma once
 #include "WorldTransform.h"
+#include <vector>
+#include "VertexBuffer.h"
+#include "IndexBuffer.h"
 #include "MathUtility.h"
+#include <memory>
+#include <wrl.h>
 #include "Shape.h"
 #include "jsonLoader.h"
 #include "Collision2D.h"
 
+class CameraTransform;
 
 class Block
 {
+private:
+	template<class TYPE>
+	using ComPtr = Microsoft::WRL::ComPtr<TYPE>;
+
+private:
+	struct Vertex {
+		Vector3 position;
+		Vector3 normal;
+	};
+
+	struct ColorConstData {
+		Vector4 color;
+	};
+
+
+	enum RootParameterIndex
+	{
+		kRootParameterIndexWorldTransform,			// ワールド行列
+		kRootParameterIndexCameraTransform,		// カメラデータ（行列も含む）
+		kRootParameterIndexColor,		// 色
+
+		kRootParameterIndexCount
+	};
+
 public:
 	enum Type {
 		kBlockTypeNone,
@@ -16,17 +46,28 @@ public:
 		kBlockTypeCount
 	};
 
+
+
 private:
 	// Z軸方向の幅
 	static float s_zWidth;
 	// 共有カメラ
-	static class CameraTransform* s_camera;
+	static CameraTransform* s_camera;
+
+	static ComPtr<ID3D12RootSignature> rootSignature; // ルートシグネチャ
+	static ComPtr<ID3D12PipelineState> pipelineState; // パイプラインステート
+	static VertexBuffer<Vertex> m_vertBuff;
+	static IndexBuffer m_indexBuff;
+	static std::vector<Vertex> m_vertcies;
+	static std::vector<uint16_t> m_indcies;
 
 public:
+	static void StaticInitalize();
+	static void StaticDraw(WorldTransform* trans, ConstBuffer<ColorConstData>& constData);
+
 	static void zWidth(float zWidth) { s_zWidth = zWidth; }
 	static float zWidth() { return s_zWidth; }
 	static void camera(CameraTransform* camera) { s_camera = camera; }
-
 private:
 
 	Type m_type;
@@ -35,6 +76,7 @@ private:
 	// 3D用
 	WorldTransform m_world;
 	class Model* m_model;
+	ConstBuffer<ColorConstData> m_constData;
 
 	Collider2D::OBB m_collider;
 	

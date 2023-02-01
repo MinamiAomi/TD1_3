@@ -11,9 +11,10 @@
 #include "Sprite.h"
 #include "TestObj.h"
 #include "Item.h"
-
+#include "Goal.h"
 #include "Model.h"
 #include "Resource.h"
+#include <utility>
 
 GameScene::GameScene(std::shared_ptr<SceneCommonData> commonData, SceneManager* sceneMana) :
 	BaseScene(commonData, sceneMana) {
@@ -33,6 +34,7 @@ void GameScene::Initalize()
 	m_snowBall->Initalize();
 	Block::camera(m_player->camera());
 	Item::camera(m_player->camera());
+	Goal::camera(m_player->camera());
 	m_snowBall->camera(m_player->camera());
 	//m_test = std::make_unique<TestObj>();
 	//m_test->Initalize();
@@ -54,19 +56,29 @@ void GameScene::Update()
 	m_snowBall->PreCollision();
 
 	std::vector<const Collider2D::OBB*> blocks;
+	std::vector<std::pair<Item::TypeId,const Collider2D::Circle*>> items;
 	const Collider2D::Circle& player = m_snowBall->collider();
-
+	
 	for (auto& it : m_player->blocks()) {
 		blocks.emplace_back(&it.collider());
 	}
 	for (auto& it : m_stage->blocks()) {
 		blocks.emplace_back(&it->collider());
 	}
+	for (auto& it : m_stage->items()) {
+		
+		items.push_back({ it->typeId(),&it->collider() });
+	}
 
 	Vector2 closestPoint;
 	for (auto& block : blocks) {
 		if (Collision2D::Hit_Circle_OBB(player, *block, closestPoint)) {
-			m_snowBall->OnCollision(closestPoint);
+			m_snowBall->OnCollisionBlock(closestPoint);
+		}
+	}
+	for (auto& item : items) {
+		if (Collision2D::Hit_Circle_Circle(player, *item.second)) {
+			m_snowBall->OnCollisionItem(item.first);
 		}
 	}
 

@@ -9,6 +9,7 @@
 #include "TimeManager.h"
 #include <cassert>
 #include "Stage.h"
+#include "Block.h"
 
 bool Game::m_isDebugMode = false;
 
@@ -24,13 +25,15 @@ bool Game::Initalize(){
 
 	m_app = App::GetInstance();
 	m_app->Initalize(windowWidth, windowHight, windowTitle);
-	m_app->GetDirectXCommon()->SetClearColor(Color::Black);
+	m_app->GetDirectXCommon()->SetClearColor(Color::ToVector4(0x663333FF));
 
 	m_resource = Resource::GetInstance();
 	m_resource->Initalize(m_app->GetTextureManager());
 
 	m_sceneMana = SceneManager::GetInstance();
 	m_sceneMana->Initalize();
+
+	Block::StaticInitalize();
 
 	Stage::LoadJson();
 

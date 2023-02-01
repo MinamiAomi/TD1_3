@@ -1,7 +1,4 @@
-#include "Model.hlsli"
-
-Texture2D<float4> t_texture : register(t0);
-SamplerState s_sampler : register(s0);
+#include "Block.hlsli"
 
 struct directionLight
 {
@@ -16,10 +13,8 @@ float4 main(VSOutput input) : SV_TARGET
     light.direction = normalize(float3(1.0f, -1.0f, -1.0f));
     
     float3 ambientColor = float3(0.2f, 0.2f, 0.2f);
-    // テクスチャの色
-    float4 textureColor = t_texture.Sample(s_sampler, input.uv);
     // シェーディングによる色
-    float4 shadeColor = float4(ambientColor * c_ambient, c_alpha);
+    float4 shadeColor = float4(ambientColor * float3(1.0f,1.0f,1.0f), 1.0f);
     
     //// 拡散反射光 ↓
     //// ピクセルの法線とライトの方向の内積を計算する
@@ -36,11 +31,11 @@ float4 main(VSOutput input) : SV_TARGET
     float dot_refVec_toEye = saturate(dot(refVec, toEye));
    
     // 鏡面反射の強さを絞る
-    dot_refVec_toEye = pow(dot_refVec_toEye, c_shininess);
+    dot_refVec_toEye = pow(dot_refVec_toEye, 1.45f);
     // 鏡面反射光
-    float3 specular = dot_refVec_toEye * c_specular;
+    float3 specular = dot_refVec_toEye * float3(0.5f,0.5f,0.5f);
     
     shadeColor.rgb += (diffuse + specular) * light.color;
       
-    return shadeColor * textureColor;
+    return shadeColor * c_color;
 }

@@ -3,7 +3,7 @@
 #include "MathUtility.h"
 #include "Shape.h"
 #include "Collision2D.h"
-
+#include "Item.h"
 
 class SnowBall
 {
@@ -24,6 +24,8 @@ private:
 
 	class CameraTransform* m_camera = nullptr;
 
+	bool m_goalItems[Item::kItemTypeCount] = {};
+
 public:
 	SnowBall();
 	~SnowBall();
@@ -33,7 +35,8 @@ public:
 	void Initalize();
 	void Update();
 	void PreCollision();
-	void OnCollision(const Vector2& closestPoint);
+	void OnCollisionBlock(const Vector2& closestPoint);
+	void OnCollisionItem(Item::TypeId type);
 	void Draw();
 
 	const Collider2D::Circle collider()const { return m_collider; }
