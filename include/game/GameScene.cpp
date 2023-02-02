@@ -36,6 +36,7 @@ void GameScene::Initalize()
 	Block::camera(m_player->camera());
 	Item::camera(m_player->camera());
 	Goal::camera(m_player->camera());
+	m_stage->camera(m_player->camera());
 	m_snowBall->camera(m_player->camera());
 	//m_test = std::make_unique<TestObj>();
 	//m_test->Initalize();
@@ -116,8 +117,14 @@ void GameScene::ChangeScene()
 
 	if (input->IsKeyTrigger(DIK_T)) {
 		m_sceneMana->Transition<TitleScene>();
+		return;
+	}
+	if (m_snowBall->isGameClear() == true) {
+		m_sceneMana->Transition<ClearScene>();
+		return;
 	}
 	if (m_snowBall->isGameOver() == true) {
-		m_sceneMana->Transition<ClearScene>();
+		m_sceneMana->Transition<GameScene>();
+		return;
 	}
 }
