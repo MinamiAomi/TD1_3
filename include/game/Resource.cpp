@@ -27,6 +27,8 @@ void Resource::LoadImages()
 	m_images.debugImage = m_texMana->LoadTexture(imageDir + "Debug.png");
 	m_images.TitleImage = m_texMana->LoadTexture(imageDir + "Title.png");
 	m_images.NumberImage = m_texMana->LoadTexture(imageDir + "number.png");
+	m_images.ClearImage = m_texMana->LoadTexture(imageDir + "clear_haikei.png");
+	m_images.HeadImage = m_texMana->LoadTexture(imageDir + "head.png");
 }
 
 void Resource::LoadModels()

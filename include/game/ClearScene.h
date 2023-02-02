@@ -8,7 +8,8 @@ class ClearScene :
 private:
 	// テスト用スプライトを描画
 	std::unique_ptr<class Sprite> test;
-	class Sprite* t = nullptr;
+	class Sprite* clear_bg = nullptr;
+	class Sprite* head = nullptr;
 	std::unique_ptr<class Sprite> debug;
 
 public:
