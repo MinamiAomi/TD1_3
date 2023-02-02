@@ -5,6 +5,7 @@
 #include "Sprite.h"
 #include "GameScene.h"
 #include "Resource.h"
+#include"TitleScene.h"
 
 #include "Game.h"
 
@@ -14,7 +15,8 @@ ClearScene::ClearScene(std::shared_ptr<SceneCommonData> commonData, SceneManager
 }
 
 ClearScene::~ClearScene() {
-	delete t;
+	delete clear_bg;
+	delete head;
 }
 
 void ClearScene::Initalize()
@@ -23,20 +25,27 @@ void ClearScene::Initalize()
 	debug = std::make_unique<Sprite>(Resource::GetInstance()->GetImage().debugImage, Vector2{ 0,0 }, Vector2{ 200,100 });
 	debug->SetTextureRect({ 0,0 }, { 128,64 });
 	test->SetColor(Color::ToVector4(0xFFFF00FF));
-	t = new Sprite;
-	t->SetPosition({ 640,360 });
-	t->SetSize({ 1280,720 });
-	t->SetTextureHandle(Resource::GetInstance()->GetImage().TitleImage);
-	t->SetTextureRect({ 0,0 }, { 1280, 720 });
-	t->SetAnchorPoint(t->GetSize() * 0.5f);
-	t->SetColor(Color::White);
+	clear_bg = new Sprite;
+	clear_bg->SetPosition({ 640,360 });
+	clear_bg->SetSize({ 1280,720 });
+	clear_bg->SetTextureHandle(Resource::GetInstance()->GetImage().ClearImage);
+	clear_bg->SetTextureRect({ 0,0 }, { 1280, 720 });
+	clear_bg->SetAnchorPoint(clear_bg->GetSize() * 0.5f);
+	clear_bg->SetColor(Color::White);
 
+	head = new Sprite;
+	head->SetPosition({ 600,250 });
+	head->SetSize({ 500,500 });
+	head->SetTextureHandle(Resource::GetInstance()->GetImage().HeadImage);
+	head->SetTextureRect({ 0,0 }, { 500, 500 });
+	head->SetAnchorPoint(head->GetSize() * 0.5f);
+	head->SetColor(Color::White);
 
 }
 
 void ClearScene::Update()
 {
-
+	
 
 }
 
@@ -52,7 +61,8 @@ void ClearScene::Draw2D()
 		Sprite::Draw(debug.get(), m_commonData->camera2D.get());
 	}
 
-	Sprite::Draw(t, m_commonData->camera2D.get());
+	Sprite::Draw(clear_bg, m_commonData->camera2D.get());
+	Sprite::Draw(head, m_commonData->camera2D.get());
 }
 
 void ClearScene::ChangeScene()
@@ -60,6 +70,6 @@ void ClearScene::ChangeScene()
 	auto input = App::GetInstance()->GetInput();
 
 	if (input->IsKeyTrigger(DIK_T)) {
-		m_sceneMana->Transition<GameScene>();
+		m_sceneMana->Transition<TitleScene>();
 	}
 }

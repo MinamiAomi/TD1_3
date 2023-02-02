@@ -6,6 +6,7 @@
 #include "GameScene.h"
 #include "Resource.h"
 
+
 #include "Game.h"
 
 TitleScene::TitleScene(std::shared_ptr<SceneCommonData> commonData, SceneManager* sceneMana) :

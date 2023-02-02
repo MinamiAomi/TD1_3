@@ -14,6 +14,8 @@ public:
 		unsigned int debugImage;
 		unsigned int TitleImage;
 		unsigned int NumberImage;
+		unsigned int ClearImage;
+		unsigned int HeadImage;
 	};
 
 	struct Models {
