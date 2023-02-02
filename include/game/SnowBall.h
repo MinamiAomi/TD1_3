@@ -4,6 +4,9 @@
 #include "Shape.h"
 #include "Collision2D.h"
 #include "Item.h"
+#include "Block.h"
+
+class Sprite;
 
 class SnowBall
 {
@@ -26,17 +29,27 @@ private:
 
 	bool m_goalItems[Item::kItemTypeCount] = {};
 
+	bool m_isGameOver = false;
+
+
 public:
 	SnowBall();
 	~SnowBall();
 
 	void camera(CameraTransform* camera) { m_camera = camera; }
+	bool canGoal() const {
+		return m_goalItems[Item::kItemTypeCarrot] && 
+			m_goalItems[Item::kItemTypeBucket] && 
+			m_goalItems[Item::kItemTypeEye];
+	}
+	bool isGameOver() const { return m_isGameOver; }
 
 	void Initalize();
 	void Update();
 	void PreCollision();
-	void OnCollisionBlock(const Vector2& closestPoint);
+	void OnCollisionBlock(const Vector2& closestPoint, Block::Type blockType);
 	void OnCollisionItem(Item::TypeId type);
+	void OnCollisionGoal();
 	void Draw();
 
 	const Collider2D::Circle collider()const { return m_collider; }

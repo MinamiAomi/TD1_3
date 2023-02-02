@@ -172,6 +172,7 @@
     <ClCompile Include="include\game\Block.cpp" />
     <ClCompile Include="include\game\BucketItem.cpp" />
     <ClCompile Include="include\game\CarrotItem.cpp" />
+    <ClCompile Include="include\game\ClearScene.cpp" />
     <ClCompile Include="include\game\Collision2D.cpp" />
     <ClCompile Include="include\game\EyeItem.cpp" />
     <ClCompile Include="include\game\Game.cpp" />
@@ -230,6 +231,7 @@
     <ClInclude Include="include\game\Block.h" />
     <ClInclude Include="include\game\BucketItem.h" />
     <ClInclude Include="include\game\CarrotItem.h" />
+    <ClInclude Include="include\game\ClearScene.h" />
     <ClInclude Include="include\game\Collision2D.h" />
     <ClInclude Include="include\game\EyeItem.h" />
     <ClInclude Include="include\game\Game.h" />

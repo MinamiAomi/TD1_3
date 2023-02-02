@@ -102,7 +102,9 @@ void Stage::PreCollision()
 		it->PreCollision1(m_angle);
 	}
 	for (auto& it : m_items) {
-		it->PreCollision();
+		if (it->isGet() == false) {
+			it->PreCollision();
+		}
 	}
 	m_goal->PreCollision(m_angle);
 }
@@ -116,7 +118,9 @@ void Stage::Draw3D()
 		it->Draw();
 	}
 	for (auto& it : m_items) {
-		it->Draw();
+		if (it->isGet() == false) {
+			it->Draw();
+		}
 	}
 	m_goal->Draw();
 	m_number->SetTextureRect({ 32 * (float)m_stageIndex, 0 }, { 32,32 });
@@ -124,6 +128,11 @@ void Stage::Draw3D()
 
 void Stage::Draw2D()
 {
+	for (auto& it : m_items) {
+		if (it->isGet() == true) {
+			it->Draw2D();
+		}
+	}
 	Sprite::Draw(m_number.get(), SceneManager::GetInstance()->commonData().camera2D->GetTransformMatrix());
 }
 

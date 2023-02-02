@@ -95,6 +95,7 @@ public:
 	void parent(WorldTransform* parent) { m_world.parent = parent; }
 
 	int type() const { return static_cast<int>(m_type); }
+	Type typeId() const { return m_type; }
 	const Vector2& center() const { return m_rect.center; }
 	float width() const { return m_rect.width; }
 	float height() const { return m_rect.height; }

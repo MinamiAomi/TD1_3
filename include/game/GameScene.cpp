@@ -3,6 +3,7 @@
 #include "Input.h"
 #include "SceneManager.h"
 #include "TitleScene.h"
+#include "ClearScene.h"
 #include "Resource.h"
 #include "Stage.h"
 #include "Player.h"
@@ -55,30 +56,37 @@ void GameScene::Update()
 	m_stage->PreCollision();
 	m_snowBall->PreCollision();
 
-	std::vector<const Collider2D::OBB*> blocks;
-	std::vector<std::pair<Item::TypeId,const Collider2D::Circle*>> items;
+	std::vector<std::pair<Block::Type,const Collider2D::OBB*>> blocks;
 	const Collider2D::Circle& player = m_snowBall->collider();
 	
 	for (auto& it : m_player->blocks()) {
-		blocks.emplace_back(&it.collider());
+		blocks.push_back({ it.typeId(), &it.collider() });
 	}
 	for (auto& it : m_stage->blocks()) {
-		blocks.emplace_back(&it->collider());
+		blocks.push_back({ it->typeId(), &it->collider() });
 	}
-	for (auto& it : m_stage->items()) {
-		
-		items.push_back({ it->typeId(),&it->collider() });
-	}
+	
 
 	Vector2 closestPoint;
 	for (auto& block : blocks) {
-		if (Collision2D::Hit_Circle_OBB(player, *block, closestPoint)) {
-			m_snowBall->OnCollisionBlock(closestPoint);
+		if (Collision2D::Hit_Circle_OBB(player, *block.second, closestPoint)) {
+			m_snowBall->OnCollisionBlock(closestPoint,block.first);
 		}
 	}
-	for (auto& item : items) {
-		if (Collision2D::Hit_Circle_Circle(player, *item.second)) {
-			m_snowBall->OnCollisionItem(item.first);
+	for (auto& item : m_stage->items()) {
+		if (item->isGet() == false) {
+			if (Collision2D::Hit_Circle_Circle(player, item->collider())) {
+				m_snowBall->OnCollisionItem(item->typeId());
+				item->OnCollision();
+
+			}
+		}
+	}
+
+	if (m_snowBall->canGoal() == true) {
+		if (Collision2D::Hit_Circle_OBB(player, m_stage->goal()->collider(), closestPoint)) {
+			m_snowBall->OnCollisionGoal();
+			m_stage->goal()->OnCollision();
 		}
 	}
 
@@ -108,5 +116,8 @@ void GameScene::ChangeScene()
 
 	if (input->IsKeyTrigger(DIK_T)) {
 		m_sceneMana->Transition<TitleScene>();
+	}
+	if (m_snowBall->isGameOver() == true) {
+		m_sceneMana->Transition<ClearScene>();
 	}
 }

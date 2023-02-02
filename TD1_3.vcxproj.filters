@@ -80,6 +80,9 @@
     <Filter Include="Game\Object\Goal">
       <UniqueIdentifier>{886eaf26-2025-4f84-891d-8b0fbe1c32e9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Scene\Clear">
+      <UniqueIdentifier>{f34ad566-66ea-4f8e-adaa-8c473c4c2027}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -200,6 +203,9 @@
     </ClCompile>
     <ClCompile Include="include\game\Goal.cpp">
       <Filter>Game\Object\Goal</Filter>
+    </ClCompile>
+    <ClCompile Include="include\game\ClearScene.cpp">
+      <Filter>Game\Scene\Clear</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -356,6 +362,9 @@
     </ClInclude>
     <ClInclude Include="include\game\Goal.h">
       <Filter>Game\Object\Goal</Filter>
+    </ClInclude>
+    <ClInclude Include="include\game\ClearScene.h">
+      <Filter>Game\Scene\Clear</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

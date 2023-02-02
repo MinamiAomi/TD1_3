@@ -24,6 +24,8 @@ void SnowBall::Initalize()
 	m_goalItems[0] = {};
 	m_goalItems[1] = {};
 	m_goalItems[2] = {};
+
+	m_isGameOver = false;
 }
 
 void SnowBall::Update()
@@ -62,9 +64,28 @@ void SnowBall::PreCollision()
 	m_collider.radius = m_radius;
 }
 
-void SnowBall::OnCollisionBlock(const Vector2& closestPoint)
+void SnowBall::OnCollisionBlock(const Vector2& closestPoint, Block::Type blockType)
 {
-	
+
+	switch (blockType)
+	{
+	case Block::kBlockTypeNone:
+		m_radius -= 0.001f;
+		break;
+	case Block::kBlockTypeSnow:
+	default:
+		m_radius += 0.001f;
+		break;
+	}
+	if (m_radius >= 2.0f) {
+		m_radius = 2.0f;
+	}
+	else if (m_radius <= 0.3f) {
+		m_radius = 0.3f;
+	}
+
+	m_transform.scale = Vector3(m_radius);
+
 	Vector2 pos = m_transform.position.xy();
 	if (pos != closestPoint) {
 		normal = pos - closestPoint;
@@ -83,6 +104,12 @@ void SnowBall::OnCollisionItem(Item::TypeId type)
 {
 	m_goalItems[type] = true;
 }
+
+void SnowBall::OnCollisionGoal()
+{
+	m_isGameOver = true;
+}
+
 
 void SnowBall::Draw()
 {
