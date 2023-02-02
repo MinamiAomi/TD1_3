@@ -56,7 +56,7 @@ void Stage::Initalize()
 
 	LoadStageData();
 	
-
+	 
 	m_number = std::make_unique<Sprite>(Resource::GetInstance()->GetImage().NumberImage, Vector2{ 0, 0 }, Vector2{ 50, 50 });
 
 	m_angle = 0;
