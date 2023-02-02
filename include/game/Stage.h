@@ -36,11 +36,15 @@ private:
 
 	float m_angle = {};
 
+	class CameraTransform* m_camera = nullptr;
+
 public:
 	Stage();
 	~Stage();
 
+	void camera(CameraTransform* camera) { m_camera = camera; }
 	float angle() const { return m_angle; }
+
 
 	void Initalize();
 	void Update(const Vector2& player);
@@ -56,5 +60,6 @@ public:
 private:
 	void LoadStageData();
 	void SaveStageData();	
+	void Edit();
 };
 

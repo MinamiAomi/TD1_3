@@ -30,6 +30,7 @@ private:
 	bool m_goalItems[Item::kItemTypeCount] = {};
 
 	bool m_isGameOver = false;
+	bool m_isGameClear = false;
 
 
 public:
@@ -43,6 +44,7 @@ public:
 			m_goalItems[Item::kItemTypeEye];
 	}
 	bool isGameOver() const { return m_isGameOver; }
+	bool isGameClear() const { return m_isGameClear; }
 
 	void Initalize();
 	void Update();

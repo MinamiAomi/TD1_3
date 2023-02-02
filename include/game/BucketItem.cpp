@@ -30,7 +30,7 @@ void BucketItem::Draw()
 
 void BucketItem::Draw2D()
 {
-	Sprite::Draw(m_sprite, SceneManager::GetInstance()->commonData().camera2D.get());
+	Sprite::Draw(m_sprite.get(), SceneManager::GetInstance()->commonData().camera2D.get());
 }
 
 void BucketItem::OnCollision()

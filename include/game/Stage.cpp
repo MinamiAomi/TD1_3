@@ -17,6 +17,7 @@
 #include "SceneManager.h"
 #include "Resource.h"
 #include "Goal.h"
+#include "CameraTransform.h"
 
 std::string Stage::s_stageDataFileName = "resources/text/Stage.json";
 std::unique_ptr<nlohmann::json> Stage::s_stageData = std::make_unique<nlohmann::json>();
@@ -67,6 +68,11 @@ void Stage::Update(const Vector2& player)
 
 	float rot = 0.0f;
 	constexpr float rotSpeed = Math::ToRadians(1.0f);
+
+	if (input->IsKeyPressed(DIK_TAB)) {
+		Edit();
+	}
+
 
 	// ”½ŽžŒv‰ñ‚è
 	if (input->IsKeyPressed(DIK_Q) || input->IsPadButtonPressed(0, kPadButtonLeftShoulder)) {
@@ -258,5 +264,48 @@ void Stage::SaveStageData()
 		tmpJson.push_back({ {(*block)->type(),(*block)->center().x,(*block)->center().y,(*block)->rotate(),(*block)->width(),(*block)->height()} });
 	}
 	data.at("blcoks") = tmpJson;
+}
+
+void Stage::Edit()
+{
+	auto input = Input::GetInstance();
+
+	if (input->IsMouseTrigger(kMouseButtonLeft) || input->IsMouseTrigger(kMouseButtonRight)) {
+		Vector2 mouse2D = input->GetMousePosition();
+
+		Matrix44 vpInv = Matrix44::CreateViewport(0, 0, 1280, 720).Inverse();
+		Matrix44 pInv = m_camera->projMat.Inverse();
+		Matrix44 vInv = m_camera->viewMat.Inverse();
+
+		Matrix44 invMat = vpInv * pInv * vInv;
+
+		Vector3 mouseFar = Matrix44::FromScreenVector({ mouse2D,1.0f }, invMat);
+		Vector3 mouseNear = Matrix44::FromScreenVector({ mouse2D,0.0f }, invMat);
+
+		Vector3 mouseRay = mouseFar - mouseNear;
+
+		Vector3 wallNormal = -Vector3::UnitZ;
+
+		float dot1 = Dot(Vector3::Zero - mouseNear, wallNormal);
+		float dot2 = Dot(mouseFar - mouseNear, wallNormal);
+
+		Vector3 mousePos = mouseNear + dot1 / dot2 * mouseRay;
+		mousePos = mousePos * m_transform.worldMatrix.Inverse();
+		auto addBlock = std::make_unique<Block>();
+		if (input->IsMousePressed(kMouseButtonLeft)) {
+			addBlock->type(0);
+		}
+		else if (input->IsMousePressed(kMouseButtonRight)) {
+			addBlock->type(1);
+		}
+		addBlock->center(mousePos.xy());
+		addBlock->rotate(0.0f);
+		addBlock->width(1.0f);
+		addBlock->height(1.0f);
+		addBlock->parent(&m_transform);
+		addBlock->Initalize();
+		m_blocks.push_back(std::move(addBlock));
+
+	}
 }
 

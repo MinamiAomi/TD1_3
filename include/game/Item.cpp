@@ -5,12 +5,11 @@ CameraTransform* Item::s_camera = nullptr;
 
 Item::Item() {
 	m_transform.Initalize();
-	m_sprite = new Sprite();
+	m_sprite = std::make_unique<Sprite>();
 	m_get = false;
 }
 
 Item::~Item() {
-	delete m_sprite;
 }
 
 void Item::PreCollision()

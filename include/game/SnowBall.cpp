@@ -67,6 +67,7 @@ void SnowBall::PreCollision()
 void SnowBall::OnCollisionBlock(const Vector2& closestPoint, Block::Type blockType)
 {
 
+	if(Vector2(prePos - m_transform.position.xy()).Length() > 0.01f)
 	switch (blockType)
 	{
 	case Block::kBlockTypeNone:
@@ -78,10 +79,10 @@ void SnowBall::OnCollisionBlock(const Vector2& closestPoint, Block::Type blockTy
 		break;
 	}
 	if (m_radius >= 2.0f) {
-		m_radius = 2.0f;
+		m_isGameOver = true;
 	}
-	else if (m_radius <= 0.3f) {
-		m_radius = 0.3f;
+	else if (m_radius <= 0.2f) {
+		m_isGameOver = true;
 	}
 
 	m_transform.scale = Vector3(m_radius);
@@ -96,7 +97,8 @@ void SnowBall::OnCollisionBlock(const Vector2& closestPoint, Block::Type blockTy
 	}
 		
 	//m_velocity = Reflected(m_velocity, normal) * 0.8f;
-	m_velocity += -Dot(m_velocity, normal) * normal;
+	//m_velocity += -Dot(m_velocity, normal) * normal;
+	m_velocity = WallSlided(m_velocity, normal);
 	
 }
 
@@ -107,7 +109,8 @@ void SnowBall::OnCollisionItem(Item::TypeId type)
 
 void SnowBall::OnCollisionGoal()
 {
-	m_isGameOver = true;
+
+	m_isGameClear = true;
 }
 
 

@@ -28,7 +28,7 @@ protected:
 	WorldTransform m_transform;
 	Collider2D::Circle m_collider;
 
-	Sprite* m_sprite;
+	std::unique_ptr<Sprite> m_sprite;
 
 	bool m_get = false;
 public:
