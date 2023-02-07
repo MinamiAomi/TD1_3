@@ -25,7 +25,8 @@ public:
 private:
 	unsigned int m_stageIndex = 0;	// ステージナンバー
 	WorldTransform m_transform;
-	std::vector<std::unique_ptr<Block>> m_blocks;	// 地面となるブロック
+	std::unique_ptr<Block> m_ground;	// 地面
+	std::vector<std::unique_ptr<Block>> m_blocks;	// 壁となるブロック
 	std::unique_ptr<Goal> m_goal;
 	std::vector<std::unique_ptr<Item>> m_items;	//	ゴール条件に必要なアイテム
 

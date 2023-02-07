@@ -11,6 +11,9 @@
 #include "Stage.h"
 #include "Block.h"
 
+#include "Wall.h"
+#include "Cube.h"
+
 bool Game::m_isDebugMode = false;
 
 Game::Game()
@@ -34,7 +37,8 @@ bool Game::Initalize(){
 	m_sceneMana->Initalize();
 
 	Block::StaticInitalize();
-
+	Cube::GetInstance();
+	Wall::StaticInitalize();
 	Stage::LoadJson();
 
 	return true;

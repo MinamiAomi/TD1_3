@@ -16,6 +16,8 @@ public:
 		unsigned int NumberImage;
 		unsigned int ClearImage;
 		unsigned int HeadImage;
+		unsigned int wallImage;
+		unsigned int groundImage;
 	};
 
 	struct Models {

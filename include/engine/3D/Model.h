@@ -62,6 +62,8 @@ public:
 	/// <param name="path">ファイルパス</param>
 	/// <returns>Modelのスマートポインタ</returns>
 	static std::unique_ptr<Model> CreateFromObj(const std::string& path);
+	
+	static void Draw(Meth* meth, Material* material, class WorldTransform* world, class CameraTransform* camera);
 
 private:
 	
@@ -74,7 +76,7 @@ public:
 
 	void Draw(class WorldTransform* world, class CameraTransform* camera) const;
 
-	void Draw(ID3D12GraphicsCommandList* cmdList, class Object3D* object);
+	//void Draw(ID3D12GraphicsCommandList* cmdList, class Object3D* object);
 private:
 	Model() {}
 };

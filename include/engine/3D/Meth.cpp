@@ -28,6 +28,14 @@ void Meth::CreateBuffer(ID3D12Device* dev)
 	m_indexBuff.Unmap();
 }
 
+void Meth::Draw(ID3D12GraphicsCommandList* cmdList)
+{
+	m_vertBuff.IASet(cmdList);
+	m_indexBuff.IASet(cmdList);
+	cmdList->DrawIndexedInstanced(m_indexBuff.GetIndexCount(), 1, 0, 0, 0);
+}
+
+
 void Meth::Draw(ID3D12GraphicsCommandList* cmdList, UINT rootParameterIndexMaterial, UINT rootParameterIndexTexture)
 {
 	m_vertBuff.IASet(cmdList);

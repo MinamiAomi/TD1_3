@@ -147,6 +147,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Cube.cpp" />
+    <ClCompile Include="Ground.cpp" />
     <ClCompile Include="include\engine\2D\Camera2D.cpp" />
     <ClCompile Include="include\engine\2D\DebugText.cpp" />
     <ClCompile Include="include\engine\2D\Sprite.cpp" />
@@ -189,6 +191,7 @@
     <ClCompile Include="include\game\TestObj.cpp" />
     <ClCompile Include="include\game\TitleScene.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="DirectXTex\DirectXTex_Desktop_2022_Win10.vcxproj">
@@ -196,6 +199,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Cube.h" />
+    <ClInclude Include="Ground.h" />
     <ClInclude Include="include\engine\2D\Camera2D.h" />
     <ClInclude Include="include\engine\2D\DebugText.h" />
     <ClInclude Include="include\engine\2D\Sprite.h" />
@@ -249,6 +254,7 @@
     <ClInclude Include="include\game\Stage.h" />
     <ClInclude Include="include\game\TestObj.h" />
     <ClInclude Include="include\game\TitleScene.h" />
+    <ClInclude Include="Wall.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\shaders\Block.hlsli" />

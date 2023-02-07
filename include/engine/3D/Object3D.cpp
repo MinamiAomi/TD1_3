@@ -39,7 +39,7 @@ void Object3D::Draw()
 	assert(dixcom->IsInit());
 	auto cmdList = dixcom->GetCommandList();
 
-	m_model->Draw(cmdList, this);
+//	m_model->Draw(cmdList, this);
 }
 void Object3D::Draw(Model* model)
 {
@@ -47,7 +47,7 @@ void Object3D::Draw(Model* model)
 	assert(dixcom->IsInit());
 	auto cmdList = dixcom->GetCommandList();
 
-	model->Draw(cmdList, this);
+//	model->Draw(cmdList, this);
 }
 
 void Object3D::Transfer(ID3D12GraphicsCommandList* cmdList) 

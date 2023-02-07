@@ -32,13 +32,16 @@ public:
 	size_t GetIndexCount() const { return m_indcies.size(); }
 
 	void AddVertex(const Vertex& vertex) { m_vertcies.emplace_back(vertex); }
+	void AddVertcies(const std::vector<Vertex>& vertcies) { m_vertcies = vertcies; }
 	void AddIndex(uint16_t index) { m_indcies.emplace_back(index); }
+	void AddIndcies(const std::vector<uint16_t> indcies) { m_indcies = indcies; }
 
 	void SetMaterial(Material* mate) { m_material = mate; }
 
 	void CreateBuffer(ID3D12Device* dev);
 
 	void Draw(ID3D12GraphicsCommandList* cmdList, UINT rootParameterIndexMaterial, UINT rootParameterIndexTexture);
+	void Draw(ID3D12GraphicsCommandList* cmdList);
 
 private:
 	Meth() {}

@@ -29,6 +29,8 @@ void Resource::LoadImages()
 	m_images.NumberImage = m_texMana->LoadTexture(imageDir + "number.png");
 	m_images.ClearImage = m_texMana->LoadTexture(imageDir + "clear_haikei.png");
 	m_images.HeadImage = m_texMana->LoadTexture(imageDir + "head.png");
+	m_images.wallImage = m_texMana->LoadTexture(imageDir + "wall.png");
+	m_images.groundImage = m_texMana->LoadTexture(imageDir + "ground.png");
 }
 
 void Resource::LoadModels()

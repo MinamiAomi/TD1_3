@@ -93,10 +93,10 @@ void Stage::Update(const Vector2& player)
 	for (auto& it : m_blocks) {
 		it->Update();
 	}
-	for (auto& it : m_items) {
-		it->Update();
-	}
-	m_goal->Update();
+//	for (auto& it : m_items) {
+// 	it->Update();
+//	}
+//	m_goal->Update();
 
 	m_transform.UpdateMatrix();
 }
