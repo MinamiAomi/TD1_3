@@ -1,5 +1,5 @@
 #include "SnowBall.h"
-#include "Resource.h"
+#include "Resources.h"
 #include "Model.h"
 #include "TimeManager.h"
 #include "Block.h"

@@ -4,21 +4,19 @@
 #include "SceneManager.h"
 #include "TitleScene.h"
 #include "ClearScene.h"
-#include "Resource.h"
-#include "Stage.h"
-#include "Player.h"
-#include "SnowBall.h"
+#include "Resources.h"
 #include "Game.h"
 #include "Sprite.h"
-#include "TestObj.h"
 #include "Item.h"
 #include "Goal.h"
 #include "Model.h"
-#include "Resource.h"
 #include <utility>
 
 #include "Ground.h"
+#include "Map.h"
 #include "Wall.h"
+#include "Ball.h"
+#include "ClearItem.h"
 
 GameScene::GameScene(std::shared_ptr<SceneCommonData> commonData, SceneManager* sceneMana) :
 	BaseScene(commonData, sceneMana) {
@@ -29,116 +27,74 @@ GameScene::~GameScene() {}
 
 void GameScene::Initalize()
 {
+	m_frame = 0;
+
 	m_camera.Initalize();
-	m_camera.position = { 0.0f,20.0f,-30.0f };
+	m_camera.position = { 0.0f,25.0f,-20.0f };
 	m_camera.target = { 0.0f,0.0f,0.0f };
 	Wall::camera(&m_camera);
 	m_ground = std::make_unique<Ground>();
 	m_ground->Initalize();
-	for (auto& it : m_walls) {
-		it = std::make_unique<Wall>();
-		it->parent(m_ground->world());
-	}
-	float width = 0.5f;
-	float dist = 2.5f;
-	m_walls[0]->position({-10.0f,2.0f,0.0f});
-	m_walls[1]->position({ 10.0f,2.0f,0.0f });
-	m_walls[2]->position({ 0.0f,2.0f,10.0f });
-	m_walls[3]->position({ 0.0f,2.0f,-10.0f });
-	m_walls[0]->scale({ 1.0f,1.0f,11.0f });
-	m_walls[1]->scale({ 1.0f,1.0f,11.0f });
-	m_walls[2]->scale({ 9.0f,1.0f,1.0f });
-	m_walls[3]->scale({ 9.0f,1.0f,1.0f });
-//	Block::zWidth(1);
-//	m_stage = std::make_unique<Stage>();
-//	m_stage->Initalize();
-//	m_player = std::make_unique<Player>();
-//	m_player->Initalize();
-//	m_snowBall = std::make_unique<SnowBall>();
-//	m_snowBall->Initalize();
-//	Block::camera(m_player->camera());
-//	Item::camera(m_player->camera());
-//	Goal::camera(m_player->camera());
-//	m_stage->camera(m_player->camera());
-//	m_snowBall->camera(m_player->camera());
-	//m_test = std::make_unique<TestObj>();
-	//m_test->Initalize();
-
-	//debug = std::make_unique<Sprite>(m_commonData->resource->GetImage().debugImage, Vector2{ 0,0 }, Vector2{ 200,100 });
-	//debug->SetTextureRect({ 0,0 }, { 128,64 });
+	m_ball = std::make_unique<Ball>();
+	m_ball->Initalize();
+	m_ball->parent(m_ground->world());
+	m_map = std::make_unique<Map>();
+	m_map->Initalize(m_ground->world(), &m_camera);
+	
+	m_stickTexNum = 0;
+	m_stick = Sprite::Create(Resource::GetInstance()->GetImage().stickImage, { 0.0f,720 - 100 }, { 100.0f,100.0f });
+	m_stick->SetTextureRect({ 0.0f,0.0f }, { 64.0f,64.0f });
+	m_camera.UpdateMatrix();
 }
 
 void GameScene::Update()
 {
-//	m_player->Update();
-//	m_stage->Update(m_player->positionXY());
-//	m_snowBall->Update();
-	//m_test->Update();
-	// “–‚½‚è”»’è
-
-//	m_player->PreCollision();
-//	m_stage->PreCollision();
-//	m_snowBall->PreCollision();
-
-//	std::vector<std::pair<Block::Type,const Collider2D::OBB*>> blocks;
-//	const Collider2D::Circle& player = m_snowBall->collider();
-//	
-//	for (auto& it : m_player->blocks()) {
-//		blocks.push_back({ it.typeId(), &it.collider() });
-//	}
-//	for (auto& it : m_stage->blocks()) {
-//		blocks.push_back({ it->typeId(), &it->collider() });
-//	}
-//	
-//
-//	Vector2 closestPoint;
-//	for (auto& block : blocks) {
-//		if (Collision2D::Hit_Circle_OBB(player, *block.second, closestPoint)) {
-//			m_snowBall->OnCollisionBlock(closestPoint,block.first);
-//		}
-//	}
-//	for (auto& item : m_stage->items()) {
-//		if (item->isGet() == false) {
-//			if (Collision2D::Hit_Circle_Circle(player, item->collider())) {
-//				m_snowBall->OnCollisionItem(item->typeId());
-//				item->OnCollision();
-//
-//			}
-//		}
-//	}
-//
-//	if (m_snowBall->canGoal() == true) {
-//		if (Collision2D::Hit_Circle_OBB(player, m_stage->goal()->collider(), closestPoint)) {
-//			m_snowBall->OnCollisionGoal();
-//			m_stage->goal()->OnCollision();
-//		}
-//	}
+	m_frame++;
+	if (m_frame % 20 == 0) {
+		m_stickTexNum++;
+		if (m_stickTexNum >= 4) {
+			m_stickTexNum = 0;
+		}
+	}
 
 	auto input = Input::GetInstance();
 
 
 	m_ground->Update();
 
-	for (auto& it : m_walls) {
-		it->Update();
+	m_map->Update();
+	m_ball->normal(m_ground->normal());
+	m_ball->Update();
+	
+	Vector2 closestPoint;
+	for (auto& wall : m_map->walls()) {
+		if (Collision2D::Hit_Circle_OBB(m_ball->collider(), wall->collider(), closestPoint)) {
+			m_ball->OnCollisionWall(closestPoint);
+		}
 	}
-
+	for (auto& item : m_map->items()) {
+		if (item->isGet() == false) {
+			if (Collision2D::Hit_Circle_Circle(m_ball->collider(), item->collider())) {
+				m_ball->OnCollisionItem(item->type());
+				item->OnCollision();
+			}
+		}
+	}
+	if (m_ball->isCanGoal() == true) {
+		if (Collision2D::Hit_Circle_Circle(m_ball->collider(), m_map->goal()->collider())) {
+			m_map->goal()->OnCollision();
+		}
+	}
 	m_camera.UpdateMatrix();
 }
 
 void GameScene::Draw3D()
 {
-//	m_stage->Draw3D();
-//	m_snowBall->Draw();
-//	m_player->Draw();
-	//m_test->Draw();
-
-//	Resource::GetInstance()->GetModel().axis->Draw(&world, m_player->camera());
+	m_camera.UpdateMatrix();
 
 	m_ground->Draw(&m_camera);
-	for (auto& it : m_walls) {
-		it->Draw();
-	}
+	m_map->Draw();
+	m_ball->Draw(&m_camera);
 }
 
 void GameScene::Draw2D() {
@@ -146,6 +102,9 @@ void GameScene::Draw2D() {
 	if (Game::IsDebugMode()) {
 		//	Sprite::Draw(debug.get(), m_commonData->camera2D.get());
 	}
+	m_stick->SetTextureRect({ m_stickTexNum * 64.0f,0.0f }, { 64.0f,64.0f });
+	Sprite::Draw(m_stick.get(), m_commonData->camera2D.get());
+
 }
 
 void GameScene::ChangeScene() 
@@ -153,13 +112,13 @@ void GameScene::ChangeScene()
 	auto input = App::GetInstance()->GetInput();
 
 	if (input->IsKeyTrigger(DIK_T)) {
-		m_sceneMana->Transition<TitleScene>();
+		m_sceneMana->ChangeStart(kSceneIdTitle);
 		return;
 	}
-//	if (m_snowBall->isGameClear() == true) {
-//		m_sceneMana->Transition<ClearScene>();
-//		return;
-//	}
+	if (m_map->goal()->isClear() == true) {
+		m_sceneMana->ChangeStart(kSceneIdClear);
+		return;
+	}
 //	if (m_snowBall->isGameOver() == true) {
 //		m_sceneMana->Transition<GameScene>();
 //		return;

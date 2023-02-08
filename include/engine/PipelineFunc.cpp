@@ -7,7 +7,7 @@ void SetBlendState(D3D12_RENDER_TARGET_BLEND_DESC& blendDesc, BlendMode blendmod
 {
 	blendDesc.RenderTargetWriteMask = D3D12_COLOR_WRITE_ENABLE_ALL; // RGBAすべてのチャンネルを描画
 	blendDesc.BlendOpAlpha = D3D12_BLEND_OP_ADD;			// 加算
-	blendDesc.SrcBlendAlpha = D3D12_BLEND_ONE;				// ソースの値を 100% 使う
+	blendDesc.SrcBlendAlpha = D3D12_BLEND_ONE;			// ソースの値を 100% 使う
 	blendDesc.DestBlendAlpha = D3D12_BLEND_ZERO;			// デストの値を   0% 使う
 
 	switch (blendmode)
@@ -18,8 +18,8 @@ void SetBlendState(D3D12_RENDER_TARGET_BLEND_DESC& blendDesc, BlendMode blendmod
 		//default:
 	case kBlendModeNormal:
 		blendDesc.BlendEnable = true;						// ブレンドを有効にする
-		blendDesc.BlendOp = D3D12_BLEND_OP_ADD;				// 加算
-		blendDesc.SrcBlend = D3D12_BLEND_SRC_ALPHA;			// ソースのアルファ値
+		blendDesc.BlendOp = D3D12_BLEND_OP_ADD;
+		blendDesc.SrcBlend = D3D12_BLEND_SRC_ALPHA;
 		blendDesc.DestBlend = D3D12_BLEND_INV_SRC_ALPHA;	// 1.0f-ソースのアルファ値
 		return;
 		//case kBlendModeAdd:

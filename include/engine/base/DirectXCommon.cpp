@@ -49,17 +49,24 @@ void DirectXCommon::PreDraw()
 
 	m_cmdList->ResourceBarrier(1, &barrierDesc);
 
-	// レンダーターゲットビューのハンドルを取得
-	D3D12_CPU_DESCRIPTOR_HANDLE rtvHandle = m_rtvHeap->GetCPUDescriptorHandleForHeapStart();
-	rtvHandle.ptr += bbIndex * m_device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV);
-	// 深度ステンシルビュー用デスクリプタヒープのハンドルを取得
-	D3D12_CPU_DESCRIPTOR_HANDLE dsvHandle = m_dsvHeap->GetCPUDescriptorHandleForHeapStart();
-	m_cmdList->OMSetRenderTargets(1, &rtvHandle, false, &dsvHandle);
+	//// レンダーターゲットビューのハンドルを取得
+	//D3D12_CPU_DESCRIPTOR_HANDLE rtvHandle = m_rtvHeap->GetCPUDescriptorHandleForHeapStart();
+	//rtvHandle.ptr += bbIndex * m_device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV);
+	//// 深度ステンシルビュー用デスクリプタヒープのハンドルを取得
+	//D3D12_CPU_DESCRIPTOR_HANDLE dsvHandle = m_dsvHeap->GetCPUDescriptorHandleForHeapStart();
 	
-	// 画面クリア
-	FLOAT clearcolor[] = { m_clearColor.x, m_clearColor.y, m_clearColor.z, m_clearColor.w };
-	m_cmdList->ClearRenderTargetView(rtvHandle, clearcolor, 0, nullptr);
-	m_cmdList->ClearDepthStencilView(dsvHandle, D3D12_CLEAR_FLAG_DEPTH, 1.0f, 0, 0, nullptr);
+	// レンダーターゲットビュー用ディスクリプタヒープのハンドルを取得
+	CD3DX12_CPU_DESCRIPTOR_HANDLE rtvH = CD3DX12_CPU_DESCRIPTOR_HANDLE(
+		m_rtvHeap->GetCPUDescriptorHandleForHeapStart(), bbIndex,
+		m_device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV));
+	// 深度ステンシルビュー用デスクリプタヒープのハンドルを取得
+	CD3DX12_CPU_DESCRIPTOR_HANDLE dsvH =
+		CD3DX12_CPU_DESCRIPTOR_HANDLE(m_dsvHeap->GetCPUDescriptorHandleForHeapStart());
+	m_cmdList->OMSetRenderTargets(1, &rtvH, false, &dsvH);
+	
+	ClearRenderTarget();
+	ClearDepthBuffer();
+
 
 	// ビューポート
 	SetViewport(0.0f, 0.0f, static_cast<float>(m_winApp->GetWindowWidth()), static_cast<float>(m_winApp->GetWindowHeight()));
@@ -121,6 +128,27 @@ void DirectXCommon::PostDraw()
 	// 再びコマンドリストをためる準備
 	result = m_cmdList->Reset(m_cmdAllocator.Get(), nullptr);
 	assert(SUCCEEDED(result));
+}
+
+void DirectXCommon::ClearRenderTarget()
+{
+	UINT bbIndex = m_swapChain->GetCurrentBackBufferIndex();
+
+	// レンダーターゲットビュー用ディスクリプタヒープのハンドルを取得
+	CD3DX12_CPU_DESCRIPTOR_HANDLE rtvH = CD3DX12_CPU_DESCRIPTOR_HANDLE(
+		m_rtvHeap->GetCPUDescriptorHandleForHeapStart(), bbIndex,
+		m_device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV));
+
+	FLOAT clearcolor[] = { m_clearColor.x, m_clearColor.y, m_clearColor.z, m_clearColor.w };
+	m_cmdList->ClearRenderTargetView(rtvH, clearcolor, 0, nullptr);
+}
+
+void DirectXCommon::ClearDepthBuffer()
+{
+	CD3DX12_CPU_DESCRIPTOR_HANDLE dsvH =
+		CD3DX12_CPU_DESCRIPTOR_HANDLE(m_dsvHeap->GetCPUDescriptorHandleForHeapStart());
+	// 深度バッファのクリア
+	m_cmdList->ClearDepthStencilView(dsvH, D3D12_CLEAR_FLAG_DEPTH, 1.0f, 0, 0, nullptr);
 }
 
 DirectXCommon::ComPtr<ID3D12Resource> DirectXCommon::CreateResourceBuffer(UINT64 size) {
@@ -283,11 +311,11 @@ void DirectXCommon::CreateRenderTargetView()
 void DirectXCommon::CreateDepthBuffer() {
 	HRESULT result = S_FALSE;
 
+	CD3DX12_HEAP_PROPERTIES depthHeapProp = CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_DEFAULT);
+
 	CD3DX12_RESOURCE_DESC depthResourceDesc = CD3DX12_RESOURCE_DESC::Tex2D(
 		DXGI_FORMAT_D32_FLOAT, m_winApp->GetWindowWidth(), m_winApp->GetWindowHeight(), 1, 0, 1, 0,
 		D3D12_RESOURCE_FLAG_ALLOW_DEPTH_STENCIL);
-
-	CD3DX12_HEAP_PROPERTIES depthHeapProp = CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_DEFAULT);
 
 	CD3DX12_CLEAR_VALUE depthClearValue = CD3DX12_CLEAR_VALUE(DXGI_FORMAT_D32_FLOAT, 1.0f, 0);
 

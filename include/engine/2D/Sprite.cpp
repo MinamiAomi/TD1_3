@@ -177,6 +177,7 @@ void Sprite::Draw(Sprite* sprite, Camera2D* camera, BlendMode blend)
 {
 
 	auto* cmdList = diXCom->GetCommandList();
+	diXCom->ClearDepthBuffer();
 	// パイプラインをセット
 	cmdList->SetPipelineState(pipelineState[blend].Get());
 	cmdList->SetGraphicsRootSignature(rootSignature.Get());
@@ -197,6 +198,7 @@ void Sprite::Draw(Sprite* sprite, Camera2D* camera, BlendMode blend)
 void Sprite::Draw(Sprite* sprite, const Matrix44& mat, BlendMode blend)
 {
 	auto* cmdList = diXCom->GetCommandList();
+	diXCom->ClearDepthBuffer();
 	// パイプラインをセット
 	cmdList->SetPipelineState(pipelineState[blend].Get());
 	cmdList->SetGraphicsRootSignature(rootSignature.Get());
@@ -224,6 +226,7 @@ Sprite::Sprite()
 
 Sprite::Sprite(UINT textureHandle, Vector2 position, Vector2 size, Vector4 color, Vector2 anchorPoint, bool isFlipX, bool isFlipY) :
 	textureHandle(textureHandle),
+	size(size),
 	position(position),
 	color(color),
 	anchorPoint(anchorPoint),

@@ -95,6 +95,21 @@
     <Filter Include="Game\Object\New\Wall">
       <UniqueIdentifier>{e753c08b-bd38-4a31-b115-133ab3f4f496}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Object\New\Ball">
+      <UniqueIdentifier>{5d3b83b9-ce00-4b6c-817a-0b92ed0d3919}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Object\New\Map">
+      <UniqueIdentifier>{8f6f947b-ef15-4ee7-97e8-c4d612858926}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Object\New\ClearItem">
+      <UniqueIdentifier>{cd7890f4-d05c-48b4-b7f6-2bf09bd4742f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Object\New\Goal">
+      <UniqueIdentifier>{19e985f2-4681-4c55-a26f-a8e66eb21c5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene\Fead">
+      <UniqueIdentifier>{8a03ff05-c7c4-4243-bbd3-15d6553e3b6f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -161,7 +176,7 @@
     <ClCompile Include="include\game\SceneCommonData.cpp">
       <Filter>Game\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="include\game\Resource.cpp">
+    <ClCompile Include="include\game\Resources.cpp">
       <Filter>Game\Resource</Filter>
     </ClCompile>
     <ClCompile Include="include\game\Block.cpp">
@@ -213,9 +228,6 @@
     <ClCompile Include="include\game\EyeItem.cpp">
       <Filter>Game\Object\Old\Item</Filter>
     </ClCompile>
-    <ClCompile Include="include\game\Goal.cpp">
-      <Filter>Game\Object\Old\Goal</Filter>
-    </ClCompile>
     <ClCompile Include="include\game\ClearScene.cpp">
       <Filter>Game\Scene\Clear</Filter>
     </ClCompile>
@@ -227,6 +239,21 @@
     </ClCompile>
     <ClCompile Include="Cube.cpp">
       <Filter>Engine\3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Ball.cpp">
+      <Filter>Game\Object\New\Ball</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Game\Object\New\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="ClearItem.cpp">
+      <Filter>Game\Object\New\ClearItem</Filter>
+    </ClCompile>
+    <ClCompile Include="include\game\Goal.cpp">
+      <Filter>Game\Object\New\Goal</Filter>
+    </ClCompile>
+    <ClCompile Include="Fead.cpp">
+      <Filter>Game\Scene\Fead</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -326,7 +353,7 @@
     <ClInclude Include="include\game\GameScene.h">
       <Filter>Game\Scene\Game</Filter>
     </ClInclude>
-    <ClInclude Include="include\game\Resource.h">
+    <ClInclude Include="include\game\Resources.h">
       <Filter>Game\Resource</Filter>
     </ClInclude>
     <ClInclude Include="include\game\Block.h">
@@ -381,9 +408,6 @@
     <ClInclude Include="include\game\EyeItem.h">
       <Filter>Game\Object\Old\Item</Filter>
     </ClInclude>
-    <ClInclude Include="include\game\Goal.h">
-      <Filter>Game\Object\Old\Goal</Filter>
-    </ClInclude>
     <ClInclude Include="include\game\ClearScene.h">
       <Filter>Game\Scene\Clear</Filter>
     </ClInclude>
@@ -395,6 +419,21 @@
     </ClInclude>
     <ClInclude Include="Cube.h">
       <Filter>Engine\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Ball.h">
+      <Filter>Game\Object\New\Ball</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Game\Object\New\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="ClearItem.h">
+      <Filter>Game\Object\New\ClearItem</Filter>
+    </ClInclude>
+    <ClInclude Include="include\game\Goal.h">
+      <Filter>Game\Object\New\Goal</Filter>
+    </ClInclude>
+    <ClInclude Include="Fead.h">
+      <Filter>Game\Scene\Fead</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -427,5 +466,10 @@
     <FxCompile Include="resources\shaders\BlockVS.hlsl">
       <Filter>Game\Object\Old\Block</Filter>
     </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="TD1_3.rc">
+      <Filter>Engine\shader</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

@@ -1,11 +1,10 @@
 #include "EyeItem.h"
 #include "Model.h"
-#include "Resource.h"
+#include "Resources.h"
 #include "SceneManager.h"
 #include "SceneCommonData.h"
 #include "Sprite.h"
 
-#include "Resource.h"
 
 void EyeItem::Initalize()
 {

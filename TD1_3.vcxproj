@@ -147,7 +147,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Ball.cpp" />
+    <ClCompile Include="ClearItem.cpp" />
     <ClCompile Include="Cube.cpp" />
+    <ClCompile Include="Fead.cpp" />
     <ClCompile Include="Ground.cpp" />
     <ClCompile Include="include\engine\2D\Camera2D.cpp" />
     <ClCompile Include="include\engine\2D\DebugText.cpp" />
@@ -183,7 +186,7 @@
     <ClCompile Include="include\game\Item.cpp" />
     <ClCompile Include="include\game\MainCamera.cpp" />
     <ClCompile Include="include\game\Player.cpp" />
-    <ClCompile Include="include\game\Resource.cpp" />
+    <ClCompile Include="include\game\Resources.cpp" />
     <ClCompile Include="include\game\SceneCommonData.cpp" />
     <ClCompile Include="include\game\SceneManager.cpp" />
     <ClCompile Include="include\game\SnowBall.cpp" />
@@ -191,6 +194,7 @@
     <ClCompile Include="include\game\TestObj.cpp" />
     <ClCompile Include="include\game\TitleScene.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Map.cpp" />
     <ClCompile Include="Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -199,7 +203,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Ball.h" />
+    <ClInclude Include="ClearItem.h" />
     <ClInclude Include="Cube.h" />
+    <ClInclude Include="Fead.h" />
     <ClInclude Include="Ground.h" />
     <ClInclude Include="include\engine\2D\Camera2D.h" />
     <ClInclude Include="include\engine\2D\DebugText.h" />
@@ -247,13 +254,14 @@
     <ClInclude Include="include\game\jsonLoader.h" />
     <ClInclude Include="include\game\MainCamera.h" />
     <ClInclude Include="include\game\Player.h" />
-    <ClInclude Include="include\game\Resource.h" />
+    <ClInclude Include="include\game\Resources.h" />
     <ClInclude Include="include\game\SceneCommonData.h" />
     <ClInclude Include="include\game\SceneManager.h" />
     <ClInclude Include="include\game\SnowBall.h" />
     <ClInclude Include="include\game\Stage.h" />
     <ClInclude Include="include\game\TestObj.h" />
     <ClInclude Include="include\game\TitleScene.h" />
+    <ClInclude Include="Map.h" />
     <ClInclude Include="Wall.h" />
   </ItemGroup>
   <ItemGroup>
@@ -298,6 +306,9 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
     </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="TD1_3.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

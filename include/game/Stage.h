@@ -27,7 +27,7 @@ private:
 	WorldTransform m_transform;
 	std::unique_ptr<Block> m_ground;	// 地面
 	std::vector<std::unique_ptr<Block>> m_blocks;	// 壁となるブロック
-	std::unique_ptr<Goal> m_goal;
+//	std::unique_ptr<Goal> m_goal;
 	std::vector<std::unique_ptr<Item>> m_items;	//	ゴール条件に必要なアイテム
 
 	std::unique_ptr<Sprite> m_number;
@@ -56,7 +56,7 @@ public:
 	const std::vector<std::unique_ptr<class Block>>& blocks()const { return m_blocks; }
 	unsigned int GetStageIndex() const { return m_stageIndex; }
 	const std::vector<std::unique_ptr<Item>>& items() const { return m_items; }
-	const std::unique_ptr<Goal>& goal() const { return m_goal; }
+	//const std::unique_ptr<Goal>& goal() const { return m_goal; }
 
 private:
 	void LoadStageData();
