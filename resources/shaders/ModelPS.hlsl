@@ -13,7 +13,7 @@ float4 main(VSOutput input) : SV_TARGET
 {
     directionLight light;
     light.color = float3(1.0f, 1.0f, 1.0f);
-    light.direction = normalize(float3(1.0f, -1.0f, -1.0f));
+    light.direction = normalize(float3(0.0f, -1.0f, 0.0f));
     
     float3 ambientColor = float3(0.2f, 0.2f, 0.2f);
     // テクスチャの色

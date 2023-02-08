@@ -104,6 +104,10 @@ public:
 	/// <param name="end"></param>
 	/// <returns></returns>
 	static inline Quaternion Slerp(float param, const Quaternion& start, const Quaternion& end);
+
+	bool operator==(const Quaternion& q) {
+		return x == q.x && y == q.y && z == q.z && w == q.w;
+	}
 };
 
 
@@ -222,23 +226,23 @@ inline Quaternion Quaternion::Inverse() const {
 	return Conjugate() / LengthSquare();
 }
 inline Quaternion Quaternion::Slerp(float param, const Quaternion& start, const Quaternion& end) {
-	//Quaternion s = start;
-	//float dot_val = start.Dot(end);
-	//// q1, q2が反対向きの場合
-	//if (dot_val < 0) {
-	//	s.w = -s.w;
-	//	s.x = -s.x;
-	//	s.y = -s.y;
-	//	s.z = -s.z;
-	//	dot_val = -dot_val;
-	//}
-	//// 球面線形補間の計算
-	//float theta = std::acos(dot_val);
-	//return (std::sin((1 - t) * theta) * s + std::sin(t * theta) * end) / std::sin(theta);
+	Quaternion s = start;
+	float dot_val = Dot(start,end);
+	// q1, q2が反対向きの場合
+	if (dot_val < 0) {
+		s.w = -s.w;
+		s.x = -s.x;
+		s.y = -s.y;
+		s.z = -s.z;
+		dot_val = -dot_val;
+	}
+	// 球面線形補間の計算
+	float theta = std::acos(dot_val);
+	return (std::sin((1 - param) * theta) * s + std::sin(param * theta) * end) / std::sin(theta);
 	
-	float dot = Dot(start, end);
-	float theta = acosf(dot);
-	return sinf((1 - param) * theta) * start + sinf(param * theta) * end / sinf(theta);
+	//float dot = Dot(start, end);
+	//float theta = acosf(dot);
+	//return sinf((1 - param) * theta) * start + sinf(param * theta) * end / sinf(theta);
 
 
 }

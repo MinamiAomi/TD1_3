@@ -1,7 +1,7 @@
 #include "TestObj.h"
 #include "CameraTransform.h"
 #include "Model.h"
-#include "Resource.h"
+#include "Resources.h"
 #include "Input.h"
 
 TestObj::TestObj()

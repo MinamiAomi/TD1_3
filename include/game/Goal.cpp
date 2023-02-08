@@ -1,9 +1,6 @@
 #include "Goal.h"
-#include "Resource.h"
+#include "Resources.h"
 #include "Model.h"
-#include "CameraTransform.h"
-
-CameraTransform* Goal::s_camera = nullptr;
 
 Goal::Goal()
 {
@@ -14,53 +11,31 @@ Goal::~Goal()
 {
 }
 
-void Goal::Initalize()
+void Goal::Initalize(const Vector2& pos)
 {
+	m_center = pos;
+	
+	m_transform.position = { m_center.x,2.1f,m_center.y };
+	m_transform.rotate = Quaternion::Identity;
+	m_transform.scale = { 1.2f,1.2f,1.2f };
+	m_isClear = false;
 
-	m_rect.width = 0.3f;
-	m_rect.height = 0.3f;
-
-	m_transform.position = { m_rect.center,0.0f };
-	m_transform.scale = { m_rect.width,m_rect.height,1 };
-	m_transform.rotate = Quaternion(m_rect.rotate, Vector3::UnitZ);
-
-	m_collider.center = m_transform.position.xy();
-	Matrix33 rotMat = Matrix33::CreateRotation(m_rect.rotate);
-	m_collider.direction[0] = rotMat.GetX();
-	m_collider.direction[1] = rotMat.GetY();
-
-	m_collider.size[0] = m_transform.scale.x;
-	m_collider.size[1] = m_transform.scale.y;
+	m_transform.UpdateMatrix();
 }
 
 void Goal::Update()
 {
+	m_collider.center = m_center;
+	m_collider.radius = 2.8f;
 }
 
-void Goal::Draw()
+void Goal::Draw(CameraTransform* camera)
 {
 	m_transform.UpdateMatrix();
-	Resource::GetInstance()->GetModel().cube->Draw(&m_transform,s_camera);
-}
-
-void Goal::PreCollision(float a)
-{
-	m_transform.UpdateMatrix();
-
-	m_collider.center = m_transform.worldMatrix.GetTranslation().xy();
-
-	Matrix33 rotMat;
-	float rotate = a + m_rect.rotate;
-	rotMat = Matrix33::CreateRotation(rotate);
-
-	m_collider.direction[0] = rotMat.GetX();
-	m_collider.direction[1] = rotMat.GetY();
-
-	m_collider.size[0] = m_rect.width;
-	m_collider.size[1] = m_rect.height;
+	Resource::GetInstance()->GetModel().sphere->Draw(&m_transform, camera);
 }
 
 void Goal::OnCollision()
 {
-	
+	m_isClear = true;
 }

@@ -4,12 +4,24 @@
 #include <stack>
 #include "BaseScene.h"
 
+class Fead;
+
+enum SceneId {
+	kSceneIdTitle,
+	kSceneIdMain,
+	kSceneIdClear,
+
+	kSceneIdCount
+};
+
 class SceneManager
 {
 
 private:
 	std::unique_ptr<BaseScene> m_scene;
 	std::shared_ptr<SceneCommonData> m_commonData;
+	std::unique_ptr<Fead> m_fead;
+
 
 public:
 	static SceneManager* GetInstance();
@@ -20,6 +32,8 @@ public:
 	void Update();
 	void Draw();
 	void ChangeScene();
+
+	void ChangeStart(SceneId scene);
 
 	template<class NextScene>
 	void Transition();

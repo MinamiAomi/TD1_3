@@ -2,7 +2,7 @@
 #include "TextureManager.h"
 #include "App.h"
 #include "Input.h"
-#include "Resource.h"
+#include "Resources.h"
 #include "Sprite.h"
 #include "Model.h"
 #include "SceneManager.h"
@@ -10,6 +10,10 @@
 #include <cassert>
 #include "Stage.h"
 #include "Block.h"
+
+#include "Map.h"
+#include "Wall.h"
+#include "Cube.h"
 
 bool Game::m_isDebugMode = false;
 
@@ -25,7 +29,7 @@ bool Game::Initalize(){
 
 	m_app = App::GetInstance();
 	m_app->Initalize(windowWidth, windowHight, windowTitle);
-	m_app->GetDirectXCommon()->SetClearColor(Color::ToVector4(0x663333FF));
+	m_app->GetDirectXCommon()->SetClearColor(Color::ToVector4(0x3399AAFF));
 
 	m_resource = Resource::GetInstance();
 	m_resource->Initalize(m_app->GetTextureManager());
@@ -34,15 +38,18 @@ bool Game::Initalize(){
 	m_sceneMana->Initalize();
 
 	Block::StaticInitalize();
-
-	Stage::LoadJson();
+	Cube::GetInstance();
+	Wall::StaticInitalize();
+	//Stage::LoadJson();
+	Map::LoadJson();
 
 	return true;
 }
 
 void Game::Finalize() 
 {
-	Stage::SaveJson();
+	//Stage::SaveJson();
+	Map::SaveJson();
 }
 
 void Game::Run() 

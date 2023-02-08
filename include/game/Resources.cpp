@@ -1,4 +1,4 @@
-#include "Resource.h"
+#include "Resources.h"
 #include <cassert>
 #include "TextureManager.h"
 #include "Model.h"
@@ -29,6 +29,10 @@ void Resource::LoadImages()
 	m_images.NumberImage = m_texMana->LoadTexture(imageDir + "number.png");
 	m_images.ClearImage = m_texMana->LoadTexture(imageDir + "clear_haikei.png");
 	m_images.HeadImage = m_texMana->LoadTexture(imageDir + "head.png");
+	m_images.wallImage = m_texMana->LoadTexture(imageDir + "wall.png");
+	m_images.groundImage = m_texMana->LoadTexture(imageDir + "ground.png");
+	m_images.pushAImage = m_texMana->LoadTexture(imageDir + "puthA.png");
+	m_images.stickImage = m_texMana->LoadTexture(imageDir + "stick.png");
 }
 
 void Resource::LoadModels()
@@ -37,6 +41,7 @@ void Resource::LoadModels()
 	m_models.sphere = Model::CreateFromObj("sphere/UVSphere.obj");
 	m_models.cube = Model::CreateFromObj("cube/Cube.obj");
 	m_models.axis = Model::CreateFromObj("axis/axis.obj");
+	m_models.bucket = Model::CreateFromObj("bucket/bucket.obj");
 }
 
 void Resource::LoadSounds()

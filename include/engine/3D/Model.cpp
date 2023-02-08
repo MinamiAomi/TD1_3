@@ -382,6 +382,18 @@ std::unique_ptr<Model> Model::CreateFromObj(const std::string& path)
 
 }
 
+void Model::Draw(Meth* meth, Material* material, WorldTransform* world, CameraTransform* camera)
+{
+	auto cmdList = diXCom->GetCommandList();
+	cmdList->SetGraphicsRootSignature(rootSignature.Get());
+	cmdList->SetPipelineState(pipelineState.Get());
+	cmdList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+	world->Transfer(cmdList, kRootParameterIndexWorldTransform);
+	camera->Transfer(cmdList, kRootParameterIndexCameraTransform);
+	material->SetGraphicsCommand(cmdList, kRootParameterIndexMaterial, kRootParameterIndexTexture);
+	meth->Draw(cmdList);
+}
+
 void Model::Draw(WorldTransform* world, CameraTransform* camera) const
 {
 	auto cmdList = diXCom->GetCommandList();
@@ -395,13 +407,13 @@ void Model::Draw(WorldTransform* world, CameraTransform* camera) const
 	}
 }
 
-void Model::Draw(ID3D12GraphicsCommandList* cmdList, Object3D* object)
-{
-	for (auto& it : m_meths) {
-		cmdList->SetGraphicsRootSignature(rootSignature.Get());
-		cmdList->SetPipelineState(pipelineState.Get());
-		cmdList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-		object->Transfer(cmdList);
-		it->Draw(cmdList, kRootParameterIndexMaterial, kRootParameterIndexTexture);
-	}
-}
+//void Model::Draw(ID3D12GraphicsCommandList* cmdList, Object3D* object)
+//{
+//	for (auto& it : m_meths) {
+//		cmdList->SetGraphicsRootSignature(rootSignature.Get());
+//		cmdList->SetPipelineState(pipelineState.Get());
+//		cmdList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+//		object->Transfer(cmdList);
+//		it->Draw(cmdList, kRootParameterIndexMaterial, kRootParameterIndexTexture);
+//	}
+//}

@@ -193,7 +193,9 @@ public:
 	friend inline Vector3 Reflected(const Vector3& v, const Vector3& normal) {
 		return Dot(normal, -v) * 2.0f * normal + v;
 	}
-
+	friend inline Vector3 AlongWall(const Vector3& v, const Vector3& normal) {
+		return Dot(normal, -v) * normal + v;
+	}
 	inline bool IsZero() const {
 		return x == 0.0f && y == 0.0f && z == 0.0f;
 	}

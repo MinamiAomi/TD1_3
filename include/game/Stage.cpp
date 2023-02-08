@@ -15,7 +15,7 @@
 #include "Game.h"
 #include "Sprite.h"
 #include "SceneManager.h"
-#include "Resource.h"
+#include "Resources.h"
 #include "Goal.h"
 #include "CameraTransform.h"
 
@@ -93,10 +93,10 @@ void Stage::Update(const Vector2& player)
 	for (auto& it : m_blocks) {
 		it->Update();
 	}
-	for (auto& it : m_items) {
-		it->Update();
-	}
-	m_goal->Update();
+//	for (auto& it : m_items) {
+// 	it->Update();
+//	}
+//	m_goal->Update();
 
 	m_transform.UpdateMatrix();
 }
@@ -112,7 +112,7 @@ void Stage::PreCollision()
 			it->PreCollision();
 		}
 	}
-	m_goal->PreCollision(m_angle);
+	//m_goal->PreCollision(m_angle);
 }
 
 
@@ -128,7 +128,7 @@ void Stage::Draw3D()
 			it->Draw();
 		}
 	}
-	m_goal->Draw();
+	//m_goal->Draw();
 	m_number->SetTextureRect({ 32 * (float)m_stageIndex, 0 }, { 32,32 });
 }
 
@@ -242,13 +242,13 @@ void Stage::LoadStageData()
 		}
 	}
 
-	std::unique_ptr<Goal> tmpInstance;
-	tmpInstance = std::make_unique<Goal>();
-	tmpInstance->position({ data.at("goal").at("pos").at(0), data.at("goal").at("pos").at(1)});
-	tmpInstance->rotate( data.at("goal").at("rot"));
-	tmpInstance->parent(&m_transform);
-	tmpInstance->Initalize();
-	m_goal = std::move(tmpInstance);
+	//std::unique_ptr<Goal> tmpInstance;
+	//tmpInstance = std::make_unique<Goal>();
+	//tmpInstance->position({ data.at("goal").at("pos").at(0), data.at("goal").at("pos").at(1)});
+	//tmpInstance->rotate( data.at("goal").at("rot"));
+	//tmpInstance->parent(&m_transform);
+	//tmpInstance->Initalize();
+	//m_goal = std::move(tmpInstance);
 }
 
 void Stage::SaveStageData()

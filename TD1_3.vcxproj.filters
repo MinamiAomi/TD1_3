@@ -41,17 +41,8 @@
     <Filter Include="Game\Object">
       <UniqueIdentifier>{db755c75-4813-437a-84fc-4138dfea2695}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Object\Block">
-      <UniqueIdentifier>{5f1571d5-5bcf-451a-a188-4e5a2d378a3f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Object\Camera">
-      <UniqueIdentifier>{470b43cc-35be-4195-a15d-7542b26a3f1f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\JsonLoader">
       <UniqueIdentifier>{ddce7f6e-b7c0-47db-91c0-c9fb56d1c1d9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Object\Stage">
-      <UniqueIdentifier>{d0c027e2-b9a6-40a2-89dc-c4f0ecdbd577}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game\Object\TestObj">
       <UniqueIdentifier>{f7090ace-c3e8-4624-8a08-7e7bc6c1a780}</UniqueIdentifier>
@@ -65,23 +56,59 @@
     <Filter Include="Engine\3D\Transform">
       <UniqueIdentifier>{0df3977a-2946-4a00-83e2-97c4598560b2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Object\SnowBall">
-      <UniqueIdentifier>{90a59d1f-2083-4e0a-827e-e938d735fc15}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\Collision">
       <UniqueIdentifier>{0cb64cdc-4d57-473d-8579-63a193791d5e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Object\Player">
-      <UniqueIdentifier>{157a549c-2e33-45ac-aacc-375143c0cf03}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Object\Item">
-      <UniqueIdentifier>{a802d734-d1f0-4f7c-a67d-88961f7933e1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Object\Goal">
-      <UniqueIdentifier>{886eaf26-2025-4f84-891d-8b0fbe1c32e9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\Scene\Clear">
       <UniqueIdentifier>{f34ad566-66ea-4f8e-adaa-8c473c4c2027}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Object\Old">
+      <UniqueIdentifier>{8b983472-1c73-4c78-9c74-2b7218a71b8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Object\Old\Block">
+      <UniqueIdentifier>{5f1571d5-5bcf-451a-a188-4e5a2d378a3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Object\Old\Camera">
+      <UniqueIdentifier>{470b43cc-35be-4195-a15d-7542b26a3f1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Object\Old\Goal">
+      <UniqueIdentifier>{886eaf26-2025-4f84-891d-8b0fbe1c32e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Object\Old\Item">
+      <UniqueIdentifier>{a802d734-d1f0-4f7c-a67d-88961f7933e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Object\Old\Player">
+      <UniqueIdentifier>{157a549c-2e33-45ac-aacc-375143c0cf03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Object\Old\SnowBall">
+      <UniqueIdentifier>{90a59d1f-2083-4e0a-827e-e938d735fc15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Object\Old\Stage">
+      <UniqueIdentifier>{d0c027e2-b9a6-40a2-89dc-c4f0ecdbd577}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Object\New">
+      <UniqueIdentifier>{93c0e14e-4bd9-4d65-b3c2-abc9cf1e667e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Object\New\Ground">
+      <UniqueIdentifier>{7d4d4d5a-43f5-4524-ae18-db1b00d62614}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Object\New\Wall">
+      <UniqueIdentifier>{e753c08b-bd38-4a31-b115-133ab3f4f496}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Object\New\Ball">
+      <UniqueIdentifier>{5d3b83b9-ce00-4b6c-817a-0b92ed0d3919}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Object\New\Map">
+      <UniqueIdentifier>{8f6f947b-ef15-4ee7-97e8-c4d612858926}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Object\New\ClearItem">
+      <UniqueIdentifier>{cd7890f4-d05c-48b4-b7f6-2bf09bd4742f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Object\New\Goal">
+      <UniqueIdentifier>{19e985f2-4681-4c55-a26f-a8e66eb21c5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene\Fead">
+      <UniqueIdentifier>{8a03ff05-c7c4-4243-bbd3-15d6553e3b6f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -149,14 +176,14 @@
     <ClCompile Include="include\game\SceneCommonData.cpp">
       <Filter>Game\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="include\game\Resource.cpp">
+    <ClCompile Include="include\game\Resources.cpp">
       <Filter>Game\Resource</Filter>
     </ClCompile>
     <ClCompile Include="include\game\Block.cpp">
-      <Filter>Game\Object\Block</Filter>
+      <Filter>Game\Object\Old\Block</Filter>
     </ClCompile>
     <ClCompile Include="include\game\MainCamera.cpp">
-      <Filter>Game\Object\Camera</Filter>
+      <Filter>Game\Object\Old\Camera</Filter>
     </ClCompile>
     <ClCompile Include="include\engine\3D\CameraTransform.cpp">
       <Filter>Engine\3D\Transform</Filter>
@@ -168,13 +195,13 @@
       <Filter>Engine\Math</Filter>
     </ClCompile>
     <ClCompile Include="include\game\Stage.cpp">
-      <Filter>Game\Object\Stage</Filter>
+      <Filter>Game\Object\Old\Stage</Filter>
     </ClCompile>
     <ClCompile Include="include\game\TestObj.cpp">
       <Filter>Game\Object\TestObj</Filter>
     </ClCompile>
     <ClCompile Include="include\game\SnowBall.cpp">
-      <Filter>Game\Object\SnowBall</Filter>
+      <Filter>Game\Object\Old\SnowBall</Filter>
     </ClCompile>
     <ClCompile Include="include\game\Collision2D.cpp">
       <Filter>Game\Collision</Filter>
@@ -187,25 +214,46 @@
       <Filter>Engine\2D</Filter>
     </ClCompile>
     <ClCompile Include="include\game\Player.cpp">
-      <Filter>Game\Object\Player</Filter>
+      <Filter>Game\Object\Old\Player</Filter>
     </ClCompile>
     <ClCompile Include="include\game\Item.cpp">
-      <Filter>Game\Object\Item</Filter>
+      <Filter>Game\Object\Old\Item</Filter>
     </ClCompile>
     <ClCompile Include="include\game\CarrotItem.cpp">
-      <Filter>Game\Object\Item</Filter>
+      <Filter>Game\Object\Old\Item</Filter>
     </ClCompile>
     <ClCompile Include="include\game\BucketItem.cpp">
-      <Filter>Game\Object\Item</Filter>
+      <Filter>Game\Object\Old\Item</Filter>
     </ClCompile>
     <ClCompile Include="include\game\EyeItem.cpp">
-      <Filter>Game\Object\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="include\game\Goal.cpp">
-      <Filter>Game\Object\Goal</Filter>
+      <Filter>Game\Object\Old\Item</Filter>
     </ClCompile>
     <ClCompile Include="include\game\ClearScene.cpp">
       <Filter>Game\Scene\Clear</Filter>
+    </ClCompile>
+    <ClCompile Include="Ground.cpp">
+      <Filter>Game\Object\New\Ground</Filter>
+    </ClCompile>
+    <ClCompile Include="Wall.cpp">
+      <Filter>Game\Object\New\Wall</Filter>
+    </ClCompile>
+    <ClCompile Include="Cube.cpp">
+      <Filter>Engine\3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Ball.cpp">
+      <Filter>Game\Object\New\Ball</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Game\Object\New\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="ClearItem.cpp">
+      <Filter>Game\Object\New\ClearItem</Filter>
+    </ClCompile>
+    <ClCompile Include="include\game\Goal.cpp">
+      <Filter>Game\Object\New\Goal</Filter>
+    </ClCompile>
+    <ClCompile Include="Fead.cpp">
+      <Filter>Game\Scene\Fead</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -305,14 +353,14 @@
     <ClInclude Include="include\game\GameScene.h">
       <Filter>Game\Scene\Game</Filter>
     </ClInclude>
-    <ClInclude Include="include\game\Resource.h">
+    <ClInclude Include="include\game\Resources.h">
       <Filter>Game\Resource</Filter>
     </ClInclude>
     <ClInclude Include="include\game\Block.h">
-      <Filter>Game\Object\Block</Filter>
+      <Filter>Game\Object\Old\Block</Filter>
     </ClInclude>
     <ClInclude Include="include\game\MainCamera.h">
-      <Filter>Game\Object\Camera</Filter>
+      <Filter>Game\Object\Old\Camera</Filter>
     </ClInclude>
     <ClInclude Include="include\engine\3D\CameraTransform.h">
       <Filter>Engine\3D\Transform</Filter>
@@ -327,7 +375,7 @@
       <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="include\game\Stage.h">
-      <Filter>Game\Object\Stage</Filter>
+      <Filter>Game\Object\Old\Stage</Filter>
     </ClInclude>
     <ClInclude Include="include\game\jsonLoader.h">
       <Filter>Game\JsonLoader</Filter>
@@ -336,7 +384,7 @@
       <Filter>Game\Object\TestObj</Filter>
     </ClInclude>
     <ClInclude Include="include\game\SnowBall.h">
-      <Filter>Game\Object\SnowBall</Filter>
+      <Filter>Game\Object\Old\SnowBall</Filter>
     </ClInclude>
     <ClInclude Include="include\game\Collision2D.h">
       <Filter>Game\Collision</Filter>
@@ -346,25 +394,46 @@
       <Filter>Engine\2D</Filter>
     </ClInclude>
     <ClInclude Include="include\game\Player.h">
-      <Filter>Game\Object\Player</Filter>
+      <Filter>Game\Object\Old\Player</Filter>
     </ClInclude>
     <ClInclude Include="include\game\Item.h">
-      <Filter>Game\Object\Item</Filter>
+      <Filter>Game\Object\Old\Item</Filter>
     </ClInclude>
     <ClInclude Include="include\game\CarrotItem.h">
-      <Filter>Game\Object\Item</Filter>
+      <Filter>Game\Object\Old\Item</Filter>
     </ClInclude>
     <ClInclude Include="include\game\BucketItem.h">
-      <Filter>Game\Object\Item</Filter>
+      <Filter>Game\Object\Old\Item</Filter>
     </ClInclude>
     <ClInclude Include="include\game\EyeItem.h">
-      <Filter>Game\Object\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="include\game\Goal.h">
-      <Filter>Game\Object\Goal</Filter>
+      <Filter>Game\Object\Old\Item</Filter>
     </ClInclude>
     <ClInclude Include="include\game\ClearScene.h">
       <Filter>Game\Scene\Clear</Filter>
+    </ClInclude>
+    <ClInclude Include="Ground.h">
+      <Filter>Game\Object\New\Ground</Filter>
+    </ClInclude>
+    <ClInclude Include="Wall.h">
+      <Filter>Game\Object\New\Wall</Filter>
+    </ClInclude>
+    <ClInclude Include="Cube.h">
+      <Filter>Engine\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Ball.h">
+      <Filter>Game\Object\New\Ball</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Game\Object\New\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="ClearItem.h">
+      <Filter>Game\Object\New\ClearItem</Filter>
+    </ClInclude>
+    <ClInclude Include="include\game\Goal.h">
+      <Filter>Game\Object\New\Goal</Filter>
+    </ClInclude>
+    <ClInclude Include="Fead.h">
+      <Filter>Game\Scene\Fead</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -375,7 +444,7 @@
       <Filter>Engine\shader</Filter>
     </None>
     <None Include="resources\shaders\Block.hlsli">
-      <Filter>Game\Object\Block</Filter>
+      <Filter>Game\Object\Old\Block</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -392,10 +461,15 @@
       <Filter>Engine\shader</Filter>
     </FxCompile>
     <FxCompile Include="resources\shaders\BlockPS.hlsl">
-      <Filter>Game\Object\Block</Filter>
+      <Filter>Game\Object\Old\Block</Filter>
     </FxCompile>
     <FxCompile Include="resources\shaders\BlockVS.hlsl">
-      <Filter>Game\Object\Block</Filter>
+      <Filter>Game\Object\Old\Block</Filter>
     </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="TD1_3.rc">
+      <Filter>Engine\shader</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

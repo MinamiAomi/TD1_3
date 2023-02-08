@@ -58,6 +58,9 @@ public:
 	void PreDraw();
 	void PostDraw();
 	
+	void ClearRenderTarget();
+	void ClearDepthBuffer();
+
 	/// <summary>
 	/// 頂点バッファや定数バッファの生成
 	/// </summary>

@@ -9,7 +9,8 @@ private:
 	// テスト用スプライトを描画
 	std::unique_ptr<class Sprite> test;
 	class Sprite* t = nullptr;
-	std::unique_ptr<class Sprite> debug;
+	std::unique_ptr<class Sprite> pushA;
+	float theta = 0.0f;
 
 public:
 	TitleScene(std::shared_ptr<SceneCommonData> commonData, SceneManager* sceneMana);

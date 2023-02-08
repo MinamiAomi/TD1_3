@@ -4,7 +4,7 @@
 #include "SceneManager.h"
 #include "Sprite.h"
 #include "GameScene.h"
-#include "Resource.h"
+#include "Resources.h"
 #include"TitleScene.h"
 
 #include "Game.h"
@@ -69,7 +69,7 @@ void ClearScene::ChangeScene()
 {
 	auto input = App::GetInstance()->GetInput();
 
-	if (input->IsKeyTrigger(DIK_T)) {
-		m_sceneMana->Transition<TitleScene>();
+	if (input->IsKeyTrigger(DIK_SPACE) || input->IsPadButtonTrigger(0,kPadButtonA)) {
+		m_sceneMana->ChangeStart(kSceneIdTitle);
 	}
 }

@@ -16,6 +16,10 @@ public:
 		unsigned int NumberImage;
 		unsigned int ClearImage;
 		unsigned int HeadImage;
+		unsigned int wallImage;
+		unsigned int groundImage;
+		unsigned int pushAImage;
+		unsigned int stickImage;
 	};
 
 	struct Models {
@@ -23,6 +27,7 @@ public:
 		ModelPtr sphere;
 		ModelPtr cube;
 		ModelPtr axis;
+		ModelPtr bucket;
 	};
 
 	struct Sounds {
