@@ -40,21 +40,23 @@ void Ground::Update()
 {
 	auto input = Input::GetInstance();
 
-	//if (input->IsKeyPressed(DIK_D)) {
-	//	m_world.rotate = Quaternion::CreateFromAngleAxis(Math::ToRadians(1.0f), Vector3::UnitZ) * m_world.rotate;
-	//}
-	//if (input->IsKeyPressed(DIK_A)) {
-	//	m_world.rotate = Quaternion::CreateFromAngleAxis(-Math::ToRadians(1.0f), Vector3::UnitZ) * m_world.rotate;
-	//}
-	//if (input->IsKeyPressed(DIK_W)) {
-	//	m_world.rotate = Quaternion::CreateFromAngleAxis(Math::ToRadians(1.0f), Vector3::UnitX) * m_world.rotate;
-	//}
-	//if (input->IsKeyPressed(DIK_S)) {
-	//	m_world.rotate = Quaternion::CreateFromAngleAxis(-Math::ToRadians(1.0f), Vector3::UnitX) * m_world.rotate;
-	//}
-
 	Vector2 tmp;
+
 	tmp = input->GetLeftStick(0);
+	
+	if (input->IsKeyPressed(DIK_D)) {
+		tmp.x += 32000;
+	}
+	if (input->IsKeyPressed(DIK_A)) {
+		tmp.x += -32000;
+	}
+	if (input->IsKeyPressed(DIK_W)) {
+		tmp.y += 32000;
+	}
+	if (input->IsKeyPressed(DIK_S)) {
+		tmp.y += -32000;
+	}
+
 	if (tmp.IsZero() == false) {
 		m_tilt = tmp;
 
