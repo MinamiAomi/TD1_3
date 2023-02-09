@@ -57,12 +57,12 @@ void ClearScene::Draw2D()
 {
 	//Sprite::Draw(test.get(), m_commonData->camera2D.get());
 
-	if (Game::IsDebugMode()) {
-		Sprite::Draw(debug.get(), m_commonData->camera2D.get());
-	}
+	//if (Game::IsDebugMode()) {
+	//	Sprite::Draw(debug.get(), m_commonData->camera2D.get());
+	//}
 
 	Sprite::Draw(clear_bg, m_commonData->camera2D.get());
-	Sprite::Draw(head, m_commonData->camera2D.get());
+	//Sprite::Draw(head, m_commonData->camera2D.get());
 }
 
 void ClearScene::ChangeScene()
