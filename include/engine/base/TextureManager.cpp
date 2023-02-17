@@ -154,32 +154,34 @@ void TextureManager::SetGraphicsRootDescriptorTable(ID3D12GraphicsCommandList* c
 	cmdlist->SetGraphicsRootDescriptorTable(rootParamIndex, m_textures[texNumber].gpuHandle);
 }
 
-// コメントアウトは自分でテクスチャデータを作るやつ
-
+//// コメントアウトは自分でテクスチャデータを作るやつ
+//void foge() {
+//
 //constexpr size_t kTextureWidth = 256;
 //constexpr size_t kTextureHeight = 256;
 //constexpr size_t kImageDataCount = kTextureHeight * kTextureWidth;
 //
+//HRESULT result = S_FALSE;
 //XMFLOAT4* imageData = new XMFLOAT4[kImageDataCount];
-
-
-//for (size_t i = 0; i < kImageDataCount; i++) {
-//	imageData[i].x = 1.0f;
-//	imageData[i].y = 0.0f;
-//	imageData[i].z = 0.0f;
-//	imageData[i].w = 1.0f;
-//}
-
-//		CD3DX12_RESOURCE_DESC::Tex2D(DXGI_FORMAT_R32G32B32A32_FLOAT, kTextureWidth, kTextureHeight);
+//
+//	for (size_t i = 0; i < kImageDataCount; i++) {
+//		imageData[i].x = 1.0f;
+//		imageData[i].y = 0.0f;
+//		imageData[i].z = 0.0f;
+//		imageData[i].w = 1.0f;
+//	}
+//
+//	CD3DX12_RESOURCE_DESC::Tex2D(DXGI_FORMAT_R32G32B32A32_FLOAT, kTextureWidth, kTextureHeight);
 //	texResourceDesc.MipLevels = 1;
-
+//
 //	result = texBuff->WriteToSubresource(0, nullptr, imageData,
 //		sizeof(XMFLOAT4) * kTextureWidth, sizeof(XMFLOAT4) * kImageDataCount);
 //	assert(SUCCEEDED(result));
-
-
+//
 //	D3D12_SHADER_RESOURCE_VIEW_DESC srvDesc = {};
 //	srvDesc.Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
 //	srvDesc.Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING;
 //	srvDesc.ViewDimension = D3D12_SRV_DIMENSION_TEXTURE2D;
 //	srvDesc.Texture2D.MipLevels = 1;
+//
+//}

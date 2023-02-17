@@ -153,7 +153,8 @@ void Sprite::StaticInitalize(DirectXCommon* dixCom, TextureManager* texMan, UINT
 		pipelineDesc.RTVFormats[0] = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB; // 0 ~ 255指定のRGBA
 		pipelineDesc.SampleDesc.Count = 1; // １ピクセルに着き１回サンプリング
 
-		pipelineDesc.DepthStencilState = CD3DX12_DEPTH_STENCIL_DESC(D3D12_DEFAULT);
+		//pipelineDesc.DepthStencilState = CD3DX12_DEPTH_STENCIL_DESC(D3D12_DEFAULT);
+		pipelineDesc.DepthStencilState.DepthWriteMask = D3D12_DEPTH_WRITE_MASK_ZERO;
 		pipelineDesc.DSVFormat = DXGI_FORMAT_D32_FLOAT;
 
 		// パイプラインにルートシグネチャをセット
@@ -177,7 +178,7 @@ void Sprite::Draw(Sprite* sprite, Camera2D* camera, BlendMode blend)
 {
 
 	auto* cmdList = diXCom->GetCommandList();
-	diXCom->ClearDepthBuffer();
+	//diXCom->ClearDepthBuffer();
 	// パイプラインをセット
 	cmdList->SetPipelineState(pipelineState[blend].Get());
 	cmdList->SetGraphicsRootSignature(rootSignature.Get());
@@ -198,7 +199,7 @@ void Sprite::Draw(Sprite* sprite, Camera2D* camera, BlendMode blend)
 void Sprite::Draw(Sprite* sprite, const Matrix44& mat, BlendMode blend)
 {
 	auto* cmdList = diXCom->GetCommandList();
-	diXCom->ClearDepthBuffer();
+	//diXCom->ClearDepthBuffer();
 	// パイプラインをセット
 	cmdList->SetPipelineState(pipelineState[blend].Get());
 	cmdList->SetGraphicsRootSignature(rootSignature.Get());
